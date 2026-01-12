@@ -1,16 +1,4 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: marada <marada@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/07 13:59:27 by miandrad          #+#    #+#              #
-#    Updated: 2026/01/12 17:57:57 by marada           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-NAME = so_long
+NAME = CUBADO
 
 CC = cc
 
@@ -29,10 +17,15 @@ MAP_SRC =
 all: $(NAME)
 
 run:	all
-	@./so_long map.ber
+	@./CUBADO map.ber
 
 valgrind:	all
-	@valgrind --leak-check=yes --leak-check=full --show-leak-kinds=all --track-origins=yes ./so_long map.ber
+	@valgrind --leak-check=yes --leak-check=full --show-leak-kinds=all --track-origins=yes ./CUBADO map.ber
+
+git:	fclean
+	@git add .
+	@git commit -m "automatico"
+	@git push
 
 clean:
 	@make clean -s -C ft_printf_100
