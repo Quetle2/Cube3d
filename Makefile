@@ -33,7 +33,7 @@ clean:
 
 fclean:
 	@make fclean -s -C ft_printf_100
-	@$(RM) so_long
+	@$(RM) $(NAME)
 
 re: fclean all
 
