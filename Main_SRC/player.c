@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:26:18 by marada            #+#    #+#             */
-/*   Updated: 2026/01/13 19:07:15 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/13 19:08:42 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,14 @@ int	key_release(int keycode, t_player *player)
 
 void	move_player(t_player *player)
 {
-	int	spped = 5;
+	int	speed = 5;
+
+	if(player->key_up)
+		player->y -= speed;
+	if(player->key_down)
+		player->y += speed;
+	if(player->key_left)
+		player->x -= speed;
+	if(player->key_right)
+		player->x += speed;
 }
