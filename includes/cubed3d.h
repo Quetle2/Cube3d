@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/01/13 19:09:09 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/14 17:25:12 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # define WIDTH 1280
 # define HEIGHT 720
+# define BLOCK 64
 
 # define W 119
 # define A 97
@@ -26,19 +27,6 @@
 # define D 100
 
 # define PI 3.14159265359
-
-typedef struct s_game
-{
-	void		*mlx;
-	void		*win;
-	void		*img;
-
-	char		*data;
-	int			bpp;
-	int			size_line;
-	int			endian;
-	t_player	player;
-} t_game;
 
 typedef struct s_player
 {
@@ -51,16 +39,31 @@ typedef struct s_player
 	int		key_right;
 } t_player;
 
+typedef struct s_game
+{
+	void		*mlx;
+	void		*win;
+	void		*img;
+
+	char		*data;
+	int			bpp;
+	int			size_line;
+	int			endian;
+	t_player	player;
+
+	char		**map;
+} t_game;
+
 //Main
 void	put_pixel(int x, int y, int color, t_game *game);
-void	draw_square(int x, int y, int size, int color, t_game *game);
+void	draw_square(int x, int y, int size, t_game *game);
 void	init_game(t_game *game);
 
 //Player
-void init_player(t_player *player);
+void	init_player(t_player *player);
 void	move_player(t_player *player);
-int	key_press(int keycode, t_player *player);
-int	key_release(int keycode, t_player *player);
+int		key_press(int keycode, t_player *player);
+int		key_release(int keycode, t_player *player);
 
 //Raycasting
 

@@ -8,7 +8,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 ANM_SRC = 
 
-MAIN_SRC = main.c
+MAIN_SRC = main.c player.c raycast.c
 
 GNL_SRC = get_next_line_utils.c get_next_line.c
 
