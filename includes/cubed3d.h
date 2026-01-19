@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/01/14 17:25:12 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/19 15:47:48 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	init_game(t_game *game);
 
 //Player
 void	init_player(t_player *player);
-void	move_player(t_player *player);
+void	move_player(t_game *game, t_player *player);
 int		key_press(int keycode, t_player *player);
 int		key_release(int keycode, t_player *player);
 
