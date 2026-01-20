@@ -4,11 +4,11 @@ CC = cc
 
 RM = rm -rf
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -lm -g
 
 ANM_SRC = 
 
-MAIN_SRC = main.c player.c raycast.c
+MAIN_SRC = main.c player.c raycast.c interagir.c
 
 GNL_SRC = get_next_line_utils.c get_next_line.c
 

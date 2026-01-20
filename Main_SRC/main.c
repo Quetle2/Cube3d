@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 18:24:52 by marada            #+#    #+#             */
-/*   Updated: 2026/01/19 16:25:14 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/20 20:15:27 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,24 @@ void	put_pixel(int x, int y, int color, t_game *game)
 	game->data[index] = color & 0xFF;
 	game->data[index + 1] = (color >> 8) & 0xFF;
 	game->data[index + 2] = (color >> 16) & 0xFF;
+}
+
+void	draw_porta(int x, int y, int size, t_game *game)
+{
+	int	i;
+
+	i = -1;
+	while (++i < size)
+		put_pixel(x + i, y, 0x0AFAFF, game);
+	i = -1;
+	while (++i < size)
+		put_pixel(x, y + i, 0x0AFAFF, game);
+	i = -1;
+	while (++i < size)
+		put_pixel(x + size, y + i, 0x0AFAFF, game);
+	i = -1;
+	while (++i < size)
+		put_pixel(x + i, y + size, 0x0AFAFF, game);
 }
 
 void	draw_square(int x, int y, int size, t_game *game)
@@ -55,8 +73,12 @@ void	draw_map(t_game *game)
 	{
 		x = -1;
 		while (map[y][++x])
+		{
 			if (map[y][x] == '1')
 				draw_square(x * BLOCK, y * BLOCK, BLOCK, game);
+			if (map[y][x] == 'A')
+				draw_porta(x * BLOCK, y * BLOCK, BLOCK, game);
+		}
 	}
 }
 
@@ -83,7 +105,7 @@ char	**get_map(void)
 	map[1] = "100000000000001";
 	map[2] = "100000000000001";
 	map[3] = "100010000000001";
-	map[4] = "100000000000001";
+	map[4] = "1000000A0000001";
 	map[5] = "100000000000001";
 	map[6] = "100000000000001";
 	map[7] = "100000000000001";
@@ -124,7 +146,7 @@ int	main(void)
 
 	init_game(&game);
 
-	mlx_hook(game.win, 2, 1L<<0, key_press, &game.player);
+	mlx_hook(game.win, 2, 1L<<0, key_press, &game);
 	mlx_hook(game.win, 3, 1L<<1, key_release, &game.player);
 
 	mlx_loop_hook(game.mlx, draw_loop, &game);
