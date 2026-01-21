@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/01/20 20:01:47 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/21 19:11:34 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define WIDTH 1280
 # define HEIGHT 720
 # define BLOCK 64
+# define SPEED 5
 
 # define W 119
 # define A 97
