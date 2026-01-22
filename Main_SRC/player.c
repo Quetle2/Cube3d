@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:26:18 by marada            #+#    #+#             */
-/*   Updated: 2026/01/21 19:59:22 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/22 18:51:02 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,65 +66,161 @@ int	key_release(int keycode, t_player *player)
 	return (0);
 }
 
-void	move_up(char **map, t_player *player, int speed)
+void	move_left(char **map, t_player *player, float cos, float sin)
 {
 	int	x_wall;
 	int y_wall;
-	if (ft_strchr("1A", map[(int)((player->y - speed) / 64)] 
+
+	if (ft_strchr("1A", map[(int)((player->y + 10 + (cos * SPEED)) / 64)] 
+		[(int)((player->x - (sin * SPEED)) / 64)]) != NULL)
+	{
+		x_wall = (int)((player->x - (sin * SPEED)) / 64) * 64;
+		y_wall = (int)((player->y + 10 + (cos * SPEED)) / 64) * 64;
+		if(ft_strchr("1A", map[(int)((player->y + 10) / 64)] 
+		[(int)((player->x - (sin * SPEED)) / 64)]) != NULL)
+		{
+			if (sin * SPEED > 0)
+				player->x -= (int)(player->x) - x_wall - BLOCK - 1;
+		}
+		if (ft_strchr("1A", map[(int)((player->y + 10 + (cos * SPEED)) / 64)] 
 		[(int)((player->x) / 64)]) != NULL)
-	{
-		x_wall = (int)(player->x / 64) * 64;
-		y_wall = (int)((player->y - speed) / 64) * 64;
-		player->y -= (int)(player->y) - y_wall - BLOCK - 1;
+		{
+			if (cos * SPEED > 0)
+				player->y += y_wall - (int)(player->y + 10) - 1;
+		}
 	}
-	else if(ft_strchr("1A", map[(int)((player->y - speed) / 64)] 
+	else if(ft_strchr("1A", map[(int)((player->y + 10 + (cos * SPEED)) / 64)] 
+		[(int)((player->x + 10 - (sin * SPEED)) / 64)]) != NULL)
+	{
+		x_wall = (int)((player->x + 10 - (sin * SPEED)) / 64) * 64;
+		y_wall = (int)((player->y + 10 + (cos * SPEED)) / 64) * 64;
+		if(ft_strchr("1A", map[(int)((player->y + 10) / 64)]
+		[(int)((player->x + 10 - (sin * SPEED)) / 64)]) != NULL)
+		{
+			if (sin * SPEED < 0)
+				player->x += x_wall - (int)(player->x + 10) - 1;
+		}
+		if (ft_strchr("1A", map[(int)((player->y + 10 + (cos * SPEED)) / 64)] 
+		[(int)((player->x) / 64)]) != NULL)
+		{
+			if (cos * SPEED > 0)
+				player->y += y_wall - (int)(player->y + 10) - 1;
+		}
+	}
+	else if(ft_strchr("1A", map[(int)((player->y + (cos * SPEED)) / 64)] 
+		[(int)((player->x - (sin * SPEED)) / 64)]) != NULL)
+	{
+		x_wall = (int)((player->x - (sin * SPEED)) / 64) * 64;
+		y_wall = (int)((player->y + (cos * SPEED)) / 64) * 64;
+		if(ft_strchr("1A", map[(int)((player->y) / 64)]
+		[(int)((player->x - (sin * SPEED)) / 64)]) != NULL)
+		{
+			if (sin * SPEED > 0)
+				player->x -= (int)(player->x) - x_wall - BLOCK - 1;
+		}
+		if (ft_strchr("1A", map[(int)((player->y + (cos * SPEED)) / 64)] 
+		[(int)((player->x) / 64)]) != NULL)
+		{
+			if (cos * SPEED < 0)
+				player->y -= (int)(player->y) - y_wall - BLOCK - 1;
+		}
+	}
+	else if(ft_strchr("1A", map[(int)((player->y + 10 + (cos * SPEED)) / 64)] 
+		[(int)((player->x + 10 - (sin * SPEED)) / 64)]) != NULL)
+	{
+		x_wall = (int)((player->x + 10 - (sin * SPEED)) / 64) * 64;
+		y_wall = (int)((player->y + (cos * SPEED)) / 64) * 64;
+		if(ft_strchr("1A", map[(int)((player->y) / 64)]
+		[(int)((player->x + 10 - (sin * SPEED)) / 64)]) != NULL)
+		{
+			if (sin * SPEED < 0)
+				player->x += x_wall - (int)(player->x + 10) - 1;
+		}
+		if (ft_strchr("1A", map[(int)((player->y + (cos * SPEED)) / 64)] 
 		[(int)((player->x + 10) / 64)]) != NULL)
-	{
-		x_wall = (int)((player->x + 10) / 64) * 64;
-		y_wall = (int)((player->y - speed) / 64) * 64;
-		player->y -= (int)(player->y) - y_wall - BLOCK - 1;
+		{
+			if (cos * SPEED < 0)
+				player->y -= (int)(player->y) - y_wall - BLOCK - 1;
+		}
 	}
 }
 
-void	move_left(char **map, t_player *player, int speed)
+void	move_right(char **map, t_player *player, float cos, float sin)
 {
 	int	x_wall;
 	int y_wall;
 
-	if (ft_strchr("1A", map[(int)(player->y / 64)] 
-		[(int)((player->x - speed) / 64)]) != NULL)
+	if (ft_strchr("1A", map[(int)((player->y + 10 - (cos * SPEED)) / 64)] 
+		[(int)((player->x + (sin * SPEED)) / 64)]) != NULL)
 	{
-		x_wall = (int)((player->x - speed) / 64) * 64;
-		y_wall = (int)((player->y) / 64) * 64;
-		player->x -= (int)(player->x) - x_wall - BLOCK - 1;
+		x_wall = (int)((player->x + (sin * SPEED)) / 64) * 64;
+		y_wall = (int)((player->y + 10 - (cos * SPEED)) / 64) * 64;
+		if(ft_strchr("1A", map[(int)((player->y + 10) / 64)] 
+		[(int)((player->x + (sin * SPEED)) / 64)]) != NULL)
+		{
+			if (sin * SPEED < 0)
+				player->x -= (int)(player->x) - x_wall - BLOCK - 1;
+		}
+		if (ft_strchr("1A", map[(int)((player->y + 10 - (cos * SPEED)) / 64)] 
+		[(int)((player->x) / 64)]) != NULL)
+		{
+			if (cos * SPEED < 0)
+				player->y += y_wall - (int)(player->y + 10) - 1;
+		}
 	}
-	else if(ft_strchr("1A", map[(int)((player->y + 10) / 64)] 
-		[(int)((player->x - speed) / 64)]) != NULL)
+	else if(ft_strchr("1A", map[(int)((player->y + 10 - (cos * SPEED)) / 64)] 
+		[(int)((player->x + 10 + (sin * SPEED)) / 64)]) != NULL)
 	{
-		x_wall = (int)((player->x - speed) / 64) * 64;
-		y_wall = (int)((player->y + 10) / 64) * 64;
-		player->x -= (int)(player->x) - x_wall - BLOCK - 1;
+		x_wall = (int)((player->x + 10 + (sin * SPEED)) / 64) * 64;
+		y_wall = (int)((player->y + 10 - (cos * SPEED)) / 64) * 64;
+		if(ft_strchr("1A", map[(int)((player->y + 10) / 64)]
+		[(int)((player->x + 10 + (sin * SPEED)) / 64)]) != NULL)
+		{
+			if (sin * SPEED > 0)
+				player->x += x_wall - (int)(player->x + 10) - 1;
+		}
+		if (ft_strchr("1A", map[(int)((player->y + 10 - (cos * SPEED)) / 64)] 
+		[(int)((player->x) / 64)]) != NULL)
+		{
+			if (cos * SPEED < 0)
+				player->y += y_wall - (int)(player->y + 10) - 1;
+		}
 	}
-}
-
-void	move_right(char **map, t_player *player, int speed)
-{
-	int	x_wall;
-	int y_wall;
-
-	if (ft_strchr("1A", map[(int)(player->y / 64)] 
-		[(int)((player->x + 10 + speed) / 64)]) != NULL)
+	else if(ft_strchr("1A", map[(int)((player->y - (cos * SPEED)) / 64)] 
+		[(int)((player->x + (sin * SPEED)) / 64)]) != NULL)
 	{
-		x_wall = (int)((player->x + 10 + speed) / 64) * 64;
-		y_wall = (int)((player->y) / 64) * 64;
-		player->x += x_wall - (int)(player->x + 10) - 1;
+		x_wall = (int)((player->x + (sin * SPEED)) / 64) * 64;
+		y_wall = (int)((player->y - (cos * SPEED)) / 64) * 64;
+		if(ft_strchr("1A", map[(int)((player->y) / 64)]
+		[(int)((player->x + (sin * SPEED)) / 64)]) != NULL)
+		{
+			if (sin * SPEED < 0)
+				player->x -= (int)(player->x) - x_wall - BLOCK - 1;
+		}
+		if (ft_strchr("1A", map[(int)((player->y - (cos * SPEED)) / 64)] 
+		[(int)((player->x) / 64)]) != NULL)
+		{
+			if (cos * SPEED > 0)
+				player->y -= (int)(player->y) - y_wall - BLOCK - 1;
+		}
 	}
-	else if(ft_strchr("1A", map[(int)((player->y + 10) / 64)] 
-		[(int)((player->x + 10 + speed) / 64)]) != NULL)
+	else if(ft_strchr("1A", map[(int)((player->y + 10 - (cos * SPEED)) / 64)] 
+		[(int)((player->x + 10 + (sin * SPEED)) / 64)]) != NULL)
 	{
-		x_wall = (int)((player->x + 10 + speed) / 64) * 64;
-		y_wall = (int)((player->y + 10) / 64) * 64;
-		player->x += x_wall - (int)(player->x + 10) - 1;
+		x_wall = (int)((player->x + 10 + (sin * SPEED)) / 64) * 64;
+		y_wall = (int)((player->y - (cos * SPEED)) / 64) * 64;
+		if(ft_strchr("1A", map[(int)((player->y) / 64)]
+		[(int)((player->x + 10 + (sin * SPEED)) / 64)]) != NULL)
+		{
+			if (sin * SPEED > 0)
+				player->x += x_wall - (int)(player->x + 10) - 1;
+		}
+		if (ft_strchr("1A", map[(int)((player->y - (cos * SPEED)) / 64)] 
+		[(int)((player->x + 10) / 64)]) != NULL)
+		{
+			if (cos * SPEED > 0)
+				player->y -= (int)(player->y) - y_wall - BLOCK - 1;
+		}
 	}
 }
 
@@ -133,38 +229,156 @@ void	move_down(char **map, t_player *player, float cos, float sin)
 	int	x_wall;
 	int y_wall;
 
-	if (ft_strchr("1A", map[(int)((player->y + 10 + (cos * SPEED)) / 64)] 
+	if (ft_strchr("1A", map[(int)((player->y + 10 + (sin * SPEED)) / 64)] 
 		[(int)((player->x + (cos * SPEED)) / 64)]) != NULL)
 	{
-		x_wall = (int)(player->x + (cos * SPEED) / 64) * 64;
+		x_wall = (int)((player->x + (cos * SPEED)) / 64) * 64;
 		y_wall = (int)((player->y + 10 + (sin * SPEED)) / 64) * 64;
 		if(ft_strchr("1A", map[(int)((player->y + 10) / 64)] 
 		[(int)((player->x + (cos * SPEED)) / 64)]) != NULL)
-			player->x += (int)(player->x) - x_wall - 1;
-		if (ft_strchr("1A", map[(int)((player->y + 10 + (cos * SPEED)) / 64)] 
+		{
+			if (cos * SPEED < 0)
+				player->x -= (int)(player->x) - x_wall - BLOCK - 1;
+		}
+		if (ft_strchr("1A", map[(int)((player->y + 10 + (sin * SPEED)) / 64)] 
 		[(int)((player->x) / 64)]) != NULL)
-			player->y += y_wall - (int)(player->y + 10) - BLOCK - 1;
+		{
+			if (sin * SPEED > 0)
+				player->y += y_wall - (int)(player->y + 10) - 1;
+		}
 	}
 	else if(ft_strchr("1A", map[(int)((player->y + 10 + (sin * SPEED)) / 64)] 
 		[(int)((player->x + 10 + (cos * SPEED)) / 64)]) != NULL)
 	{
-		x_wall = (int)((player->x + 10) / 64) * 64;
+		x_wall = (int)((player->x + 10 + (cos * SPEED)) / 64) * 64;
 		y_wall = (int)((player->y + 10 + (sin * SPEED)) / 64) * 64;
-		player->y += y_wall - (int)(player->y + 10) - 1;
+		if(ft_strchr("1A", map[(int)((player->y + 10) / 64)]
+		[(int)((player->x + 10 + (cos * SPEED)) / 64)]) != NULL)
+		{
+			if (cos * SPEED > 0)
+				player->x += x_wall - (int)(player->x + 10) - 1;
+		}
+		if (ft_strchr("1A", map[(int)((player->y + 10 + (sin * SPEED)) / 64)] 
+		[(int)((player->x) / 64)]) != NULL)
+		{
+			if (sin * SPEED > 0)
+				player->y += y_wall - (int)(player->y + 10) - 1;
+		}
+	}
+	else if(ft_strchr("1A", map[(int)((player->y + (sin * SPEED)) / 64)] 
+		[(int)((player->x + (cos * SPEED)) / 64)]) != NULL)
+	{
+		x_wall = (int)((player->x + (cos * SPEED)) / 64) * 64;
+		y_wall = (int)((player->y + (sin * SPEED)) / 64) * 64;
+		if(ft_strchr("1A", map[(int)((player->y) / 64)]
+		[(int)((player->x + (cos * SPEED)) / 64)]) != NULL)
+		{
+			if (cos * SPEED < 0)
+				player->x -= (int)(player->x) - x_wall - BLOCK - 1;
+		}
+		if (ft_strchr("1A", map[(int)((player->y + (sin * SPEED)) / 64)] 
+		[(int)((player->x) / 64)]) != NULL)
+		{
+			if (sin * SPEED < 0)
+				player->y -= (int)(player->y) - y_wall - BLOCK - 1;
+		}
 	}
 	else if(ft_strchr("1A", map[(int)((player->y + 10 + (sin * SPEED)) / 64)] 
 		[(int)((player->x + 10 + (cos * SPEED)) / 64)]) != NULL)
 	{
-		x_wall = (int)((player->x + 10) / 64) * 64;
-		y_wall = (int)((player->y + 10 + (sin * SPEED)) / 64) * 64;
-		player->y += y_wall - (int)(player->y + 10) - 1;
-	}
-	else if(ft_strchr("1A", map[(int)((player->y + 10 + (sin * SPEED)) / 64)] 
+		x_wall = (int)((player->x + 10 + (cos * SPEED)) / 64) * 64;
+		y_wall = (int)((player->y + (sin * SPEED)) / 64) * 64;
+		if(ft_strchr("1A", map[(int)((player->y) / 64)]
 		[(int)((player->x + 10 + (cos * SPEED)) / 64)]) != NULL)
+		{
+			if (cos * SPEED > 0)
+				player->x += x_wall - (int)(player->x + 10) - 1;
+		}
+		if (ft_strchr("1A", map[(int)((player->y + (sin * SPEED)) / 64)] 
+		[(int)((player->x + 10) / 64)]) != NULL)
+		{
+			if (sin * SPEED < 0)
+				player->y -= (int)(player->y) - y_wall - BLOCK - 1;
+		}
+	}
+}
+
+void	move_up(char **map, t_player *player, float cos, float sin)
+{
+	int	x_wall;
+	int y_wall;
+
+	if (ft_strchr("1A", map[(int)((player->y + 10 - (sin * SPEED)) / 64)] 
+		[(int)((player->x - (cos * SPEED)) / 64)]) != NULL)
 	{
-		x_wall = (int)((player->x + 10) / 64) * 64;
-		y_wall = (int)((player->y + 10 + (sin * SPEED)) / 64) * 64;
-		player->y += y_wall - (int)(player->y + 10) - 1;
+		x_wall = (int)((player->x - (cos * SPEED)) / 64) * 64;
+		y_wall = (int)((player->y + 10 - (sin * SPEED)) / 64) * 64;
+		if(ft_strchr("1A", map[(int)((player->y + 10) / 64)] 
+		[(int)((player->x - (cos * SPEED)) / 64)]) != NULL)
+		{
+			if (cos * SPEED > 0)
+				player->x -= (int)(player->x) - x_wall - BLOCK - 1;
+		}
+		if (ft_strchr("1A", map[(int)((player->y + 10 - (sin * SPEED)) / 64)] 
+		[(int)((player->x) / 64)]) != NULL)
+		{
+			if (sin * SPEED < 0)
+				player->y += y_wall - (int)(player->y + 10) - 1;
+		}
+	}
+	else if(ft_strchr("1A", map[(int)((player->y + 10 - (sin * SPEED)) / 64)] 
+		[(int)((player->x + 10 - (cos * SPEED)) / 64)]) != NULL)
+	{
+		x_wall = (int)((player->x + 10 - (cos * SPEED)) / 64) * 64;
+		y_wall = (int)((player->y + 10 - (sin * SPEED)) / 64) * 64;
+		if(ft_strchr("1A", map[(int)((player->y + 10) / 64)]
+		[(int)((player->x + 10 - (cos * SPEED)) / 64)]) != NULL)
+		{
+			if (cos * SPEED < 0)
+				player->x += x_wall - (int)(player->x + 10) - 1;
+		}
+		if (ft_strchr("1A", map[(int)((player->y + 10 - (sin * SPEED)) / 64)] 
+		[(int)((player->x) / 64)]) != NULL)
+		{
+			if (sin * SPEED < 0)
+				player->y += y_wall - (int)(player->y + 10) - 1;
+		}
+	}
+	else if(ft_strchr("1A", map[(int)((player->y - (sin * SPEED)) / 64)] 
+		[(int)((player->x - (cos * SPEED)) / 64)]) != NULL)
+	{
+		x_wall = (int)((player->x - (cos * SPEED)) / 64) * 64;
+		y_wall = (int)((player->y - (sin * SPEED)) / 64) * 64;
+		if(ft_strchr("1A", map[(int)((player->y) / 64)]
+		[(int)((player->x - (cos * SPEED)) / 64)]) != NULL)
+		{
+			if (cos * SPEED > 0)
+				player->x -= (int)(player->x) - x_wall - BLOCK - 1;
+		}
+		if (ft_strchr("1A", map[(int)((player->y - (sin * SPEED)) / 64)] 
+		[(int)((player->x) / 64)]) != NULL)
+		{
+			if (sin * SPEED > 0)
+				player->y -= (int)(player->y) - y_wall - BLOCK - 1;
+		}
+	}
+	else if(ft_strchr("1A", map[(int)((player->y + 10 - (sin * SPEED)) / 64)] 
+		[(int)((player->x + 10 - (cos * SPEED)) / 64)]) != NULL)
+	{
+		x_wall = (int)((player->x + 10 - (cos * SPEED)) / 64) * 64;
+		y_wall = (int)((player->y - (sin * SPEED)) / 64) * 64;
+		if(ft_strchr("1A", map[(int)((player->y) / 64)]
+		[(int)((player->x + 10 - (cos * SPEED)) / 64)]) != NULL)
+		{
+			if (cos * SPEED < 0)
+				player->x += x_wall - (int)(player->x + 10) - 1;
+		}
+		if (ft_strchr("1A", map[(int)((player->y - (sin * SPEED)) / 64)] 
+		[(int)((player->x + 10) / 64)]) != NULL)
+		{
+			if (sin * SPEED > 0)
+				player->y -= (int)(player->y) - y_wall - BLOCK - 1;
+		}
 	}
 }
 
@@ -187,8 +401,12 @@ void	move_player(t_game *game, t_player *player)
 		&& (ft_strchr("1A", game->map[(int)((player->y - (sin_angle * SPEED)) / 64)] 
 		[(int)((player->x - (cos_angle * SPEED)) / 64)]) != NULL
 		|| ft_strchr("1A", game->map[(int)((player->y - (sin_angle * SPEED)) / 64)] 
+		[(int)((player->x + 10 - (cos_angle * SPEED)) / 64)]) != NULL 
+		|| ft_strchr("1A", game->map[(int)((player->y + 10 - (sin_angle * SPEED)) / 64)] 
+		[(int)((player->x - (cos_angle * SPEED)) / 64)]) != NULL 
+		|| ft_strchr("1A", game->map[(int)((player->y + 10 - (sin_angle * SPEED)) / 64)] 
 		[(int)((player->x + 10 - (cos_angle * SPEED)) / 64)]) != NULL))
-		move_up(game->map, player, SPEED);
+		move_up(game->map, player, cos_angle, sin_angle);
 	else if (player->key_up == 1)
 	{
 		player->x -= cos_angle * SPEED;
@@ -198,17 +416,25 @@ void	move_player(t_game *game, t_player *player)
 		&& (ft_strchr("1A", game->map[(int)((player->y + (cos_angle * SPEED)) / 64)] 
 		[(int)((player->x - (sin_angle * SPEED)) / 64)]) != NULL
 		|| ft_strchr("1A", game->map[(int)((player->y + 10 + (cos_angle * SPEED)) / 64)] 
-		[(int)((player->x - (sin_angle * SPEED)) / 64)]) != NULL))
-		move_left(game->map, player, SPEED);
+		[(int)((player->x - (sin_angle * SPEED)) / 64)]) != NULL 
+		|| ft_strchr("1A", game->map[(int)((player->y + 10 + (cos_angle * SPEED)) / 64)] 
+		[(int)((player->x + 10 - (sin_angle * SPEED)) / 64)]) != NULL 
+		|| ft_strchr("1A", game->map[(int)((player->y + (cos_angle * SPEED)) / 64)] 
+		[(int)((player->x + 10 - (sin_angle * SPEED)) / 64)]) != NULL))
+		move_left(game->map, player, cos_angle, sin_angle);
 	else if (player->key_left == 1)
 	{
 		player->x -= sin_angle * SPEED;
 		player->y += cos_angle * SPEED;
 	}
-	if (player->key_down == 1
+	if ((player->key_down == 1)
 		&& (ft_strchr("1A", game->map[(int)((player->y + 10 + (sin_angle * SPEED)) / 64)] 
 		[(int)((player->x + (cos_angle * SPEED)) / 64)]) != NULL
 		|| ft_strchr("1A", game->map[(int)((player->y + 10 + (sin_angle * SPEED)) / 64)] 
+		[(int)((player->x + 10 + (cos_angle * SPEED)) / 64)]) != NULL 
+		|| ft_strchr("1A", game->map[(int)((player->y + (sin_angle * SPEED)) / 64)] 
+		[(int)((player->x + (cos_angle * SPEED)) / 64)]) != NULL 
+		|| ft_strchr("1A", game->map[(int)((player->y + (sin_angle * SPEED)) / 64)] 
 		[(int)((player->x + 10 + (cos_angle * SPEED)) / 64)]) != NULL))
 		move_down(game->map, player, cos_angle, sin_angle);
 	else if(player->key_down == 1)
@@ -220,8 +446,12 @@ void	move_player(t_game *game, t_player *player)
 		&& (ft_strchr("1A", game->map[(int)((player->y - (cos_angle * SPEED)) / 64)] 
 		[(int)((player->x + 10 + (sin_angle * SPEED)) / 64)]) != NULL
 		|| ft_strchr("1A", game->map[(int)((player->y + 10 - (cos_angle * SPEED)) / 64)] 
-		[(int)((player->x + 10 + (sin_angle * SPEED)) / 64)]) != NULL))
-		move_right(game->map, player, SPEED);
+		[(int)((player->x + 10 + (sin_angle * SPEED)) / 64)]) != NULL 
+		|| ft_strchr("1A", game->map[(int)((player->y + 10 - (cos_angle * SPEED)) / 64)] 
+		[(int)((player->x + (sin_angle * SPEED)) / 64)]) != NULL 
+		|| ft_strchr("1A", game->map[(int)((player->y - (cos_angle * SPEED)) / 64)] 
+		[(int)((player->x + (sin_angle * SPEED)) / 64)]) != NULL))
+		move_right(game->map, player, cos_angle, sin_angle);
 	else if(player->key_right == 1)
 	{
 		player->x += sin_angle * SPEED;
