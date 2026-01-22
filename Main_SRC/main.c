@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 18:24:52 by marada            #+#    #+#             */
-/*   Updated: 2026/01/20 20:15:27 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/22 19:24:37 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,24 @@ void	draw_porta(int x, int y, int size, t_game *game)
 	i = -1;
 	while (++i < size)
 		put_pixel(x + i, y + size, 0x0AFAFF, game);
+}
+
+void	draw_porta2(int x, int y, int size, t_game *game)
+{
+	int	i;
+
+	i = -1;
+	while (++i < size)
+		put_pixel(x + i, y, 0xFF0000, game);
+	i = -1;
+	while (++i < size)
+		put_pixel(x, y + i, 0xFF0000, game);
+	i = -1;
+	while (++i < size)
+		put_pixel(x + size, y + i, 0xFF0000, game);
+	i = -1;
+	while (++i < size)
+		put_pixel(x + i, y + size, 0xFF0000, game);
 }
 
 void	draw_square(int x, int y, int size, t_game *game)
@@ -78,6 +96,8 @@ void	draw_map(t_game *game)
 				draw_square(x * BLOCK, y * BLOCK, BLOCK, game);
 			if (map[y][x] == 'A')
 				draw_porta(x * BLOCK, y * BLOCK, BLOCK, game);
+			if (map[y][x] == 'F')
+				draw_porta2(x * BLOCK, y * BLOCK, BLOCK, game);
 		}
 	}
 }
@@ -101,16 +121,16 @@ void	clear_image(t_game *game)
 char	**get_map(void)
 {
 	char **map = malloc(sizeof(char *) * 11);
-	map[0] = "111111111111111";
-	map[1] = "100000000000001";
-	map[2] = "100000000000001";
-	map[3] = "100010000000001";
-	map[4] = "1000000A0000001";
-	map[5] = "100000000000001";
-	map[6] = "100000000000001";
-	map[7] = "100000000000001";
-	map[8] = "100000000000001";
-	map[9] = "111111111111111";
+	map[0] = ft_strdup("111111111111111");
+	map[1] = ft_strdup("100000000000001");
+	map[2] = ft_strdup("100000000000001");
+	map[3] = ft_strdup("100010000000001");
+	map[4] = ft_strdup("1000000A0000001");
+	map[5] = ft_strdup("100000000000001");
+	map[6] = ft_strdup("100000000000001");
+	map[7] = ft_strdup("100000000000001");
+	map[8] = ft_strdup("100000000000001");
+	map[9] = ft_strdup("111111111111111");
 	map[10] = NULL;
 	return (map);
 }

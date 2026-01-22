@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:26:18 by marada            #+#    #+#             */
-/*   Updated: 2026/01/22 18:51:02 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/22 19:09:28 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	key_press(int keycode, t_game *game)
 		player->left_rotate = 1;
 	if (keycode == RIGHT)
 		player->right_rotate = 1;
-	// if (keycode == F)
-	// 	interagir(game, player);
+	if (keycode == F)
+		interagir(game, player);
 	return (0);
 }
 
@@ -385,9 +385,9 @@ void	move_up(char **map, t_player *player, float cos, float sin)
 void	move_player(t_game *game, t_player *player)
 {
 	float	angle_speed = 0.1;
-	float	cos_angle = cos(player->angle);
-	float	sin_angle = sin(player->angle);
 
+	player->cos_angle = cos(player->angle);
+	player->sin_angle = sin(player->angle);
 	if (player->left_rotate == 1)
 		player->angle -= angle_speed;
 	if (player->right_rotate == 1)
@@ -396,65 +396,65 @@ void	move_player(t_game *game, t_player *player)
 		player->angle = 0;
 	if (player->angle < 0)
 	 	player->angle = 2 * PI;
-		
+
 	if (player->key_up == 1
-		&& (ft_strchr("1A", game->map[(int)((player->y - (sin_angle * SPEED)) / 64)] 
-		[(int)((player->x - (cos_angle * SPEED)) / 64)]) != NULL
-		|| ft_strchr("1A", game->map[(int)((player->y - (sin_angle * SPEED)) / 64)] 
-		[(int)((player->x + 10 - (cos_angle * SPEED)) / 64)]) != NULL 
-		|| ft_strchr("1A", game->map[(int)((player->y + 10 - (sin_angle * SPEED)) / 64)] 
-		[(int)((player->x - (cos_angle * SPEED)) / 64)]) != NULL 
-		|| ft_strchr("1A", game->map[(int)((player->y + 10 - (sin_angle * SPEED)) / 64)] 
-		[(int)((player->x + 10 - (cos_angle * SPEED)) / 64)]) != NULL))
-		move_up(game->map, player, cos_angle, sin_angle);
+		&& (ft_strchr("1A", game->map[(int)((player->y - (player->sin_angle * SPEED)) / 64)] 
+		[(int)((player->x - (player->cos_angle * SPEED)) / 64)]) != NULL
+		|| ft_strchr("1A", game->map[(int)((player->y - (player->sin_angle * SPEED)) / 64)] 
+		[(int)((player->x + 10 - (player->cos_angle * SPEED)) / 64)]) != NULL 
+		|| ft_strchr("1A", game->map[(int)((player->y + 10 - (player->sin_angle * SPEED)) / 64)] 
+		[(int)((player->x - (player->cos_angle * SPEED)) / 64)]) != NULL 
+		|| ft_strchr("1A", game->map[(int)((player->y + 10 - (player->sin_angle * SPEED)) / 64)] 
+		[(int)((player->x + 10 - (player->cos_angle * SPEED)) / 64)]) != NULL))
+		move_up(game->map, player, player->cos_angle, player->sin_angle);
 	else if (player->key_up == 1)
 	{
-		player->x -= cos_angle * SPEED;
-		player->y -= sin_angle * SPEED;
+		player->x -= player->cos_angle * SPEED;
+		player->y -= player->sin_angle * SPEED;
 	}
 	if (player->key_left == 1 
-		&& (ft_strchr("1A", game->map[(int)((player->y + (cos_angle * SPEED)) / 64)] 
-		[(int)((player->x - (sin_angle * SPEED)) / 64)]) != NULL
-		|| ft_strchr("1A", game->map[(int)((player->y + 10 + (cos_angle * SPEED)) / 64)] 
-		[(int)((player->x - (sin_angle * SPEED)) / 64)]) != NULL 
-		|| ft_strchr("1A", game->map[(int)((player->y + 10 + (cos_angle * SPEED)) / 64)] 
-		[(int)((player->x + 10 - (sin_angle * SPEED)) / 64)]) != NULL 
-		|| ft_strchr("1A", game->map[(int)((player->y + (cos_angle * SPEED)) / 64)] 
-		[(int)((player->x + 10 - (sin_angle * SPEED)) / 64)]) != NULL))
-		move_left(game->map, player, cos_angle, sin_angle);
+		&& (ft_strchr("1A", game->map[(int)((player->y + (player->cos_angle * SPEED)) / 64)] 
+		[(int)((player->x - (player->sin_angle * SPEED)) / 64)]) != NULL
+		|| ft_strchr("1A", game->map[(int)((player->y + 10 + (player->cos_angle * SPEED)) / 64)] 
+		[(int)((player->x - (player->sin_angle * SPEED)) / 64)]) != NULL 
+		|| ft_strchr("1A", game->map[(int)((player->y + 10 + (player->cos_angle * SPEED)) / 64)] 
+		[(int)((player->x + 10 - (player->sin_angle * SPEED)) / 64)]) != NULL 
+		|| ft_strchr("1A", game->map[(int)((player->y + (player->cos_angle * SPEED)) / 64)] 
+		[(int)((player->x + 10 - (player->sin_angle * SPEED)) / 64)]) != NULL))
+		move_left(game->map, player, player->cos_angle, player->sin_angle);
 	else if (player->key_left == 1)
 	{
-		player->x -= sin_angle * SPEED;
-		player->y += cos_angle * SPEED;
+		player->x -= player->sin_angle * SPEED;
+		player->y += player->cos_angle * SPEED;
 	}
 	if ((player->key_down == 1)
-		&& (ft_strchr("1A", game->map[(int)((player->y + 10 + (sin_angle * SPEED)) / 64)] 
-		[(int)((player->x + (cos_angle * SPEED)) / 64)]) != NULL
-		|| ft_strchr("1A", game->map[(int)((player->y + 10 + (sin_angle * SPEED)) / 64)] 
-		[(int)((player->x + 10 + (cos_angle * SPEED)) / 64)]) != NULL 
-		|| ft_strchr("1A", game->map[(int)((player->y + (sin_angle * SPEED)) / 64)] 
-		[(int)((player->x + (cos_angle * SPEED)) / 64)]) != NULL 
-		|| ft_strchr("1A", game->map[(int)((player->y + (sin_angle * SPEED)) / 64)] 
-		[(int)((player->x + 10 + (cos_angle * SPEED)) / 64)]) != NULL))
-		move_down(game->map, player, cos_angle, sin_angle);
+		&& (ft_strchr("1A", game->map[(int)((player->y + 10 + (player->sin_angle * SPEED)) / 64)] 
+		[(int)((player->x + (player->cos_angle * SPEED)) / 64)]) != NULL
+		|| ft_strchr("1A", game->map[(int)((player->y + 10 + (player->sin_angle * SPEED)) / 64)] 
+		[(int)((player->x + 10 + (player->cos_angle * SPEED)) / 64)]) != NULL 
+		|| ft_strchr("1A", game->map[(int)((player->y + (player->sin_angle * SPEED)) / 64)] 
+		[(int)((player->x + (player->cos_angle * SPEED)) / 64)]) != NULL 
+		|| ft_strchr("1A", game->map[(int)((player->y + (player->sin_angle * SPEED)) / 64)] 
+		[(int)((player->x + 10 + (player->cos_angle * SPEED)) / 64)]) != NULL))
+		move_down(game->map, player, player->cos_angle, player->sin_angle);
 	else if(player->key_down == 1)
 	{
-		player->x += cos_angle * SPEED;
-		player->y += sin_angle * SPEED;
+		player->x += player->cos_angle * SPEED;
+		player->y += player->sin_angle * SPEED;
 	}
 	if (player->key_right == 1
-		&& (ft_strchr("1A", game->map[(int)((player->y - (cos_angle * SPEED)) / 64)] 
-		[(int)((player->x + 10 + (sin_angle * SPEED)) / 64)]) != NULL
-		|| ft_strchr("1A", game->map[(int)((player->y + 10 - (cos_angle * SPEED)) / 64)] 
-		[(int)((player->x + 10 + (sin_angle * SPEED)) / 64)]) != NULL 
-		|| ft_strchr("1A", game->map[(int)((player->y + 10 - (cos_angle * SPEED)) / 64)] 
-		[(int)((player->x + (sin_angle * SPEED)) / 64)]) != NULL 
-		|| ft_strchr("1A", game->map[(int)((player->y - (cos_angle * SPEED)) / 64)] 
-		[(int)((player->x + (sin_angle * SPEED)) / 64)]) != NULL))
-		move_right(game->map, player, cos_angle, sin_angle);
+		&& (ft_strchr("1A", game->map[(int)((player->y - (player->cos_angle * SPEED)) / 64)] 
+		[(int)((player->x + 10 + (player->sin_angle * SPEED)) / 64)]) != NULL
+		|| ft_strchr("1A", game->map[(int)((player->y + 10 - (player->cos_angle * SPEED)) / 64)] 
+		[(int)((player->x + 10 + (player->sin_angle * SPEED)) / 64)]) != NULL 
+		|| ft_strchr("1A", game->map[(int)((player->y + 10 - (player->cos_angle * SPEED)) / 64)] 
+		[(int)((player->x + (player->sin_angle * SPEED)) / 64)]) != NULL 
+		|| ft_strchr("1A", game->map[(int)((player->y - (player->cos_angle * SPEED)) / 64)] 
+		[(int)((player->x + (player->sin_angle * SPEED)) / 64)]) != NULL))
+		move_right(game->map, player, player->cos_angle, player->sin_angle);
 	else if(player->key_right == 1)
 	{
-		player->x += sin_angle * SPEED;
-		player->y -= cos_angle * SPEED;
+		player->x += player->sin_angle * SPEED;
+		player->y -= player->cos_angle * SPEED;
 	}
 }

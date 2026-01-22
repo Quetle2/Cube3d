@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/01/21 19:11:34 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/22 19:06:50 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_player
 	float	x;
 	float	y;
 	float	angle;
+	float	cos_angle;
+	float	sin_angle;
 
 	int		key_up;
 	int		key_down;

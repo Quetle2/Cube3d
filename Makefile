@@ -4,15 +4,11 @@ CC = cc
 
 RM = rm -rf
 
-CFLAGS = -lm -g
-
-ANM_SRC = 
+CFLAGS = -Wall -Wextra -Werror -lm -g
 
 MAIN_SRC = main.c player.c raycast.c interagir.c
 
 GNL_SRC = get_next_line_utils.c get_next_line.c
-
-MAP_SRC = 
 
 all: $(NAME)
 
@@ -40,4 +36,4 @@ re: fclean all
 $(NAME): 
 	@make -s -C ft_printf_100
 	@make -s -C mlx_linux
-	@$(CC) $(CFLAGS) $(addprefix Main_SRC/,$(MAIN_SRC)) $(addprefix interations/,$(ANM_SRC)) $(addprefix map_checker/,$(MAP_SRC)) $(addprefix get_next_line_100/,$(GNL_SRC)) ft_printf_100/libftprintf.a mlx_linux/libmlx_Linux.a -lXext -lX11 -o $(NAME)
+	@$(CC) $(CFLAGS) $(addprefix Main_SRC/,$(MAIN_SRC)) $(addprefix get_next_line_100/,$(GNL_SRC)) ft_printf_100/libftprintf.a mlx_linux/libmlx_Linux.a -lXext -lX11 -o $(NAME)
