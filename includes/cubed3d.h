@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/01/23 17:34:01 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/23 18:44:14 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define S 115
 # define D 100
 # define F 102
+# define Q 113
 
 # define LEFT 65361
 # define RIGHT 65363
@@ -88,5 +89,6 @@ int		key_release(int keycode, t_player *player);
 
 //Interagir
 void	interagir(t_game *game, t_player *player);
+void	BOLA_DE_FOGO(t_game *game, t_player *player);
 
 #endif

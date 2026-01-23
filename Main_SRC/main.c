@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 18:24:52 by marada            #+#    #+#             */
-/*   Updated: 2026/01/22 19:24:37 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/23 18:44:55 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,19 @@ void	put_pixel(int x, int y, int color, t_game *game)
 	game->data[index] = color & 0xFF;
 	game->data[index + 1] = (color >> 8) & 0xFF;
 	game->data[index + 2] = (color >> 16) & 0xFF;
+}
+
+void	draw_bolas(t_game *game, t_list *bolas)
+{
+	t_bola	*bola;
+
+	while (bolas)
+	{
+		printf("OLA\n");
+		bola = (t_bola *)bolas->content;
+		draw_square(bola->x, bola->y, 20, game);
+		bolas = bolas->next;
+	}
 }
 
 void	draw_porta(int x, int y, int size, t_game *game)
@@ -138,6 +151,7 @@ char	**get_map(void)
 void	init_game(t_game *game)
 {
 	init_player(&game->player);
+	game->bola = NULL;
 	game->map = get_map();
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Game");
@@ -156,6 +170,7 @@ int	draw_loop(t_game *game)
 	clear_image(game);
 	draw_square(player->x, player->y, 10, game);
 	draw_map(game);
+	draw_bolas(game, game->bola);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	return (1);
 }
