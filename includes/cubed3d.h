@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/01/22 19:06:50 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/23 17:34:01 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@
 # define RIGHT 65363
 
 # define PI 3.14159265359
+
+typedef struct s_bola
+{
+	float	x;
+	float	y;
+} t_bola;
 
 typedef struct s_player
 {
@@ -63,6 +69,7 @@ typedef struct s_game
 	int			endian;
 	t_player	player;
 
+	t_list		*bola;
 	char		**map;
 } t_game;
 
