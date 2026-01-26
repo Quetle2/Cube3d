@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/01/23 18:44:14 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/26 14:45:51 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_bola
 {
 	float	x;
 	float	y;
+	float	cos_angle;
+	float	sin_angle;
 } t_bola;
 
 typedef struct s_player
@@ -76,8 +78,8 @@ typedef struct s_game
 
 //Main
 void	put_pixel(int x, int y, int color, t_game *game);
-void	draw_square(int x, int y, int size, t_game *game);
 void	init_game(t_game *game);
+void	clear_image(t_game *game);
 
 //Player
 void	init_player(t_player *player);
@@ -90,5 +92,18 @@ int		key_release(int keycode, t_player *player);
 //Interagir
 void	interagir(t_game *game, t_player *player);
 void	BOLA_DE_FOGO(t_game *game, t_player *player);
+
+//Draw
+void	draw_bolas(t_game *game, t_list *bolas);
+void	draw_porta(int x, int y, int size, t_game *game);
+void	draw_porta2(int x, int y, int size, t_game *game);
+void	draw_square(int x, int y, int size, t_game *game);
+void	draw_map(t_game *game);
+//Draw2
+int		draw_loop(t_game *game);
+
+//Bolas
+void	move_bolas(t_game  *game);
+
 
 #endif

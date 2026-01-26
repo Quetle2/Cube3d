@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 18:24:52 by marada            #+#    #+#             */
-/*   Updated: 2026/01/23 18:44:55 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/26 14:23:16 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,97 +22,6 @@ void	put_pixel(int x, int y, int color, t_game *game)
 	game->data[index] = color & 0xFF;
 	game->data[index + 1] = (color >> 8) & 0xFF;
 	game->data[index + 2] = (color >> 16) & 0xFF;
-}
-
-void	draw_bolas(t_game *game, t_list *bolas)
-{
-	t_bola	*bola;
-
-	while (bolas)
-	{
-		printf("OLA\n");
-		bola = (t_bola *)bolas->content;
-		draw_square(bola->x, bola->y, 20, game);
-		bolas = bolas->next;
-	}
-}
-
-void	draw_porta(int x, int y, int size, t_game *game)
-{
-	int	i;
-
-	i = -1;
-	while (++i < size)
-		put_pixel(x + i, y, 0x0AFAFF, game);
-	i = -1;
-	while (++i < size)
-		put_pixel(x, y + i, 0x0AFAFF, game);
-	i = -1;
-	while (++i < size)
-		put_pixel(x + size, y + i, 0x0AFAFF, game);
-	i = -1;
-	while (++i < size)
-		put_pixel(x + i, y + size, 0x0AFAFF, game);
-}
-
-void	draw_porta2(int x, int y, int size, t_game *game)
-{
-	int	i;
-
-	i = -1;
-	while (++i < size)
-		put_pixel(x + i, y, 0xFF0000, game);
-	i = -1;
-	while (++i < size)
-		put_pixel(x, y + i, 0xFF0000, game);
-	i = -1;
-	while (++i < size)
-		put_pixel(x + size, y + i, 0xFF0000, game);
-	i = -1;
-	while (++i < size)
-		put_pixel(x + i, y + size, 0xFF0000, game);
-}
-
-void	draw_square(int x, int y, int size, t_game *game)
-{
-	int	i;
-
-	i = -1;
-	while (++i < size)
-		put_pixel(x + i, y, 0x0000FF, game);
-	i = -1;
-	while (++i < size)
-		put_pixel(x, y + i, 0x0000FF, game);
-	i = -1;
-	while (++i < size)
-		put_pixel(x + size, y + i, 0x0000FF, game);
-	i = -1;
-	while (++i < size)
-		put_pixel(x + i, y + size, 0x0000FF, game);
-}
-
-void	draw_map(t_game *game)
-{
-	char	**map;
-	int		y;
-	int		x;
-
-	x = -1;
-	y = -1;
-	map = game->map;
-	while (map[++y])
-	{
-		x = -1;
-		while (map[y][++x])
-		{
-			if (map[y][x] == '1')
-				draw_square(x * BLOCK, y * BLOCK, BLOCK, game);
-			if (map[y][x] == 'A')
-				draw_porta(x * BLOCK, y * BLOCK, BLOCK, game);
-			if (map[y][x] == 'F')
-				draw_porta2(x * BLOCK, y * BLOCK, BLOCK, game);
-		}
-	}
 }
 
 void	clear_image(t_game *game)
@@ -159,20 +68,6 @@ void	init_game(t_game *game)
 	game->data = mlx_get_data_addr(game->img, &game->bpp, &game->size_line,
 			&game->endian);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-}
-
-int	draw_loop(t_game *game)
-{
-	t_player	*player;
-
-	player = &game->player;
-	move_player(game, player);
-	clear_image(game);
-	draw_square(player->x, player->y, 10, game);
-	draw_map(game);
-	draw_bolas(game, game->bola);
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-	return (1);
 }
 
 int	main(void)

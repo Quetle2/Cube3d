@@ -6,7 +6,7 @@ RM = rm -rf
 
 CFLAGS = -Wall -Wextra -Werror -lm -g
 
-MAIN_SRC = main.c player.c raycast.c interagir.c
+MAIN_SRC = main.c player.c raycast.c interagir.c draw.c draw2.c bolas.c
 
 GNL_SRC = get_next_line_utils.c get_next_line.c
 

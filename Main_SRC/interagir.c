@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 19:40:09 by marada            #+#    #+#             */
-/*   Updated: 2026/01/23 18:44:36 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/26 14:19:48 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,13 @@ void	BOLA_DE_FOGO(t_game *game, t_player *player)
 	size_x = 0;
 	size_y = 0;
 	if (SPEED * player->sin_angle < 0)
-		size_y = 10;
+		size_y = 10 * player->sin_angle;
 	if (SPEED * player->cos_angle < 0)
-		size_x = 10;
+		size_x = 10 * player->cos_angle;
 	bula = malloc(sizeof(t_bola));
-	bula->x = player->x + size_x - (player->cos_angle * SPEED);
-	bula->y = player->y + size_y - (player->sin_angle * SPEED);
+	bula->x = player->x - (player->cos_angle * SPEED) + size_x;
+	bula->y = player->y - (player->sin_angle * SPEED) + size_y;
+	bula->cos_angle = player->cos_angle;
+	bula->sin_angle = player->sin_angle;
 	ft_lstadd_back(&game->bola, ft_lstnew(bula));
 }
