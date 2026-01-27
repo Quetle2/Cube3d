@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:25:36 by marada            #+#    #+#             */
-/*   Updated: 2026/01/26 20:20:28 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/27 16:28:38 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	delete_bolas(t_list **bolas)
 		*bolas = (*bolas)->next;
 	}
 	(*bolas)->content = NULL;
-	free(*bolas);
-	*bolas = NULL;
+	// free(*bolas);
+	// *bolas = NULL;
 }
 
 void	move_bolas(t_game  *game)
@@ -47,12 +47,14 @@ void	move_bolas(t_game  *game)
 	bolas = game->bola;
 	while (game->bola)
 	{
-		if (game->bola == NULL)
-			printf("OLA\n");
 		bola = game->bola->content;
+		if (bola == NULL)
+		{
+			game->bola = game->bola->next;
+			continue;
+		}
 		if (check_colisao(game, bola))
 		{
-			printf("Bateu\n");
 			delete_bolas(&game->bola);
 			continue;
 		}

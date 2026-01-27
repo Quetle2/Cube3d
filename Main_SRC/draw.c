@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 06:00:15 by marada            #+#    #+#             */
-/*   Updated: 2026/01/26 14:26:03 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/27 16:28:00 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@ void	draw_bolas(t_game *game, t_list *bolas)
 {
 	t_bola	*bola;
 
-	while (bolas)
+	while (bolas != NULL)
 	{
+		if (bolas->content == NULL)
+		{
+			bolas = bolas->next;
+			continue;
+		}
 		bola = (t_bola *)bolas->content;
 		draw_square(bola->x, bola->y, 20, game);
 		bolas = bolas->next;
