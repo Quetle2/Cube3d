@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 14:31:55 by miandrad          #+#    #+#             */
-/*   Updated: 2026/02/02 16:34:45 by marada           ###   ########.fr       */
+/*   Created: 2026/01/27 17:37:42 by marada            #+#    #+#             */
+/*   Updated: 2026/01/27 17:50:09 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int c)
+#include "../includes/cubed3d.h"
+
+int	err_msg(char *detail, char *str, int code)
 {
-	if (c >= 33 && c <= 126)
-		return (1);
-	return (0);
+	ft_putstr_fd("cub3D: Error", 2);
+	if (detail)
+	{
+		ft_putstr_fd(": ", 2);
+		ft_putstr_fd(detail, 2);
+	}
+	if (str)
+	{
+		ft_putstr_fd(": ", 2);
+		ft_putstr_fd(str, 2);
+	}
+	ft_putstr_fd("\n", 2);
+	return (code);
 }

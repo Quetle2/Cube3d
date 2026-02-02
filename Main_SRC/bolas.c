@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:25:36 by marada            #+#    #+#             */
-/*   Updated: 2026/01/27 16:28:38 by marada           ###   ########.fr       */
+/*   Updated: 2026/01/27 16:34:39 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	delete_bolas(t_list **bolas)
 		*bolas = (*bolas)->next;
 	}
 	(*bolas)->content = NULL;
-	// free(*bolas);
-	// *bolas = NULL;
 }
 
 void	move_bolas(t_game  *game)
