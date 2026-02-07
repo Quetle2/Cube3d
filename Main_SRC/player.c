@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 18:26:18 by marada            #+#    #+#             */
-/*   Updated: 2026/01/23 17:50:03 by marada           ###   ########.fr       */
+/*   Updated: 2026/02/07 21:11:00 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_player(t_player *player)
 {
-	player->x = WIDTH / 2;
-	player->y = HEIGHT / 2;
+	player->x = 0;
+	player->y = 0;
 	player->angle = PI / 2;
 
 	player->key_up = 0;

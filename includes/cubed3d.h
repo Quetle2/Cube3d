@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/02/02 14:29:52 by marada           ###   ########.fr       */
+/*   Updated: 2026/02/03 16:34:58 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,9 @@ int	get_file_data(t_game *game, char **map);
 //Create Map
 int	create_map(t_game *game, char **file, int i);
 size_t	find_biggest_len(t_mapinfo *map, int i);
+
+//Checka Mapa
+int	check_map(t_game *game, char **map_tab);
 
 //Error
 int	err_msg(char *detail, char *str, int code);

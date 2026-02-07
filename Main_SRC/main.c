@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 18:24:52 by marada            #+#    #+#             */
-/*   Updated: 2026/02/02 14:31:38 by marada           ###   ########.fr       */
+/*   Updated: 2026/02/05 20:39:29 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,19 @@ void	init_game(t_game *game)
 {
 	init_player(&game->player);
 	init_mapinfo(&game->mapinfo);
+	game->texinfo.north = NULL;
+	game->texinfo.south = NULL;
+	game->texinfo.west = NULL;
+	game->texinfo.east = NULL;
+	game->texinfo.floor = 0;
+	game->texinfo.ceiling = 0;
+	game->texinfo.hex_floor = 0x0;
+	game->texinfo.hex_ceiling = 0x0;
+	game->texinfo.size = BLOCK;
+	game->texinfo.step = 0.0;
+	game->texinfo.pos = 0.0;
+	game->texinfo.x = 0;
+	game->texinfo.y = 0;
 	game->bola = NULL;
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Game");
@@ -127,6 +140,7 @@ int	main(int ac, char **av)
 	init_game(&game);
 	if (parse_args(&game, av) != 0)
 		return (1);
+	init_textures(&game);
 	
 	mlx_hook(game.win, 2, 1L<<0, key_press, &game);
 	mlx_hook(game.win, 3, 1L<<1, key_release, &game.player);
