@@ -144,6 +144,18 @@ int	check_file(char *arg, int cub)
 	return (0);
 }
 
+void	init_player_direlao(t_player *player)
+{
+	if (player->dir == 'N')
+		player->angle = PI / 2;
+	else if (player->dir == 'W')
+		player->angle = 0;
+	else if (player->dir == 'E')
+		player->angle = PI;
+	else if (player->dir == 'S')
+		player->angle = 1.5 * PI;
+}
+
 int	parse_args(t_game *game, char **av)
 {
 	if (check_file(av[1], 1) == 1)
@@ -153,5 +165,6 @@ int	parse_args(t_game *game, char **av)
 		return (free_data(game));
 	if (check_map(game, game->map) == 1)
 		return (free_data(game));
+	init_player_direlao(&game->player);
 	return (0);
 }

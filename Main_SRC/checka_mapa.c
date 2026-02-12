@@ -49,7 +49,7 @@ int	check_position_is_valid(t_game *game, char **map_tab)
 	int	i;
 	int	j;
 
-	if(game->player.y == 0 && game->player.x == 0)
+	if(game->player.dir == '0')
 		return (1);
 	i = (int)(game->player.y / BLOCK);
 	j = (int)(game->player.x / BLOCK);
@@ -74,7 +74,7 @@ int	check_player_position(t_game *game, char **map_tab)
 		j = 0;
 		while (map_tab[i][j])
 		{
-			if (ft_strchr("P", map_tab[i][j]))
+			if (ft_strchr("NSWE", map_tab[i][j]))
 			{
 				game->player.x = (double)j * BLOCK + BLOCK / 2 - 5;
 				game->player.y = (double)i * BLOCK + BLOCK / 2 - 5;
@@ -93,10 +93,9 @@ int	check_map_elements(t_game *game, char **map_tab)
 {
 	int	i;
 	int	j;
-	int	player;
 
 	i = 0;
-	player = 0;
+	game->player.dir = '0';
 	while (map_tab[i] != NULL)
 	{
 		j = 0;
@@ -105,12 +104,12 @@ int	check_map_elements(t_game *game, char **map_tab)
 			while (game->map[i][j] == ' ' || game->map[i][j] == '\t'
 			|| (game->map[i][j] >= '\v' && game->map[i][j] <= '\r'))
 				j++;
-			if (!(ft_strchr("10PAF", map_tab[i][j])))
+			if (!(ft_strchr("10NSWEAF", map_tab[i][j])))
 				return (err_msg(game->mapinfo.path, "Nada dessas letras estranhas", 1));
-			if (ft_strchr("P", map_tab[i][j]) && player != 0)
+			if (ft_strchr("NSWE", map_tab[i][j]) && game->player.dir != '0')
 				return (err_msg(game->mapinfo.path, "Muitos players", 1));
-			if (ft_strchr("P", map_tab[i][j]) && player == 0)
-				player++;
+			if (ft_strchr("NSWE", map_tab[i][j]) && game->player.dir == '0')
+				game->player.dir = map_tab[i][j];
 			j++;
 		}
 		i++;

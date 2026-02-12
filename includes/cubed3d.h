@@ -53,6 +53,7 @@ typedef struct s_bola
 
 typedef struct s_player
 {
+	char	dir;
 	float	x;
 	float	y;
 	float	angle;
