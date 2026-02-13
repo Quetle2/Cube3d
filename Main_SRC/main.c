@@ -12,6 +12,7 @@
 
 #include "../includes/cubed3d.h"
 
+// Meter a ignorar uma cor pa tirar background vai ficar bacano nas portas ou nas bolas de fogos, confia, source confia bro, e so confiar, em frente marujo, YYYYYYYYYYYYYYYAAAAAAAAAAAAAAAAHHHHHHHHHHHH, STEEL BALL RUUUUUUUUUUUUUNNN, mb vou parar. (:
 void	put_pixel(int x, int y, int color, t_game *game)
 {
 	int	index;
