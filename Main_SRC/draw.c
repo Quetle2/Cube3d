@@ -71,16 +71,16 @@ void	draw_square(int x, int y, int size, t_game *game)
 
 	i = -1;
 	while (++i < size)
-		put_pixel(x + i, y, 0x0000FF, game);
+		put_pixel((x + i) / 2, y / 2, 0x0000FF, game);
 	i = -1;
 	while (++i < size)
-		put_pixel(x, y + i, 0x0000FF, game);
+		put_pixel(x / 2, (y + i) / 2, 0x0000FF, game);
 	i = -1;
 	while (++i < size)
-		put_pixel(x + size, y + i, 0x0000FF, game);
+		put_pixel((x + size) / 2, (y + i) / 2, 0x0000FF, game);
 	i = -1;
 	while (++i < size)
-		put_pixel(x + i, y + size, 0x0000FF, game);
+		put_pixel((x + i) / 2, (y + size) / 2, 0x0000FF, game);
 }
 
 void	draw_map(t_game *game)
@@ -98,11 +98,11 @@ void	draw_map(t_game *game)
 		while (map[y][++x])
 		{
 			if (map[y][x] == '1')
-				draw_square(x * BLOCK, y * BLOCK, BLOCK, game);
+				draw_square(x * 32, y * 32, 32, game);
 			if (map[y][x] == 'A')
-				draw_porta(x * BLOCK, y * BLOCK, BLOCK, game);
+				draw_porta(x * 32, y * 32, 32, game);
 			if (map[y][x] == 'F')
-				draw_porta2(x * BLOCK, y * BLOCK, BLOCK, game);
+				draw_porta2(x * 32, y * 32, 32, game);
 		}
 	}
 }

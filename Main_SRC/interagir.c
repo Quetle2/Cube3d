@@ -61,3 +61,13 @@ void	BOLA_DE_FOGO(t_game *game, t_player *player)
 	bula->sin_angle = player->sin_angle;
 	ft_lstadd_back(&game->bola, ft_lstnew(bula));
 }
+
+void	Gear_Shift(t_player *player)
+{
+	if (player->gear == 1)
+		player->gear += 4;
+	else if(player->gear < 15)
+		player->gear += 5;
+	else
+		player->gear = 1;
+}

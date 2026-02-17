@@ -24,7 +24,7 @@
 # define WIDTH 1280
 # define HEIGHT 720
 # define BLOCK 64
-# define SPEED 5
+# define SPEED 3
 
 # define W 119
 # define A 97
@@ -32,6 +32,7 @@
 # define D 100
 # define F 102
 # define Q 113
+# define N 110
 
 # define NORTH 0
 # define SOUTH 1
@@ -65,6 +66,7 @@ typedef struct s_player
 	int		key_left;
 	int		key_right;
 
+	int		gear;
 	int		left_rotate;
 	int		right_rotate;
 } t_player;
@@ -163,6 +165,7 @@ int		key_release(int keycode, t_player *player);
 //Interagir
 void	interagir(t_game *game, t_player *player);
 void	BOLA_DE_FOGO(t_game *game, t_player *player);
+void	Gear_Shift(t_player *player);
 
 //Draw
 void	draw_bolas(t_game *game, t_list *bolas);
