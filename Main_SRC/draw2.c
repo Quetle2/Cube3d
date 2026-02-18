@@ -12,6 +12,24 @@
 
 #include "../includes/cubed3d.h"
 
+int	touch_bola(float px, float py, t_list *bolas)
+{
+	t_bola *bola;
+	while (bolas)
+	{
+		bola = (t_bola*)(bolas->content);
+		if (bola == NULL)
+		{
+			bolas = bolas->next;
+			continue;
+		}
+		if ((px >= bola->x && px <= (bola->x + FIRE)) && (py >= bola->y && py <= (bola->y + FIRE)))
+			return 1;
+		bolas = bolas->next;
+	}
+	return 0;
+}
+
 int	touch(float px, float py, t_game *game)
 {
 	int	x = px / BLOCK;
@@ -32,6 +50,11 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 	float	sin_angle = sin(start_x);
 	float	ray_x = player->x;
 	float	ray_y = player->y;
+	float	dist;
+	float	height;
+	int		start_y;
+	int		end;
+	int		wich;
 
 	while (!touch(ray_x, ray_y, game))
 	{
@@ -39,15 +62,57 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 		ray_x -= cos_angle;
 		ray_y -= sin_angle;
 	}
+	if (touch(ray_x, ray_y, game))
+		wich = 1;
+	else
+		wich = 0;
 
-	float	dist = distance(ray_x - player->x, ray_y - player->y);
-	float	height = (BLOCK / dist) * (WIDTH / 2);
-	int		start_y = (HEIGHT - height) / 2;
-	int		end = start_y + height;
+	dist = distance(ray_x - player->x, ray_y - player->y);
+	if (wich == 1)
+		height = (BLOCK / dist) * (WIDTH / 2);
+	else
+		height = (FIRE / dist) * (WIDTH / 2);
+	start_y = (HEIGHT - height) / 2;
+	end = start_y + height;
 
 	while (start_y < end)
 	{
-		put_pixel(i, start_y, 255, game);
+		if (wich == 1)
+			put_pixel(i, start_y, 255, game);
+		else
+			put_pixel(i, start_y, 100, game);
+		start_y++;
+	}
+
+//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa
+
+	ray_x = player->x;
+	ray_y = player->y;
+	while (!touch_bola(ray_x, ray_y, game->bola) && !touch(ray_x, ray_y, game))
+	{
+		// put_pixel(ray_x, ray_y, 0xFF0000, game);
+		ray_x -= cos_angle;
+		ray_y -= sin_angle;
+	}
+	if (touch(ray_x, ray_y, game))
+		wich = 1;
+	else
+		wich = 0;
+
+	dist = distance(ray_x - player->x, ray_y - player->y);
+	if (wich == 1)
+		height = (BLOCK / dist) * (WIDTH / 2);
+	else
+		height = (FIRE / dist) * (WIDTH / 2);
+	start_y = (HEIGHT - height) / 2;
+	end = start_y + height;
+
+	while (start_y < end)
+	{
+		if (wich == 1)
+			put_pixel(i, start_y, 255, game);
+		else
+			put_pixel(i, start_y, 100, game);
 		start_y++;
 	}
 }
@@ -60,7 +125,7 @@ int	draw_loop(t_game *game)
 	move_player(game, player);
 	move_bolas(game);
 	clear_image(game);
-	draw_square(player->x / 2, player->y / 2, 10, game);
+	draw_square(player->x /*/ 2*/, player->y /*/ 2*/, 10, game);
 	draw_map(game);
 	draw_bolas(game, game->bola);
 

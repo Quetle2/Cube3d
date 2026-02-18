@@ -24,6 +24,7 @@
 # define WIDTH 1280
 # define HEIGHT 720
 # define BLOCK 64
+# define FIRE 20
 # define SPEED 3
 
 # define W 119
