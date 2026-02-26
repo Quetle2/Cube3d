@@ -125,9 +125,9 @@ int	draw_loop(t_game *game)
 	move_player(game, player);
 	move_bolas(game);
 	clear_image(game);
-	draw_square(player->x /*/ 2*/, player->y /*/ 2*/, 10, game);
-	draw_map(game);
-	draw_bolas(game, game->bola);
+	// draw_square(player->x /*/ 2*/, player->y /*/ 2*/, 10, game);
+	// draw_map(game);
+	// draw_bolas(game, game->bola);
 
 	float	fraction = PI / 3 / WIDTH;
 	float	start_x = player->angle - PI / 6;
@@ -139,6 +139,6 @@ int	draw_loop(t_game *game)
 		i++;
 	}
 
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (1);
 }

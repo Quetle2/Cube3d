@@ -114,12 +114,9 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	void		*img;
 
 	char		*data;
-	int			bpp;
-	int			size_line;
-	int			endian;
+	t_img		img;
 	t_player	player;
 
 	t_list		*bola;

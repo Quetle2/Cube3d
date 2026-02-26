@@ -19,7 +19,7 @@ void	put_pixel(int x, int y, int color, t_game *game)
 
 	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
 		return ;
-	index = y * game->size_line + x * game->bpp / 8;
+	index = y * game->img.size_line + x * game->img.pixel_bits / 8;
 	game->data[index] = color & 0xFF;
 	game->data[index + 1] = (color >> 8) & 0xFF;
 	game->data[index + 2] = (color >> 16) & 0xFF;
@@ -126,10 +126,10 @@ void	init_game(t_game *game)
 	game->bola = NULL;
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Game");
-	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	game->data = mlx_get_data_addr(game->img, &game->bpp, &game->size_line,
-			&game->endian);
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	game->img.img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	game->data = mlx_get_data_addr(game->img.img, &game->img.pixel_bits, &game->img.size_line,
+			&game->img.endian);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 }
 
 int	main(int ac, char **av)

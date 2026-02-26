@@ -388,7 +388,7 @@ void	move_up(char **map, t_player *player, float cos, float sin)
 
 void	move_player(t_game *game, t_player *player)
 {
-	float	angle_speed = 0.01;
+	float	angle_speed = 0.1;
 
 	player->cos_angle = cos(player->angle);
 	player->sin_angle = sin(player->angle);
