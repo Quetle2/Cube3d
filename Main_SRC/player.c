@@ -401,7 +401,7 @@ void	move_player(t_game *game, t_player *player)
 	if (player->angle < 0)
 	 	player->angle = 2 * PI;
 
-	if (player->key_up == 1
+	if (player->key_down == 1
 		&& (ft_strchr("1A", game->map[(int)((player->y - (player->sin_angle * SPEED * player->gear)) / 64)] 
 		[(int)((player->x - (player->cos_angle * SPEED * player->gear)) / 64)]) != NULL
 		|| ft_strchr("1A", game->map[(int)((player->y - (player->sin_angle * SPEED * player->gear)) / 64)] 
@@ -410,13 +410,13 @@ void	move_player(t_game *game, t_player *player)
 		[(int)((player->x - (player->cos_angle * SPEED * player->gear)) / 64)]) != NULL 
 		|| ft_strchr("1A", game->map[(int)((player->y + 10 - (player->sin_angle * SPEED * player->gear)) / 64)] 
 		[(int)((player->x + 10 - (player->cos_angle * SPEED * player->gear)) / 64)]) != NULL))
-		move_up(game->map, player, player->cos_angle, player->sin_angle);
-	else if (player->key_up == 1)
+		move_down(game->map, player, player->cos_angle, player->sin_angle);
+	else if (player->key_down == 1)
 	{
 		player->x -= player->cos_angle * SPEED * player->gear;
 		player->y -= player->sin_angle * SPEED * player->gear;
 	}
-	if (player->key_left == 1 
+	if (player->key_right == 1 
 		&& (ft_strchr("1A", game->map[(int)((player->y + (player->cos_angle * SPEED * player->gear)) / 64)] 
 		[(int)((player->x - (player->sin_angle * SPEED * player->gear)) / 64)]) != NULL
 		|| ft_strchr("1A", game->map[(int)((player->y + 10 + (player->cos_angle * SPEED * player->gear)) / 64)] 
@@ -425,13 +425,13 @@ void	move_player(t_game *game, t_player *player)
 		[(int)((player->x + 10 - (player->sin_angle * SPEED * player->gear)) / 64)]) != NULL 
 		|| ft_strchr("1A", game->map[(int)((player->y + (player->cos_angle * SPEED * player->gear)) / 64)] 
 		[(int)((player->x + 10 - (player->sin_angle * SPEED * player->gear)) / 64)]) != NULL))
-		move_left(game->map, player, player->cos_angle, player->sin_angle);
-	else if (player->key_left == 1)
+		move_right(game->map, player, player->cos_angle, player->sin_angle);
+	else if (player->key_right == 1)
 	{
 		player->x -= player->sin_angle * SPEED * player->gear;
 		player->y += player->cos_angle * SPEED * player->gear;
 	}
-	if ((player->key_down == 1)
+	if ((player->key_up == 1)
 		&& (ft_strchr("1A", game->map[(int)((player->y + 10 + (player->sin_angle * SPEED * player->gear)) / 64)] 
 		[(int)((player->x + (player->cos_angle * SPEED * player->gear)) / 64)]) != NULL
 		|| ft_strchr("1A", game->map[(int)((player->y + 10 + (player->sin_angle * SPEED * player->gear)) / 64)] 
@@ -440,13 +440,13 @@ void	move_player(t_game *game, t_player *player)
 		[(int)((player->x + (player->cos_angle * SPEED * player->gear)) / 64)]) != NULL 
 		|| ft_strchr("1A", game->map[(int)((player->y + (player->sin_angle * SPEED * player->gear)) / 64)] 
 		[(int)((player->x + 10 + (player->cos_angle * SPEED * player->gear)) / 64)]) != NULL))
-		move_down(game->map, player, player->cos_angle, player->sin_angle);
-	else if(player->key_down == 1)
+		move_up(game->map, player, player->cos_angle, player->sin_angle);
+	else if(player->key_up == 1)
 	{
 		player->x += player->cos_angle * SPEED * player->gear;
 		player->y += player->sin_angle * SPEED * player->gear;
 	}
-	if (player->key_right == 1
+	if (player->key_left == 1
 		&& (ft_strchr("1A", game->map[(int)((player->y - (player->cos_angle * SPEED * player->gear)) / 64)] 
 		[(int)((player->x + 10 + (player->sin_angle * SPEED * player->gear)) / 64)]) != NULL
 		|| ft_strchr("1A", game->map[(int)((player->y + 10 - (player->cos_angle * SPEED * player->gear)) / 64)] 
@@ -455,8 +455,8 @@ void	move_player(t_game *game, t_player *player)
 		[(int)((player->x + (player->sin_angle * SPEED * player->gear)) / 64)]) != NULL 
 		|| ft_strchr("1A", game->map[(int)((player->y - (player->cos_angle * SPEED * player->gear)) / 64)] 
 		[(int)((player->x + (player->sin_angle * SPEED * player->gear)) / 64)]) != NULL))
-		move_right(game->map, player, player->cos_angle, player->sin_angle);
-	else if(player->key_right == 1)
+		move_left(game->map, player, player->cos_angle, player->sin_angle);
+	else if(player->key_left == 1)
 	{
 		player->x += player->sin_angle * SPEED * player->gear;
 		player->y -= player->cos_angle * SPEED * player->gear;

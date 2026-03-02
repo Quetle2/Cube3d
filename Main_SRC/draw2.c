@@ -44,78 +44,292 @@ float	distance(float x, float y)
 	return (sqrt(x * x + y * y));
 }
 
+int get_side(float cos_angle, float sin_angle, float ray_x, float ray_y)
+{
+	float	dist_y;
+	float	dist_x;
+	// int	block_y;
+	// int	block_x;
+
+
+	ray_x += cos_angle;
+	ray_y += sin_angle;
+	if (cos_angle < 0)
+	{
+		ray_x -= 1;
+		dist_x = ((int)((ray_x + 64) / BLOCK) * 64) - ray_x;
+	}
+	else
+	{
+		ray_x += 1;
+		dist_x = ((int)((ray_x - 64) / BLOCK) * 64 + 64) - ray_x;
+	}
+	if (sin_angle < 0)
+	{
+		ray_y -= 1;
+		dist_y = ((int)((ray_y + 64) / BLOCK) * 64) - ray_y;
+	}
+	else
+	{
+		ray_y += 1;
+		dist_y = ((int)((ray_y - 64) / BLOCK) * 64 + 64) - ray_y;
+	}
+	if (fabs(dist_y) > fabs(dist_x))
+	{
+		if (dist_x < 0)
+			return (WEST);
+		else
+			return (EAST);
+	}
+	if (fabs(dist_y) < fabs(dist_x))
+	{
+		if (dist_y < 0)
+			return (NORTH);
+		else
+			return (SOUTH);
+	}
+	return (5);
+}
+
 void	draw_line(t_player *player, t_game *game, float start_x, int i)
 {
-	float	cos_angle = cos(start_x);
-	float	sin_angle = sin(start_x);
-	float	ray_x = player->x;
-	float	ray_y = player->y;
-	float	dist;
+	float	cos_angle;
+	float	sin_angle;
+	float	dist = 0;
 	float	height;
 	int		start_y;
 	int		end;
-	int		wich;
+	int		hit;
+	int		side;
+	float	proj_plane;
+	int		wall_height;
+	int		stepX;
+	int		stepY;
+	float	sideDistX;
+	float	sideDistY;
+	float	deltaDistX = 0;
+	float	deltaDistY = 0;
+	int		mapX;
+	int		mapY;
 
-	while (!touch(ray_x, ray_y, game))
+	cos_angle = cos(start_x);
+	sin_angle = sin(start_x);
+
+	mapX = (int)(player->x / BLOCK);
+	mapY = (int)(player->y / BLOCK);
+
+	deltaDistX = fabs(BLOCK / cos_angle);
+	deltaDistY = fabs(BLOCK / sin_angle);
+
+	if (cos_angle < 0)
 	{
-		// put_pixel(ray_x, ray_y, 0xFF0000, game);
-		ray_x -= cos_angle;
-		ray_y -= sin_angle;
+		stepX = -1;
+		sideDistX = (player->x - mapX * BLOCK) / fabs(cos_angle);
 	}
-	if (touch(ray_x, ray_y, game))
-		wich = 1;
 	else
-		wich = 0;
-
-	dist = distance(ray_x - player->x, ray_y - player->y);
-	if (wich == 1)
+	{
+		stepX = 1;
+		sideDistX = ((mapX + 1) * BLOCK - player->x) / fabs(cos_angle);
+	}
+	if (sin_angle < 0)
+	{
+		stepY = -1;
+		sideDistY = (player->y - mapY * BLOCK) / fabs(sin_angle);
+	}
+	else
+	{
+		stepY = 1;
+		sideDistY = ((mapY + 1) * BLOCK - player->y) / fabs(sin_angle);
+	}
+	hit = 0;
+	while (!hit)
+	{
+		if (sideDistX < sideDistY)
+		{
+			sideDistX += deltaDistX;
+			mapX += stepX;
+			if (stepX == 1)
+				side = 1;
+			else
+				side = 2;
+		}
+		else
+		{
+			sideDistY += deltaDistY;
+			mapY += stepY;
+			if (stepY == 1)
+				side = 3;
+			else
+				side = 4;
+		}
+		if (game->map[mapY][mapX] == '1')
+			hit = 1;
+	}
+	if (side == 1 || side == 2)
+		dist = (mapX * BLOCK - player->x + (1 - stepX) * BLOCK / 2) / cos_angle;
+	else if (side == 3 || side == 4)
+		dist = (mapY * BLOCK - player->y + (1 - stepY) * BLOCK / 2) / sin_angle;
+	proj_plane = WIDTH / (2 * tan(PI / 6));
+	wall_height = (int)((BLOCK / dist) * proj_plane);
+	if (hit == 1)
 		height = (BLOCK / dist) * (WIDTH / 2);
 	else
 		height = (FIRE / dist) * (WIDTH / 2);
-	start_y = (HEIGHT - height) / 2;
-	end = start_y + height;
 
+	start_y = -wall_height / 2 + HEIGHT / 2;
+	if (start_y < 0)
+		start_y = 0;
+	end = wall_height / 2 + HEIGHT / 2;
+	if (end >= HEIGHT)
+		end = HEIGHT - 1;
+
+	// if (side == 0)
+	// {
+	// 	if ()
+	// }
+	// else
+	// {
+
+	// }
 	while (start_y < end)
 	{
-		if (wich == 1)
-			put_pixel(i, start_y, 255, game);
-		else
+		if (side == 1)
+			put_pixel(i, start_y, 200, game);
+		else if (side == 2)
 			put_pixel(i, start_y, 100, game);
+		else if (side == 3)
+			put_pixel(i, start_y, 50, game);
+		else if (side == 4)
+			put_pixel(i, start_y, 150, game);
 		start_y++;
 	}
-
 //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa
+	// ray_x = player->x;
+	// ray_y = player->y;
+	// while (!touch_bola(ray_x, ray_y, game->bola) && !touch(ray_x, ray_y, game))
+	// {
+	// 	// put_pixel(ray_x, ray_y, 0xFF0000, game);
+	// 	// printf("x:%i\ny:%i\n", ray_x, ray_y);
+	// 	ray_x -= cos_angle;
+	// 	ray_y -= sin_angle;
+	// }
+	// if (touch(ray_x, ray_y, game))
+	// {
 
-	ray_x = player->x;
-	ray_y = player->y;
-	while (!touch_bola(ray_x, ray_y, game->bola) && !touch(ray_x, ray_y, game))
-	{
-		// put_pixel(ray_x, ray_y, 0xFF0000, game);
-		ray_x -= cos_angle;
-		ray_y -= sin_angle;
-	}
-	if (touch(ray_x, ray_y, game))
-		wich = 1;
-	else
-		wich = 0;
+	// 	wich = 1;
+	// }
+	// else
+	// 	wich = 0;
+	// // exit(1);
+	// dist = distance(ray_x - player->x, ray_y - player->y);
+	// if (wich == 1)
+	// 	height = (BLOCK / dist) * (WIDTH / 2);
+	// else
+	// 	height = (FIRE / dist) * (WIDTH / 2);
+	// start_y = (HEIGHT - height) / 2;
+	// end = start_y + height;
 
-	dist = distance(ray_x - player->x, ray_y - player->y);
-	if (wich == 1)
-		height = (BLOCK / dist) * (WIDTH / 2);
-	else
-		height = (FIRE / dist) * (WIDTH / 2);
-	start_y = (HEIGHT - height) / 2;
-	end = start_y + height;
-
-	while (start_y < end)
-	{
-		if (wich == 1)
-			put_pixel(i, start_y, 255, game);
-		else
-			put_pixel(i, start_y, 100, game);
-		start_y++;
-	}
+	// while (start_y < end)
+	// {
+	// 	if (wich == 1)
+	// 		put_pixel(i, start_y, 255, game);
+	// 	else
+	// 		put_pixel(i, start_y, 100, game);
+	// 	start_y++;
+	// }
 }
+
+// void	draw_line(t_player *player, t_game *game, float start_x, int x)
+// {
+// 	float	cos_angle;
+// 	float	sin_angle;
+// 	int		mapX;
+// 	int		mapY;
+// 	float	sideDistX;
+// 	float	sideDistY;
+// 	float	deltaDistX;
+// 	float	deltaDistY;
+// 	float	perpWallDist;
+// 	int		stepX;
+// 	int		stepY;
+// 	int		hit;
+// 	int		side;
+// 	int		lineHeight;
+// 	int		start_y;
+// 	int		end;
+// 	float	projPlane;
+
+// 	cos_angle = cos(start_x);
+// 	sin_angle = sin(start_x);
+
+// 	mapX = (int)(player->x / BLOCK);
+// 	mapY = (int)(player->y / BLOCK);
+
+// 	deltaDistX = fabs(BLOCK / cos_angle);
+// 	deltaDistY = fabs(BLOCK / sin_angle);
+
+// 	if (cos_angle < 0)
+// 	{
+// 		stepX = -1;
+// 		sideDistX = (player->x - mapX * BLOCK) / fabs(cos_angle);
+// 	}
+// 	else
+// 	{
+// 		stepX = 1;
+// 		sideDistX = ((mapX + 1) * BLOCK - player->x) / fabs(cos_angle);
+// 	}
+// 	if (sin_angle < 0)
+// 	{
+// 		stepY = -1;
+// 		sideDistY = (player->y - mapY * BLOCK) / fabs(sin_angle);
+// 	}
+// 	else
+// 	{
+// 		stepY = 1;
+// 		sideDistY = ((mapY + 1) * BLOCK - player->y) / fabs(sin_angle);
+// 	}
+// 	hit = 0;
+// 	while (!hit)
+// 	{
+// 		if (sideDistX < sideDistY)
+// 		{
+// 			sideDistX += deltaDistX;
+// 			mapX += stepX;
+// 			side = 0;
+// 		}
+// 		else
+// 		{
+// 			sideDistY += deltaDistY;
+// 			mapY += stepY;
+// 			side = 1;
+// 		}
+// 		if (game->map[mapY][mapX] == '1')
+// 			hit = 1;
+// 	}
+// 	if (side == 0)
+// 		dist = (mapX * BLOCK - player->x + (1 - stepX) * BLOCK / 2) / cos_angle;
+// 	else
+// 		dist = (mapY * BLOCK - player->y + (1 - stepY) * BLOCK / 2) / sin_angle;
+
+// 	projPlane = WIDTH / (2 * tan(PI / 6));
+// 	wall_height = (int)((BLOCK / dist) * projPlane);
+
+// 	start_y = -wall_height / 2 + HEIGHT / 2;
+// 	if (start_y < 0)
+// 		start_y = 0;
+// 	end = wall_height / 2 + HEIGHT / 2;
+// 	if (end >= HEIGHT)
+// 		end = HEIGHT - 1;
+
+// 	while (start_y < end)
+// 	{
+// 		if (side == 1)
+// 			put_pixel(x, start_y, 100, game);
+// 		else
+// 			put_pixel(x, start_y, 150, game);
+// 		start_y++;
+// 	}
+// }
 
 int	draw_loop(t_game *game)
 {
