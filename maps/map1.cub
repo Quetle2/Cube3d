@@ -1,7 +1,7 @@
 NO textures/blood_NO.xpm
-SO textures/cobblestone_01.xpm
-WE textures/mossy_cobblestone1.xpm
-EA textures/cobblestone_02.xpm
+SO textures/blood_SO.xpm
+WE textures/blood_WE.xpm
+EA textures/blood_EA.xpm
 
 F 10,0,0
 C 80,0,0
