@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 15:49:09 by marada            #+#    #+#             */
-/*   Updated: 2026/02/05 20:26:44 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/03 12:06:15 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	*copy_into_rgb_array(char **rgb_to_convert, int *rgb)
 	while (rgb_to_convert[++i])
 	{
 		rgb[i] = ft_atoi(rgb_to_convert[i]);
-		if (rgb[i] == -1 || no_digit(rgb_to_convert[i]) == 1)
+		if (rgb[i] == -1 || no_digit(rgb_to_convert[i]) == 1 || rgb[i] < 0 || rgb[i] > 255)
 		{
 			free_tab((void **)rgb_to_convert);
 			free(rgb);

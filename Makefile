@@ -4,7 +4,7 @@ CC = cc
 
 RM = rm -rf
 
-CFLAGS = -Wall -Wextra -Werror -lm -g
+CFLAGS = -Wall -Wextra -Werror -g
 
 MAIN_SRC = main.c player.c raycast.c interagir.c draw.c draw2.c bolas.c parse.c free.c error.c get_data.c create_map.c checka_mapa.c
 
@@ -36,4 +36,4 @@ re: fclean all
 $(NAME): 
 	@make -s -C ft_printf_100
 #	@make -s -C mlx_linux
-	@$(CC) $(CFLAGS) $(addprefix Main_SRC/,$(MAIN_SRC)) $(addprefix get_next_line_100/,$(GNL_SRC)) ft_printf_100/libftprintf.a mlx_linux/libmlx_Linux.a -lXext -lX11 -o $(NAME)
+	@$(CC) $(CFLAGS) $(addprefix Main_SRC/,$(MAIN_SRC)) $(addprefix get_next_line_100/,$(GNL_SRC)) ft_printf_100/libftprintf.a mlx_linux/libmlx_Linux.a -lXext -lX11 -lm -o $(NAME)
