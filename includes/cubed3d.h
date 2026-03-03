@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/02/03 16:34:58 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/03 16:26:16 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,35 @@ void	init_player(t_player *player);
 void	move_player(t_game *game, t_player *player);
 int		key_press(int keycode, t_game *game);
 int		key_release(int keycode, t_player *player);
+void	move_up(char **map, t_player *player, float cos, float sin);
+void	move_down(char **map, t_player *player, float cos, float sin);
+void	move_left(char **map, t_player *player, float cos, float sin);
+void	move_right(char **map, t_player *player, float cos, float sin);
+
+//Pacima
+void	pacima_helper(t_game *game, t_player *player);
+void	move_up_helper1(char **map, t_player *player, float cos, float sin);
+void	move_up_helper2(char **map, t_player *player, float cos, float sin);
+void	move_up_helper3(char **map, t_player *player, float cos, float sin);
+void	move_up_helper4(char **map, t_player *player, float cos, float sin);
+//Pabaixo
+void	pabaixo_helper(t_game *game, t_player *player);
+void	move_down_helper1(char **map, t_player *player, float cos, float sin);
+void	move_down_helper2(char **map, t_player *player, float cos, float sin);
+void	move_down_helper3(char **map, t_player *player, float cos, float sin);
+void	move_down_helper4(char **map, t_player *player, float cos, float sin);
+//Paesquerda
+void	paesquerda_helper(t_game *game, t_player *player);
+void	move_left_helper1(char **map, t_player *player, float cos, float sin);
+void	move_left_helper2(char **map, t_player *player, float cos, float sin);
+void	move_left_helper3(char **map, t_player *player, float cos, float sin);
+void	move_left_helper4(char **map, t_player *player, float cos, float sin);
+//Padireita
+void	padireita_helper(t_game *game, t_player *player);
+void	move_right_helper1(char **map, t_player *player, float cos, float sin);
+void	move_right_helper2(char **map, t_player *player, float cos, float sin);
+void	move_right_helper3(char **map, t_player *player, float cos, float sin);
+void	move_right_helper4(char **map, t_player *player, float cos, float sin);
 
 //Raycasting
 
