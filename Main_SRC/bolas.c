@@ -56,8 +56,8 @@ void	move_bolas(t_game  *game)
 			delete_bolas(&game->bola);
 			continue;
 		}
-		bola->x -= bola->cos_angle * SPEED;
-		bola->y -= bola->sin_angle  * SPEED;
+		bola->x += bola->cos_angle * SPEED;
+		bola->y += bola->sin_angle  * SPEED;
 		game->bola = game->bola->next;
 	}
 	game->bola = bolas;

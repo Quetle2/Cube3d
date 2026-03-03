@@ -336,39 +336,30 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
     	start_y++;
 	}
 //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa
-	// ray_x = player->x;
-	// ray_y = player->y;
-	// while (!touch_bola(ray_x, ray_y, game->bola) && !touch(ray_x, ray_y, game))
-	// {
-	// 	// put_pixel(ray_x, ray_y, 0xFF0000, game);
-	// 	// printf("x:%i\ny:%i\n", ray_x, ray_y);
-	// 	ray_x -= cos_angle;
-	// 	ray_y -= sin_angle;
-	// }
-	// if (touch(ray_x, ray_y, game))
-	// {
+	float	ray_x = player->x;
+	float	ray_y = player->y;
+	hit = 0;
+	while (!touch_bola(ray_x, ray_y, game->bola) && (ray_x <= game->mapinfo.height * 64 && ray_x >= 0) && (ray_y <= game->mapinfo.width * 64 && ray_y >= 0))
+	{
+		// printf("%i,%i\n", game->mapinfo.height * 64, game->mapinfo.width * 64);
+		ray_x += cos_angle;
+		ray_y += sin_angle;
+	}
+	if (touch_bola(ray_x, ray_y, game->bola))
+		hit = 1;
 
-	// 	wich = 1;
-	// }
-	// else
-	// 	wich = 0;
-	// // exit(1);
-	// dist = distance(ray_x - player->x, ray_y - player->y);
-	// if (wich == 1)
-	// 	height = (BLOCK / dist) * (WIDTH / 2);
-	// else
-	// 	height = (FIRE / dist) * (WIDTH / 2);
-	// start_y = (HEIGHT - height) / 2;
-	// end = start_y + height;
-
-	// while (start_y < end)
-	// {
-	// 	if (wich == 1)
-	// 		put_pixel(i, start_y, 255, game);
-	// 	else
-	// 		put_pixel(i, start_y, 100, game);
-	// 	start_y++;
-	// }
+	dist = distance(ray_x - player->x, ray_y - player->y);
+	height = (FIRE / dist) * (WIDTH / 2);
+	start_y = (HEIGHT - height) / 2;
+	end = start_y + height;
+	if (hit == 1)
+	{
+		while (start_y < end)
+		{
+			put_pixel(i, start_y, 100, game);
+			start_y++;
+		}
+	}
 }
 
 // void	draw_line(t_player *player, t_game *game, float start_x, int x)
