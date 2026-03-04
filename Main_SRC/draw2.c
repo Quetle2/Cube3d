@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:22:54 by marada            #+#    #+#             */
-/*   Updated: 2026/03/04 22:17:52 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/04 22:24:22 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	touch(float px, float py, t_game *game)
 	int	x;
 	int	y;
 
-	px / BLOCK;
-	py / BLOCK;
+	x = px / BLOCK;
+	y = py / BLOCK;
 	if (ft_strchr("1A", game->map[y][x]))
 		return (1);
 	return (0);
@@ -47,59 +47,6 @@ int	touch(float px, float py, t_game *game)
 float	distance(float x, float y)
 {
 	return (sqrt(x * x + y * y));
-}
-
-void	get_side_helper(float cos_angle,
-		float sin_angle, float ray_x, float ray_y)
-{
-	float	dist_y;
-	float	dist_x;
-
-	if (cos_angle < 0)
-	{
-		ray_x -= 1;
-		dist_x = ((int)((ray_x + 64) / BLOCK)*64) - ray_x;
-	}
-	else
-	{
-		ray_x += 1;
-		dist_x = ((int)((ray_x - 64) / BLOCK)*64 + 64) - ray_x;
-	}
-	if (sin_angle < 0)
-	{
-		ray_y -= 1;
-		dist_y = ((int)((ray_y + 64) / BLOCK)*64) - ray_y;
-	}
-	else
-	{
-		ray_y += 1;
-		dist_y = ((int)((ray_y - 64) / BLOCK)*64 + 64) - ray_y;
-	}
-}
-
-int	get_side(float cos_angle, float sin_angle, float ray_x, float ray_y)
-{
-	float	dist_y;
-	float	dist_x;
-
-	ray_x += cos_angle;
-	ray_y += sin_angle;
-	get_side_helper(cos_angle, sin_angle, ray_x, ray_y);
-	if (fabs(dist_y) > fabs(dist_x))
-	{
-		if (dist_x < 0)
-			return (WEST);
-		else
-			return (EAST);
-	}
-	if (fabs(dist_y) < fabs(dist_x))
-	{
-		if (dist_y < 0)
-			return (NORTH);
-		else
-			return (SOUTH);
-	}
-	return (5);
 }
 
 typedef struct s_vars
@@ -288,9 +235,6 @@ int	draw_loop(t_game *game)
 	float		start_x;
 	int			i;
 
-	i = 0;
-	start_x = player->angle - PI / 6;
-	fraction = PI / 3 / WIDTH;
 	player = &game->player;
 	move_player(game, player);
 	move_bolas(game);
@@ -298,6 +242,9 @@ int	draw_loop(t_game *game)
 	draw_background(game);
 	draw_square(player->x / 2, player->y / 2, 10, game);
 	draw_map(game);
+	i = 0;
+	start_x = player->angle - PI / 6;
+	fraction = PI / 3 / WIDTH;
 	while (i < WIDTH)
 	{
 		draw_line(player, game, start_x, i);
