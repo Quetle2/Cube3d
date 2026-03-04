@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed3d.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/04 22:18:26 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/04 23:23:15 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@
 # define Q 113
 # define N 110
 
-# define NORTH 0
-# define SOUTH 1
+# define NOTH 0
+# define SOTH 1
 # define EAST 2
 # define WEST 3
 
@@ -127,6 +127,34 @@ typedef struct s_game
 	t_texinfo	texinfo;
 } 				t_game;
 
+typedef struct s_vars
+{
+	float	cos_angle;
+	float	sin_angle;
+	float	dist;
+	float	height;
+	int		start_y;
+	int		end;
+	int		hit;
+	int		side;
+	float	proj_plane;
+	int		wall_height;
+	int		stepx;
+	int		stepy;
+	float	sidedistx;
+	float	sidedisty;
+	float	deltadistx;
+	float	deltadisty;
+	int		mapx;
+	int		mapy;
+	int		start_y_original;
+	double	wall_x;
+	int		tex_x;
+	int		tex_y;
+	int		color;
+	float	ray_x;
+	float	ray_y;
+}	t_vars;
 
 //bolas.c 
 int		check_colisao(t_game *game, t_bola *bola);
@@ -255,5 +283,11 @@ void	move_right_helper3(char **map, t_player *player, float cos, float sin);
 void	move_right_helper4(char **map, t_player *player, float cos, float sin);
 
 //Raycasting
+void	draw_line_maismore(t_vars *vars, t_game *game, int *i);
+void	draw_line_maishit(t_vars *vars, t_player *player);
+void	draw_line_hit(t_vars *vars, t_game *game);
+void	draw_line_line(t_vars *vars, t_player *player);
+void	draw_line_init(t_vars *vars, t_player *player, float start_x);
+void	draw_line(t_player *player, t_game *game, float start_x, int i);
 
 #endif
