@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/03 16:26:16 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/04 19:49:03 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define A 97
 # define S 115
 # define D 100
+# define E 101
 # define F 102
 # define Q 113
 # define N 110
@@ -150,7 +151,9 @@ int	err_msg(char *detail, char *str, int code);
 //Free
 void	free_tab(void **tab);
 void	clean_exit(t_game *game, int code);
-int	free_data(t_game *game);
+int		free_data(t_game *game);
+int	close_com(t_game *game);
+
 
 //Player
 void	init_player(t_player *player);

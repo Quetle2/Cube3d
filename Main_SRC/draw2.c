@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:22:54 by marada            #+#    #+#             */
-/*   Updated: 2026/03/04 19:30:37 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/04 19:52:28 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 			else
 				side = 4;
 		}
-		if (game->map[mapY][mapX] == '1')
+		if (ft_strchr("1A", game->map[mapY][mapX]))
 			hit = 1;
 	}
 	if (side == 1 || side == 2)

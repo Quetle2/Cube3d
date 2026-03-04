@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:51:39 by marada            #+#    #+#             */
-/*   Updated: 2026/03/03 18:19:56 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/04 19:45:51 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ int	key_press(int keycode, t_game *game)
 		player->right_rotate = 1;
 	if (keycode == F)
 		interagir(game, player);
-	if (keycode == Q)
+	if (keycode == E)
 		BOLA_DE_FOGO(game, player);
 	if (keycode == N)
 		Gear_Shift(player);
+	if (keycode == Q || keycode == 65307)
+		clean_exit(game, 1);
 	return (0);
 }
 

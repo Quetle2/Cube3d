@@ -6,7 +6,9 @@ RM = rm -rf
 
 CFLAGS = -Wall -Wextra -Werror -g
 
-MAIN_SRC = main.c movimentounderscoresensual/player_helper.c movimentounderscoresensual/player.c movimentounderscoresensual/pacima.c movimentounderscoresensual/padireita.c movimentounderscoresensual/paesquerda.c movimentounderscoresensual/pabaixo.c raycast.c interagir.c draw.c draw2.c bolas.c parse.c free.c error.c get_data.c create_map.c checka_mapa.c
+MAIN_SRC = main.c \
+			movimentounderscoresensual/player_helper.c movimentounderscoresensual/player.c movimentounderscoresensual/pacima.c movimentounderscoresensual/padireita.c movimentounderscoresensual/paesquerda.c movimentounderscoresensual/pabaixo.c \
+			raycast.c interagir.c draw.c draw2.c bolas.c parse.c free.c error.c get_data.c create_map.c checka_mapa.c
 
 GNL_SRC = get_next_line_utils.c get_next_line.c
 
