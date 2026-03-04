@@ -6,35 +6,11 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:08 by marada            #+#    #+#             */
-/*   Updated: 2026/03/04 23:24:57 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/04 23:55:10 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cubed3d.h"
-
-void	draw_line(t_player *player, t_game *game, float start_x, int i)
-{
-	t_vars	vars;
-
-	draw_line_init(&vars, player, start_x);
-	draw_line_line(&vars, player);
-	vars.hit = 0;
-	draw_line_hit(&vars, game);
-	draw_line_maishit(&vars, player);
-	draw_line_maismore(&vars, game, &i);
-	vars.dist = distance(vars.ray_x - player->x, vars.ray_y - player->y);
-	vars.height = (FIRE / vars.dist) * (WIDTH / 2);
-	vars.start_y = (HEIGHT - vars.height) / 2;
-	vars.end = vars.start_y + vars.height;
-	if (vars.hit == 1)
-	{
-		while (vars.start_y < vars.end)
-		{
-			put_pixel(i, vars.start_y, 100, game);
-			vars.start_y++;
-		}
-	}
-}
 
 void	draw_line_init(t_vars *vars, t_player *player, float start_x)
 {
@@ -49,6 +25,34 @@ void	draw_line_init(t_vars *vars, t_player *player, float start_x)
 	vars->mapy = (int)(player->y / BLOCK);
 	vars->deltadistx = fabs(BLOCK / vars->cos_angle);
 	vars->deltadisty = fabs(BLOCK / vars->sin_angle);
+}
+
+void	draw_line_line(t_vars *vars, t_player *player)
+{
+	if (vars->cos_angle < 0)
+	{
+		vars->stepx = -1;
+		vars->sidedistx = (player->x - vars->mapx * BLOCK)
+			/ fabs(vars->cos_angle);
+	}
+	else
+	{
+		vars->stepx = 1;
+		vars->sidedistx = ((vars->mapx + 1)
+				* BLOCK - player->x) / fabs(vars->cos_angle);
+	}
+	if (vars->sin_angle < 0)
+	{
+		vars->stepy = -1;
+		vars->sidedisty = (player->y - vars->mapy * BLOCK)
+			/ fabs(vars->sin_angle);
+	}
+	else
+	{
+		vars->stepy = 1;
+		vars->sidedisty = ((vars->mapy + 1)
+				* BLOCK - player->y) / fabs(vars->sin_angle);
+	}
 }
 
 void	draw_line_hit(t_vars *vars, t_game *game)

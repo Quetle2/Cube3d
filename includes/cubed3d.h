@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/04 23:23:15 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/04 23:55:35 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,8 @@ void	draw_map(t_game *game);
 
 //draw2.c
 int	draw_loop(t_game *game);
+float	distance(float x, float y);
+int	touch_bola(float px, float py, t_list *bolas);
 
 //error.c
 int		err_msg(char *detail, char *str, int code);
