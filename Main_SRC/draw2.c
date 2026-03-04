@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:22:54 by marada            #+#    #+#             */
-/*   Updated: 2026/03/03 14:20:09 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/04 19:29:39 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,7 +288,7 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 			else
 				side = 4;
 		}
-		if (game->map[mapY][mapX] == '1')
+		if (ft_strchr("1A", game->map[mapY][mapX]))
 			hit = 1;
 	}
 	if (side == 1 || side == 2)

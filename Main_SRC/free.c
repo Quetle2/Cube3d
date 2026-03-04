@@ -6,11 +6,17 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:14:49 by marada            #+#    #+#             */
-/*   Updated: 2026/01/28 15:42:26 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/04 19:48:50 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "../includes/cubed3d.h"
+
+int	close_com(t_game *game)
+{
+	clean_exit(game, 1);
+	return (1);
+}
 
 void	free_map(t_game *game)
 {
