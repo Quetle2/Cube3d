@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/04 19:49:03 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/04 20:01:37 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,8 +194,8 @@ void	move_right_helper4(char **map, t_player *player, float cos, float sin);
 
 //Interagir
 void	interagir(t_game *game, t_player *player);
-void	BOLA_DE_FOGO(t_game *game, t_player *player);
-void	Gear_Shift(t_player *player);
+void	bola_de_fogo(t_game *game, t_player *player);
+void	gear_shift(t_player *player);
 
 //Draw
 void	draw_bolas(t_game *game, t_list *bolas);

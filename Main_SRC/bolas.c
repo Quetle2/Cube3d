@@ -6,22 +6,26 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:25:36 by marada            #+#    #+#             */
-/*   Updated: 2026/01/27 16:34:39 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/04 21:35:54 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cubed3d.h"
 
-int		check_colisao(t_game *game, t_bola *bola)
+int	check_colisao(t_game *game, t_bola *bola)
 {
-	if (ft_strchr("1A", game->map[(int)((bola->y - (bola->sin_angle * SPEED)) / 64)] 
-	[(int)((bola->x - (bola->cos_angle * SPEED)) / 64)]) != NULL
-	|| ft_strchr("1A", game->map[(int)((bola->y - (bola->sin_angle * SPEED)) / 64)] 
-	[(int)((bola->x + 20 - (bola->cos_angle * SPEED)) / 64)]) != NULL 
-	|| ft_strchr("1A", game->map[(int)((bola->y + 20 - (bola->sin_angle * SPEED)) / 64)] 
-	[(int)((bola->x - (bola->cos_angle * SPEED)) / 64)]) != NULL 
-	|| ft_strchr("1A", game->map[(int)((bola->y + 20 - (bola->sin_angle * SPEED)) / 64)] 
-	[(int)((bola->x + 20 - (bola->cos_angle * SPEED)) / 64)]) != NULL)
+	if (ft_strchr("1A", game->map[(int)((bola->y
+					- (bola->sin_angle * SPEED)) / 64)]
+		[(int)((bola->x - (bola->cos_angle * SPEED)) / 64)]) != NULL
+	|| ft_strchr("1A", game->map[(int)((bola->y
+				- (bola->sin_angle * SPEED)) / 64)]
+		[(int)((bola->x + 20 - (bola->cos_angle * SPEED)) / 64)]) != NULL
+	|| ft_strchr("1A", game->map[(int)((bola->y
+				+ 20 - (bola->sin_angle * SPEED)) / 64)]
+		[(int)((bola->x - (bola->cos_angle * SPEED)) / 64)]) != NULL
+	|| ft_strchr("1A", game->map[(int)((bola->y
+				+ 20 - (bola->sin_angle * SPEED)) / 64)]
+		[(int)((bola->x + 20 - (bola->cos_angle * SPEED)) / 64)]) != NULL)
 		return (1);
 	return (0);
 }
@@ -37,11 +41,11 @@ void	delete_bolas(t_list **bolas)
 	(*bolas)->content = NULL;
 }
 
-void	move_bolas(t_game  *game)
+void	move_bolas(t_game *game)
 {
 	t_list	*bolas;
 	t_bola	*bola;
-	
+
 	bolas = game->bola;
 	while (game->bola)
 	{
@@ -49,15 +53,15 @@ void	move_bolas(t_game  *game)
 		if (bola == NULL)
 		{
 			game->bola = game->bola->next;
-			continue;
+			continue ;
 		}
 		if (check_colisao(game, bola))
 		{
 			delete_bolas(&game->bola);
-			continue;
+			continue ;
 		}
 		bola->x += bola->cos_angle * SPEED;
-		bola->y += bola->sin_angle  * SPEED;
+		bola->y += bola->sin_angle * SPEED;
 		game->bola = game->bola->next;
 	}
 	game->bola = bolas;
