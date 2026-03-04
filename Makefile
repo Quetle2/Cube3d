@@ -9,8 +9,8 @@ CFLAGS = -Wall -Wextra -Werror -g
 MAIN_SRC = main.c \
 			movimentounderscoresensual/player_helper.c movimentounderscoresensual/player.c movimentounderscoresensual/pacima.c \
 			movimentounderscoresensual/padireita.c movimentounderscoresensual/paesquerda.c movimentounderscoresensual/pabaixo.c \
-			bolas.c check_map_utils.c check_map.c create_map_utils.c create_map.c draw.c draw2.c error.c free.c get_data_utils.c \
-			get_data_utils.c get_data.c init.c interagir.c parse_utils.c parse.c raycast.c main.c
+			bolas.c check_map_utils.c check_map.c create_map_utils.c create_map.c draw.c draw2.c error.c free.c \
+			get_data_utils.c get_data.c init.c interagir.c parse_utils.c parse.c raycast.c
 
 GNL_SRC = get_next_line_utils.c get_next_line.c
 
