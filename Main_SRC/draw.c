@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 06:00:15 by marada            #+#    #+#             */
-/*   Updated: 2026/03/03 12:44:48 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/04 19:42:14 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_bolas(t_game *game, t_list *bolas)
 		if (bolas->content == NULL)
 		{
 			bolas = bolas->next;
-			continue;
+			continue ;
 		}
 		bola = (t_bola *)bolas->content;
 		draw_square(bola->x, bola->y, 20, game);
@@ -71,16 +71,16 @@ void	draw_square(int x, int y, int size, t_game *game)
 
 	i = -1;
 	while (++i < size)
-		put_pixel((x + i) /*/ 2*/, y /*/ 2*/, 0x0000FF, game);
+		put_pixel((x + i), y, 0x0000FF, game);
 	i = -1;
 	while (++i < size)
-		put_pixel(x /*/ 2*/, (y + i) /*/ 2*/, 0x0000FF, game);
+		put_pixel(x, (y + i), 0x0000FF, game);
 	i = -1;
 	while (++i < size)
-		put_pixel((x + size) /*/ 2*/, (y + i) /*/ 2*/, 0x0000FF, game);
+		put_pixel((x + size), (y + i), 0x0000FF, game);
 	i = -1;
 	while (++i < size)
-		put_pixel((x + i) /*/ 2*/, (y + size) /*/ 2*/, 0x0000FF, game);
+		put_pixel((x + i), (y + size), 0x0000FF, game);
 }
 
 void	draw_map(t_game *game)

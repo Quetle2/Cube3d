@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:14:49 by marada            #+#    #+#             */
-/*   Updated: 2026/01/28 15:42:26 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/04 19:43:05 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  "../includes/cubed3d.h"
+#include "../includes/cubed3d.h"
 
 void	free_map(t_game *game)
 {
@@ -24,7 +24,6 @@ void	free_map(t_game *game)
 
 int	free_data(t_game *game)
 {
-
 	free_map(game);
 	return (1);
 }

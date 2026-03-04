@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:22:54 by marada            #+#    #+#             */
-/*   Updated: 2026/03/03 14:20:09 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/04 19:30:37 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,132 +90,6 @@ int get_side(float cos_angle, float sin_angle, float ray_x, float ray_y)
 	}
 	return (5);
 }
-
-/*void	draw_line(t_player *player, t_game *game, float start_x, int i)
-{
-	float	cos_angle;
-	float	sin_angle;
-	float	dist = 0;
-	float	height;
-	int		start_y;
-	int		end;
-	int		hit;
-	int		side;
-	float	proj_plane;
-	int		wall_height;
-	int		stepX;
-	int		stepY;
-	float	sideDistX;
-	float	sideDistY;
-	float	deltaDistX = 0;
-	float	deltaDistY = 0;
-	int		mapX;
-	int		mapY;
-	double	wall_x;
-	int		tex_x;
-	double	step;
-	double	tex_pos;
-	int		tex_y;
-	int		color;
-
-
-	cos_angle = cos(start_x);
-	sin_angle = sin(start_x);
-
-	mapX = (int)(player->x / BLOCK);
-	mapY = (int)(player->y / BLOCK);
-
-	deltaDistX = fabs(BLOCK / cos_angle);
-	deltaDistY = fabs(BLOCK / sin_angle);
-
-	if (cos_angle < 0)
-	{
-		stepX = -1;
-		sideDistX = (player->x - mapX * BLOCK) / fabs(cos_angle);
-	}
-	else
-	{
-		stepX = 1;
-		sideDistX = ((mapX + 1) * BLOCK - player->x) / fabs(cos_angle);
-	}
-	if (sin_angle < 0)
-	{
-		stepY = -1;
-		sideDistY = (player->y - mapY * BLOCK) / fabs(sin_angle);
-	}
-	else
-	{
-		stepY = 1;
-		sideDistY = ((mapY + 1) * BLOCK - player->y) / fabs(sin_angle);
-	}
-	hit = 0;
-	while (!hit)
-	{
-		if (sideDistX < sideDistY)
-		{
-			sideDistX += deltaDistX;
-			mapX += stepX;
-			if (stepX == 1)
-				side = 1;
-			else
-				side = 2;
-		}
-		else
-		{
-			sideDistY += deltaDistY;
-			mapY += stepY;
-			if (stepY == 1)
-				side = 3;
-			else
-				side = 4;
-		}
-		if (game->map[mapY][mapX] == '1')
-			hit = 1;
-	}
-	if (side == 1 || side == 2)
-		dist = (mapX * BLOCK - player->x + (1 - stepX) * BLOCK / 2) / cos_angle;
-	else if (side == 3 || side == 4)
-		dist = (mapY * BLOCK - player->y + (1 - stepY) * BLOCK / 2) / sin_angle;
-	proj_plane = WIDTH / (2 * tan(PI / 6));
-	wall_height = (int)((BLOCK / dist) * proj_plane);
-	if (hit == 1)
-		height = (BLOCK / dist) * (WIDTH / 2);
-	else
-		height = (FIRE / dist) * (WIDTH / 2);
-	(void)height;
-	start_y = -wall_height / 2 + HEIGHT / 2;
-	if (start_y < 0)
-		start_y = 0;
-	end = wall_height / 2 + HEIGHT / 2;
-	if (end >= HEIGHT)
-		end = HEIGHT - 1;
-	// calcular tex_x antes do loop
-	if (side == 1 || side == 2)
-		wall_x = fmod(player->y + dist * sin_angle, BLOCK);
-	else
-		wall_x = fmod(player->x + dist * cos_angle, BLOCK);
-	tex_x = (int)(wall_x / BLOCK * 128);
-
-	// calcular step e posição inicial na textura
-	step = (double)128 / wall_height;
-	tex_pos = (start_y - HEIGHT / 2 + wall_height / 2) * step;
-
-	while (start_y < end)
-	{
-		tex_y = (int)tex_pos % 128;
-		tex_pos += step;
-		if (side == 1)
-			color = game->textures[EAST][tex_y * 128 + tex_x];
-		else if (side == 2)
-			color = game->textures[WEST][tex_y * 128 + tex_x];
-		else if (side == 3)
-			color = game->textures[SOUTH][tex_y * 128 + tex_x];
-		else
-			color = game->textures[NORTH][tex_y * 128 + tex_x];
-		put_pixel(i, start_y, color, game);
-		start_y++;
-	}
-}*/
 
 void	draw_line(t_player *player, t_game *game, float start_x, int i)
 {
@@ -361,98 +235,6 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 		}
 	}
 }
-
-// void	draw_line(t_player *player, t_game *game, float start_x, int x)
-// {
-// 	float	cos_angle;
-// 	float	sin_angle;
-// 	int		mapX;
-// 	int		mapY;
-// 	float	sideDistX;
-// 	float	sideDistY;
-// 	float	deltaDistX;
-// 	float	deltaDistY;
-// 	float	perpWallDist;
-// 	int		stepX;
-// 	int		stepY;
-// 	int		hit;
-// 	int		side;
-// 	int		lineHeight;
-// 	int		start_y;
-// 	int		end;
-// 	float	projPlane;
-
-// 	cos_angle = cos(start_x);
-// 	sin_angle = sin(start_x);
-
-// 	mapX = (int)(player->x / BLOCK);
-// 	mapY = (int)(player->y / BLOCK);
-
-// 	deltaDistX = fabs(BLOCK / cos_angle);
-// 	deltaDistY = fabs(BLOCK / sin_angle);
-
-// 	if (cos_angle < 0)
-// 	{
-// 		stepX = -1;
-// 		sideDistX = (player->x - mapX * BLOCK) / fabs(cos_angle);
-// 	}
-// 	else
-// 	{
-// 		stepX = 1;
-// 		sideDistX = ((mapX + 1) * BLOCK - player->x) / fabs(cos_angle);
-// 	}
-// 	if (sin_angle < 0)
-// 	{
-// 		stepY = -1;
-// 		sideDistY = (player->y - mapY * BLOCK) / fabs(sin_angle);
-// 	}
-// 	else
-// 	{
-// 		stepY = 1;
-// 		sideDistY = ((mapY + 1) * BLOCK - player->y) / fabs(sin_angle);
-// 	}
-// 	hit = 0;
-// 	while (!hit)
-// 	{
-// 		if (sideDistX < sideDistY)
-// 		{
-// 			sideDistX += deltaDistX;
-// 			mapX += stepX;
-// 			side = 0;
-// 		}
-// 		else
-// 		{
-// 			sideDistY += deltaDistY;
-// 			mapY += stepY;
-// 			side = 1;
-// 		}
-// 		if (game->map[mapY][mapX] == '1')
-// 			hit = 1;
-// 	}
-// 	if (side == 0)
-// 		dist = (mapX * BLOCK - player->x + (1 - stepX) * BLOCK / 2) / cos_angle;
-// 	else
-// 		dist = (mapY * BLOCK - player->y + (1 - stepY) * BLOCK / 2) / sin_angle;
-
-// 	projPlane = WIDTH / (2 * tan(PI / 6));
-// 	wall_height = (int)((BLOCK / dist) * projPlane);
-
-// 	start_y = -wall_height / 2 + HEIGHT / 2;
-// 	if (start_y < 0)
-// 		start_y = 0;
-// 	end = wall_height / 2 + HEIGHT / 2;
-// 	if (end >= HEIGHT)
-// 		end = HEIGHT - 1;
-
-// 	while (start_y < end)
-// 	{
-// 		if (side == 1)
-// 			put_pixel(x, start_y, 100, game);
-// 		else
-// 			put_pixel(x, start_y, 150, game);
-// 		start_y++;
-// 	}
-// }
 
 void	draw_background(t_game *game)
 {
