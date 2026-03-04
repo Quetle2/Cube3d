@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:35:20 by marada            #+#    #+#             */
-/*   Updated: 2026/03/04 22:15:43 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/04 23:39:56 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ int	parse_args(t_game *game, char **av)
 		clean_exit(game, 1);
 	parse_data(av[1], game);
 	if (get_file_data(game, game->mapinfo.file) == 1)
-		return (free_data(game));
+		return (clean_exit(game, 1), 1);
 	if (check_map(game, game->map) == 1)
-		return (free_data(game));
+		return (clean_exit(game, 1), 1);
 	init_player_direlao(&game->player);
 	return (0);
 }

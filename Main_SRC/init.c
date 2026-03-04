@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 19:57:43 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/04 23:19:21 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/04 23:56:29 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@ void	init_game(t_game *game)
 	game->texinfo.pos = 0.0;
 	game->texinfo.x = 0;
 	game->texinfo.y = 0;
+	game->textures = NULL;
 	game->bola = NULL;
+	game->map = NULL;
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "Game");
 	game->img.img = mlx_new_image(game->mlx, WIDTH, HEIGHT);

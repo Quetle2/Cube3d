@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:14:49 by marada            #+#    #+#             */
-/*   Updated: 2026/03/04 21:34:40 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/04 23:38:07 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,36 @@ int	close_com(t_game *game)
 	return (1);
 }
 
+void	free_texinfo(t_texinfo *texinfo)
+{
+	if (texinfo->floor)
+		free(texinfo->floor);
+	if (texinfo->ceiling)
+		free(texinfo->ceiling);
+	if (texinfo->north)
+		free(texinfo->north);
+	if (texinfo->south)
+		free(texinfo->south);
+	if (texinfo->west)
+		free(texinfo->west);
+	if (texinfo->east)
+		free(texinfo->east);
+}
+
+void	free_textures(int **textures)
+{
+	free(textures[NORTH]);
+	free(textures[SOUTH]);
+	free(textures[EAST]);
+	free(textures[WEST]);
+	free(textures);
+}
+
 void	free_map(t_game *game)
 {
+	free_texinfo(&game->texinfo);
+	if (game->textures)
+		free_textures(game->textures);
 	if (game->mapinfo.fd > 0)
 		close(game->mapinfo.fd);
 	if (game->mapinfo.file)
@@ -42,6 +70,7 @@ void	clean_exit(t_game *game, int code)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
 	{
+		mlx_destroy_image(game->mlx, game->img.img);
 		mlx_destroy_display(game->mlx);
 		mlx_loop_end(game->mlx);
 		free(game->mlx);
