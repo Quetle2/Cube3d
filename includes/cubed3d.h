@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed3d.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/04 20:01:37 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/04 22:18:26 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_bola
 	float	y;
 	float	cos_angle;
 	float	sin_angle;
-} t_bola;
+} 				t_bola;
 
 typedef struct s_player
 {
@@ -71,7 +71,7 @@ typedef struct s_player
 	int		gear;
 	int		left_rotate;
 	int		right_rotate;
-} t_player;
+} 				t_player;
 
 typedef struct s_texinfo
 {
@@ -89,7 +89,7 @@ typedef struct s_texinfo
 	double			pos;
 	int				x;
 	int				y;
-}	t_texinfo;
+}				t_texinfo;
 
 typedef struct s_mapinfo
 {
@@ -100,7 +100,7 @@ typedef struct s_mapinfo
 	int			height;
 	int			width;
 	int			index_end_of_map;
-}	t_mapinfo;
+}				t_mapinfo;
 
 typedef struct s_img
 {
@@ -109,7 +109,7 @@ typedef struct s_img
 	int		pixel_bits;
 	int		size_line;
 	int		endian;
-}	t_img;
+}				t_img;
 
 typedef struct s_game
 {
@@ -125,34 +125,98 @@ typedef struct s_game
 	int			**textures;
 	t_mapinfo	mapinfo;
 	t_texinfo	texinfo;
-} t_game;
+} 				t_game;
 
-//Main
+
+//bolas.c 
+int		check_colisao(t_game *game, t_bola *bola);
+void	delete_bolas(t_list **bolas);
+void	move_bolas(t_game *game);
+
+//check_map_utils.c
+int		check_map_is_at_the_end(t_mapinfo *map);
+int		is_a_white_space(char c);
+int		check_position_is_valid(t_game *game, char **map_tab);
+
+//check_map.c
+int		check_player_position(t_game *game, char **map_tab);
+int		check_map_elements(t_game *game, char **map_tab);
+int		check_top_or_bottom(char **map_tab, int i, int j);
+int		check_map_sides(t_mapinfo *map, char **map_tab);
+int		check_map(t_game *game, char **map_tab);
+
+//creat_map_utils.c
+size_t	find_biggest_len(t_mapinfo *map, int i);
+int		count_map_lines(t_game *game, char **file, int i);
+int		fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index);
+
+//create_map.c
+int	get_map_info(t_game *game, char **file, int i);
+void	change_space_into_wall(t_game *game);
+int	create_map(t_game *game, char **file, int i);
+
+//draw.c
+void	draw_bolas(t_game *game, t_list *bolas);
+void	draw_porta(int x, int y, int size, t_game *game);
+void	draw_porta2(int x, int y, int size, t_game *game);
+void	draw_square(int x, int y, int size, t_game *game);
+void	draw_map(t_game *game);
+
+//draw2.c
+int	draw_loop(t_game *game);
+
+//error.c
+int		err_msg(char *detail, char *str, int code);
+
+//free.c
+int		close_com(t_game *game);
+void	free_map(t_game *game);
+int		free_data(t_game *game);
+void	free_tab(void **tab);
+void	clean_exit(t_game *game, int code);
+
+//get_data_utils.c
+char	*get_texture_path(char *line, int j);
+int		fill_direction_textures(t_texinfo *textures, char *line, int j);
+int		no_digit(char *str);
+
+//get_data.c
+int		*copy_into_rgb_array(char **rgb_to_convert, int *rgb);
+int		*set_rgb_colors(char *line);
+int		fill_color_textures(t_game *game, t_texinfo *textures, char *line, int j);
+int		ignore_whitespaces_get_info(t_game *game, char **map, int i, int j);
+int		get_file_data(t_game *game, char **map);
+
+//init.c
+void	init_mapinfo(t_mapinfo *mapinfo);
+void	init_texture_img(t_game *game, t_img *image, char *path);
+void	init_textures(t_game *game);
+void	init_game(t_game *game);
+
+//interagir.c
+void	checka_porta(t_game *game, t_player *player, int size_y, int size_x);
+void	interagir(t_game *game, t_player *player);
+void	bola_de_fogo(t_game *game, t_player *player);
+void	gear_shift(t_player *player);
+
+//parse.c
+int		is_dir(char *arg);
+int		is_cub_file(char *arg);
+int		is_xpm_file(char *arg);
+void	fill_tab(int row, int column, int i, t_game *game);
+
+//parse_utils.c
+int		get_number_of_lines(char *path);
+int		check_file(char *arg, int cub);
+void	init_player_direlao(t_player *player);
+void	parse_data(char *path, t_game *game);
+int		parse_args(t_game *game, char **av);
+
+//main.c
 void	put_pixel(int x, int y, int color, t_game *game);
 void	init_game(t_game *game);
 void	clear_image(t_game *game);
-
-//Parse
-int	parse_args(t_game *game, char **av);
-
-//Get Data
-int	get_file_data(t_game *game, char **map);
-
-//Create Map
-int	create_map(t_game *game, char **file, int i);
-size_t	find_biggest_len(t_mapinfo *map, int i);
-
-//Checka Mapa
-int	check_map(t_game *game, char **map_tab);
-
-//Error
-int	err_msg(char *detail, char *str, int code);
-
-//Free
-void	free_tab(void **tab);
-void	clean_exit(t_game *game, int code);
-int		free_data(t_game *game);
-int	close_com(t_game *game);
+int		*xpm_to_img(t_game *game, char *path);
 
 
 //Player
@@ -191,23 +255,5 @@ void	move_right_helper3(char **map, t_player *player, float cos, float sin);
 void	move_right_helper4(char **map, t_player *player, float cos, float sin);
 
 //Raycasting
-
-//Interagir
-void	interagir(t_game *game, t_player *player);
-void	bola_de_fogo(t_game *game, t_player *player);
-void	gear_shift(t_player *player);
-
-//Draw
-void	draw_bolas(t_game *game, t_list *bolas);
-void	draw_porta(int x, int y, int size, t_game *game);
-void	draw_porta2(int x, int y, int size, t_game *game);
-void	draw_square(int x, int y, int size, t_game *game);
-void	draw_map(t_game *game);
-//Draw2
-int		draw_loop(t_game *game);
-
-//Bolas
-void	move_bolas(t_game  *game);
-
 
 #endif
