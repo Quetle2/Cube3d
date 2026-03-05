@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_create_map.c                                 :+:      :+:    :+:   */
+/*   create_map_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 21:36:14 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/04 21:37:29 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/05 00:57:25 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
 			map_tab[i][j] = mapinfo->file[index][j];
 			j++;
 		}
-		while (j < mapinfo->width)
+		while (j <= mapinfo->width)
 			map_tab[i][j++] = '\0';
 		i++;
 		index++;

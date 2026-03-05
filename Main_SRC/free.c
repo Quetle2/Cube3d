@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:14:49 by marada            #+#    #+#             */
-/*   Updated: 2026/03/04 23:38:07 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/05 00:13:54 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	free_texinfo(t_texinfo *texinfo)
 
 void	free_textures(int **textures)
 {
-	free(textures[NORTH]);
-	free(textures[SOUTH]);
+	free(textures[NOTH]);
+	free(textures[SOTH]);
 	free(textures[EAST]);
 	free(textures[WEST]);
 	free(textures);
