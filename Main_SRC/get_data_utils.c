@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_data_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 19:49:35 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/04 23:18:51 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/05 04:44:50 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,32 @@ int	no_digit(char *str)
 		i++;
 	}
 	return (found_no_digit);
+}
+
+int	*xpm_to_img(t_game *game, char *path)
+{
+	t_img	tmp;
+	int		*buffer;
+	int		x;
+	int		y;
+
+	init_texture_img(game, &tmp, path);
+	buffer = ft_calloc(1,
+			sizeof * buffer * game->texinfo.size * game->texinfo.size);
+	if (!buffer)
+		clean_exit(game, err_msg(NULL, "Malloc e tal", 1));
+	y = 0;
+	while (y < game->texinfo.size)
+	{
+		x = 0;
+		while (x < game->texinfo.size)
+		{
+			buffer[y * game->texinfo.size + x]
+				= tmp.addr[y * game->texinfo.size + x];
+			++x;
+		}
+		y++;
+	}
+	mlx_destroy_image(game->mlx, tmp.img);
+	return (buffer);
 }

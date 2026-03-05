@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:14:49 by marada            #+#    #+#             */
-/*   Updated: 2026/03/05 00:13:54 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/05 04:27:15 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,6 @@ int	close_com(t_game *game)
 {
 	clean_exit(game, 1);
 	return (1);
-}
-
-void	free_texinfo(t_texinfo *texinfo)
-{
-	if (texinfo->floor)
-		free(texinfo->floor);
-	if (texinfo->ceiling)
-		free(texinfo->ceiling);
-	if (texinfo->north)
-		free(texinfo->north);
-	if (texinfo->south)
-		free(texinfo->south);
-	if (texinfo->west)
-		free(texinfo->west);
-	if (texinfo->east)
-		free(texinfo->east);
-}
-
-void	free_textures(int **textures)
-{
-	free(textures[NOTH]);
-	free(textures[SOTH]);
-	free(textures[EAST]);
-	free(textures[WEST]);
-	free(textures);
 }
 
 void	free_map(t_game *game)

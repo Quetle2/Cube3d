@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed3d.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/04 23:55:35 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/05 04:43:28 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_bola
 	float	y;
 	float	cos_angle;
 	float	sin_angle;
-} 				t_bola;
+}				t_bola;
 
 typedef struct s_player
 {
@@ -71,7 +71,7 @@ typedef struct s_player
 	int		gear;
 	int		left_rotate;
 	int		right_rotate;
-} 				t_player;
+}				t_player;
 
 typedef struct s_texinfo
 {
@@ -125,7 +125,7 @@ typedef struct s_game
 	int			**textures;
 	t_mapinfo	mapinfo;
 	t_texinfo	texinfo;
-} 				t_game;
+}				t_game;
 
 typedef struct s_vars
 {
@@ -179,9 +179,9 @@ int		count_map_lines(t_game *game, char **file, int i);
 int		fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index);
 
 //create_map.c
-int	get_map_info(t_game *game, char **file, int i);
+int		get_map_info(t_game *game, char **file, int i);
 void	change_space_into_wall(t_game *game);
-int	create_map(t_game *game, char **file, int i);
+int		create_map(t_game *game, char **file, int i);
 
 //draw.c
 void	draw_bolas(t_game *game, t_list *bolas);
@@ -191,9 +191,9 @@ void	draw_square(int x, int y, int size, t_game *game);
 void	draw_map(t_game *game);
 
 //draw2.c
-int	draw_loop(t_game *game);
+int		draw_loop(t_game *game);
 float	distance(float x, float y);
-int	touch_bola(float px, float py, t_list *bolas);
+int		touch_bola(float px, float py, t_list *bolas);
 
 //error.c
 int		err_msg(char *detail, char *str, int code);
@@ -213,7 +213,8 @@ int		no_digit(char *str);
 //get_data.c
 int		*copy_into_rgb_array(char **rgb_to_convert, int *rgb);
 int		*set_rgb_colors(char *line);
-int		fill_color_textures(t_game *game, t_texinfo *textures, char *line, int j);
+int		fill_color_textures(t_game *game, t_texinfo *textures,
+			char *line, int j);
 int		ignore_whitespaces_get_info(t_game *game, char **map, int i, int j);
 int		get_file_data(t_game *game, char **map);
 
@@ -247,7 +248,6 @@ void	put_pixel(int x, int y, int color, t_game *game);
 void	init_game(t_game *game);
 void	clear_image(t_game *game);
 int		*xpm_to_img(t_game *game, char *path);
-
 
 //Player
 void	init_player(t_player *player);
@@ -291,5 +291,9 @@ void	draw_line_hit(t_vars *vars, t_game *game);
 void	draw_line_line(t_vars *vars, t_player *player);
 void	draw_line_init(t_vars *vars, t_player *player, float start_x);
 void	draw_line(t_player *player, t_game *game, float start_x, int i);
+
+//free.c
+void	free_texinfo(t_texinfo *texinfo);
+void	free_textures(int **textures);
 
 #endif

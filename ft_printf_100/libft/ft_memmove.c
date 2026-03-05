@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: miandrad <miandrad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:42:24 by miandrad          #+#    #+#             */
-/*   Updated: 2022/11/03 12:44:01 by miandrad         ###   ########.fr       */
+/*   Updated: 2026/03/05 04:46:12 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	*ft_memmove(void *str1, const void *str2, size_t n)
 	{
 		while (n > 0)
 		{
-		destnew[n - 1] = srcnew[n - 1];
-		n--;
+			destnew[n - 1] = srcnew[n - 1];
+			n--;
 		}
 	}
 	else
