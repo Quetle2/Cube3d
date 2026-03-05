@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:51:39 by marada            #+#    #+#             */
-/*   Updated: 2026/03/04 20:01:37 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/05 06:38:55 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ int	key_press(int keycode, t_game *game)
 	t_player	*player;
 
 	player = &game->player;
+	if (keycode == 49)
+		game->bonito = 0;
+	if (keycode == 50)
+		game->bonito = 1;
 	if (keycode == W)
 		player->key_up = 1;
 	if (keycode == S)

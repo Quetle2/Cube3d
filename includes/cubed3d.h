@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed3d.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/05 04:43:28 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/05 06:34:58 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,8 @@ typedef struct s_game
 
 	t_list		*bola;
 	char		**map;
-	int			**textures;
+	int			***textures;
+	int			bonito;
 	t_mapinfo	mapinfo;
 	t_texinfo	texinfo;
 }				t_game;
@@ -204,6 +205,8 @@ void	free_map(t_game *game);
 int		free_data(t_game *game);
 void	free_tab(void **tab);
 void	clean_exit(t_game *game, int code);
+void	free_texinfo(t_texinfo *texinfo);
+void	free_textures(int ***textures);
 
 //get_data_utils.c
 char	*get_texture_path(char *line, int j);
@@ -291,9 +294,5 @@ void	draw_line_hit(t_vars *vars, t_game *game);
 void	draw_line_line(t_vars *vars, t_player *player);
 void	draw_line_init(t_vars *vars, t_player *player, float start_x);
 void	draw_line(t_player *player, t_game *game, float start_x, int i);
-
-//free.c
-void	free_texinfo(t_texinfo *texinfo);
-void	free_textures(int **textures);
 
 #endif

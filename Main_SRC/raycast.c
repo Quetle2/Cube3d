@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:08 by marada            #+#    #+#             */
-/*   Updated: 2026/03/04 23:55:10 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/05 06:33:21 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,13 +117,13 @@ void	draw_line_maismore(t_vars *vars, t_game *game, int *i)
 		vars->tex_y = (vars->start_y - vars->start_y_original)
 			* 128 / vars->wall_height;
 		if (vars->side == 1)
-			vars->color = game->textures[EAST][vars->tex_y * 128 + vars->tex_x];
+			vars->color = game->textures[game->bonito][EAST][vars->tex_y * 128 + vars->tex_x];
 		else if (vars->side == 2)
-			vars->color = game->textures[WEST][vars->tex_y * 128 + vars->tex_x];
+			vars->color = game->textures[game->bonito][WEST][vars->tex_y * 128 + vars->tex_x];
 		else if (vars->side == 3)
-			vars->color = game->textures[SOTH][vars->tex_y * 128 + vars->tex_x];
+			vars->color = game->textures[game->bonito][SOTH][vars->tex_y * 128 + vars->tex_x];
 		else
-			vars->color = game->textures[NOTH][vars->tex_y * 128 + vars->tex_x];
+			vars->color = game->textures[game->bonito][NOTH][vars->tex_y * 128 + vars->tex_x];
 		put_pixel(*i, vars->start_y, vars->color, game);
 		vars->start_y++;
 	}
