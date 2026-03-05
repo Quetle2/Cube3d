@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 06:00:15 by marada            #+#    #+#             */
-/*   Updated: 2026/03/04 19:42:14 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/05 07:13:35 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,11 @@ void	draw_map(t_game *game)
 		while (map[y][++x])
 		{
 			if (map[y][x] == '1')
-				draw_square(x * BLOCK, y * BLOCK, BLOCK, game);
+				draw_square(x * BLOCK / 2, y * BLOCK / 2, BLOCK / 2, game);
 			if (map[y][x] == 'A')
-				draw_porta(x * BLOCK, y * BLOCK, BLOCK, game);
+				draw_porta(x * BLOCK / 2, y * BLOCK / 2, BLOCK / 2, game);
 			if (map[y][x] == 'F')
-				draw_porta2(x * BLOCK, y * BLOCK, BLOCK, game);
+				draw_porta2(x * BLOCK / 2, y * BLOCK / 2, BLOCK / 2, game);
 		}
 	}
 }

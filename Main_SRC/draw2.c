@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:22:54 by marada            #+#    #+#             */
-/*   Updated: 2026/03/05 07:07:12 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/05 07:15:54 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ void	draw_background(t_game *game)
 		{
 			if (game->bonito == 0)
 			{
-			put_pixel(x, y, (ceiling[0] << 16)
-				| (ceiling[1] << 8) | ceiling[2], game);
-			put_pixel(x, (y + HEIGHT / 2), (floor[0] << 16)
-				| (floor[1] << 8) | floor[2], game);
+				put_pixel(x, y, (ceiling[0] << 16)
+					| (ceiling[1] << 8) | ceiling[2], game);
+				put_pixel(x, (y + HEIGHT / 2), (floor[0] << 16)
+					| (floor[1] << 8) | floor[2], game);
 			}
 			// else
 			// {
@@ -93,8 +93,6 @@ int	draw_loop(t_game *game)
 	move_bolas(game);
 	clear_image(game);
 	draw_background(game);
-	draw_square(player->x / 2, player->y / 2, 10, game);
-	draw_map(game);
 	i = 0;
 	start_x = player->angle - PI / 6;
 	fraction = PI / 3 / WIDTH;
@@ -104,6 +102,8 @@ int	draw_loop(t_game *game)
 		start_x += fraction;
 		i++;
 	}
+	draw_square(player->x / 2, player->y / 2, 5, game);
+	draw_map(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (1);
 }
