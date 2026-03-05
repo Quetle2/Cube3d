@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 19:57:43 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/05 06:41:55 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/05 07:08:19 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,19 @@ void	init_textures(t_game *game)
 {
 	game->textures = ft_calloc(16, sizeof * game->textures);
 	game->textures[0] = ft_calloc(4, sizeof * *(game->textures));
+	game->textures[1] = ft_calloc(4, sizeof * *(game->textures));
+	// game->textures[2] = ft_calloc(4, sizeof * *(game->textures));
+	// game->textures[3] = ft_calloc(4, sizeof * *(game->textures));
 	if (!game->textures)
 		clean_exit(game, err_msg(NULL, "Malloc ty shi", 1));
 	game->textures[0][NOTH] = xpm_to_img(game, game->texinfo.north);
 	game->textures[0][SOTH] = xpm_to_img(game, game->texinfo.south);
 	game->textures[0][EAST] = xpm_to_img(game, game->texinfo.east);
 	game->textures[0][WEST] = xpm_to_img(game, game->texinfo.west);
-	// game->textures[1][NOTH] = xpm_to_img(game, game->texinfo.north);
-	// game->textures[1][SOTH] = xpm_to_img(game, game->texinfo.south);
-	// game->textures[1][EAST] = xpm_to_img(game, game->texinfo.east);
-	// game->textures[1][WEST] = xpm_to_img(game, game->texinfo.west);
+	game->textures[1][NOTH] = xpm_to_img(game,	"textures/conhecimento.xpm");
+	game->textures[1][SOTH] = xpm_to_img(game, "textures/blood_EA.xpm");
+	game->textures[1][EAST] = xpm_to_img(game, "textures/blood_EA.xpm");
+	game->textures[1][WEST] = xpm_to_img(game, "textures/blood_EA.xpm");
 	// game->textures[2][NOTH] = xpm_to_img(game, game->texinfo.north);
 	// game->textures[2][SOTH] = xpm_to_img(game, game->texinfo.south);
 	// game->textures[2][EAST] = xpm_to_img(game, game->texinfo.east);

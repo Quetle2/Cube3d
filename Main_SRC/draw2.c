@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:22:54 by marada            #+#    #+#             */
-/*   Updated: 2026/03/04 23:24:38 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/05 07:07:12 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,17 @@ void	draw_background(t_game *game)
 		x = 0;
 		while (x < WIDTH)
 		{
+			if (game->bonito == 0)
+			{
 			put_pixel(x, y, (ceiling[0] << 16)
 				| (ceiling[1] << 8) | ceiling[2], game);
 			put_pixel(x, (y + HEIGHT / 2), (floor[0] << 16)
 				| (floor[1] << 8) | floor[2], game);
+			}
+			// else
+			// {
+					
+			// }
 			x++;
 		}
 		y++;
