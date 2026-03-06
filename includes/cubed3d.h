@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed3d.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/05 06:55:43 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/06 01:04:05 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ typedef struct s_game
 	t_list		*bola;
 	char		**map;
 	int			***textures;
-	int			bonito;
+	int			theme;
 	t_mapinfo	mapinfo;
 	t_texinfo	texinfo;
 }				t_game;
@@ -195,6 +195,7 @@ void	draw_map(t_game *game);
 int		draw_loop(t_game *game);
 float	distance(float x, float y);
 int		touch_bola(float px, float py, t_list *bolas);
+void	color_pixel(t_game *game, int x, int y);
 
 //error.c
 int		err_msg(char *detail, char *str, int code);
@@ -288,11 +289,12 @@ void	move_right_helper3(char **map, t_player *player, float cos, float sin);
 void	move_right_helper4(char **map, t_player *player, float cos, float sin);
 
 //Raycasting
-void	draw_line_maismore(t_vars *vars, t_game *game, int *i);
+void	draw_line_maismore(t_vars *vars, t_game *game);
 void	draw_line_maishit(t_vars *vars, t_player *player);
 void	draw_line_hit(t_vars *vars, t_game *game);
 void	draw_line_line(t_vars *vars, t_player *player);
 void	draw_line_init(t_vars *vars, t_player *player, float start_x);
+void	draw_line_theme(t_vars *vars, t_game *game, int *i);
 void	draw_line(t_player *player, t_game *game, float start_x, int i);
 
 #endif

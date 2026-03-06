@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 19:57:43 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/05 07:10:19 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/06 00:40:37 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,26 @@ void	init_textures(t_game *game)
 	game->textures = ft_calloc(16, sizeof * game->textures);
 	game->textures[0] = ft_calloc(4, sizeof * *(game->textures));
 	game->textures[1] = ft_calloc(4, sizeof * *(game->textures));
-	// game->textures[2] = ft_calloc(4, sizeof * *(game->textures));
-	// game->textures[3] = ft_calloc(4, sizeof * *(game->textures));
+	game->textures[2] = ft_calloc(4, sizeof * *(game->textures));
+	game->textures[3] = ft_calloc(4, sizeof * *(game->textures));
 	if (!game->textures)
 		clean_exit(game, err_msg(NULL, "Malloc ty shi", 1));
 	game->textures[0][NOTH] = xpm_to_img(game, game->texinfo.north);
 	game->textures[0][SOTH] = xpm_to_img(game, game->texinfo.south);
 	game->textures[0][EAST] = xpm_to_img(game, game->texinfo.east);
 	game->textures[0][WEST] = xpm_to_img(game, game->texinfo.west);
-	game->textures[1][NOTH] = xpm_to_img(game, "textures/conhecimento.xpm");
-	game->textures[1][SOTH] = xpm_to_img(game, "textures/blood_EA.xpm");
-	game->textures[1][EAST] = xpm_to_img(game, "textures/blood_EA.xpm");
-	game->textures[1][WEST] = xpm_to_img(game, "textures/blood_EA.xpm");
-	// game->textures[2][NOTH] = xpm_to_img(game, game->texinfo.north);
-	// game->textures[2][SOTH] = xpm_to_img(game, game->texinfo.south);
-	// game->textures[2][EAST] = xpm_to_img(game, game->texinfo.east);
-	// game->textures[2][WEST] = xpm_to_img(game, game->texinfo.west);
-	// game->textures[3][NOTH] = xpm_to_img(game, game->texinfo.north);
-	// game->textures[3][SOTH] = xpm_to_img(game, game->texinfo.south);
-	// game->textures[3][EAST] = xpm_to_img(game, game->texinfo.east);
-	// game->textures[3][WEST] = xpm_to_img(game, game->texinfo.west);
+	game->textures[1][NOTH] = xpm_to_img(game, "textures/sangue_NO.xpm");
+	game->textures[1][SOTH] = xpm_to_img(game, "textures/sangue_SO.xpm");
+	game->textures[1][EAST] = xpm_to_img(game, "textures/sangue_EA.xpm");
+	game->textures[1][WEST] = xpm_to_img(game, "textures/sangue_WE.xpm");
+	game->textures[2][NOTH] = xpm_to_img(game, "textures/energia_NO.xpm");
+	game->textures[2][SOTH] = xpm_to_img(game, "textures/energia_SO.xpm");
+	game->textures[2][EAST] = xpm_to_img(game, "textures/energia_EA.xpm");
+	game->textures[2][WEST] = xpm_to_img(game, "textures/energia_WE.xpm");
+	game->textures[3][NOTH] = xpm_to_img(game, "textures/morte_NO.xpm");
+	game->textures[3][SOTH] = xpm_to_img(game, "textures/morte_SO.xpm");
+	game->textures[3][EAST] = xpm_to_img(game, "textures/morte_EA.xpm");
+	game->textures[3][WEST] = xpm_to_img(game, "textures/morte_WE.xpm");
 }
 
 void	init_game(t_game *game)
@@ -84,7 +84,7 @@ void	init_game(t_game *game)
 	game->texinfo.x = 0;
 	game->texinfo.y = 0;
 	game->textures = NULL;
-	game->bonito = 0;
+	game->theme = 0;
 	game->bola = NULL;
 	game->map = NULL;
 	game->mlx = mlx_init();

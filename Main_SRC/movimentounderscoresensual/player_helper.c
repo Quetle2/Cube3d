@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:51:39 by marada            #+#    #+#             */
-/*   Updated: 2026/03/05 06:38:55 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/06 00:43:51 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,24 @@ void	init_player(t_player *player)
 	player->right_rotate = 0;
 }
 
+void	key_press_theme(int keycode, t_game *game)
+{
+	if (keycode == 49)
+		game->theme = 0;
+	if (keycode == 50)
+		game->theme = 1;
+	if (keycode == 51)
+		game->theme = 2;
+	if (keycode == 52)
+		game->theme = 3;
+}
+
 int	key_press(int keycode, t_game *game)
 {
 	t_player	*player;
 
 	player = &game->player;
-	if (keycode == 49)
-		game->bonito = 0;
-	if (keycode == 50)
-		game->bonito = 1;
+	key_press_theme(keycode, game);
 	if (keycode == W)
 		player->key_up = 1;
 	if (keycode == S)

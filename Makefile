@@ -1,4 +1,4 @@
-NAME = CUBADO
+NAME = cub3d
 
 CC = cc
 
@@ -6,17 +6,26 @@ RM = rm -rf
 
 CFLAGS = -Wall -Wextra -Werror -g
 
-MAIN_SRC = main.c \
-			movimentounderscoresensual/player_helper.c movimentounderscoresensual/player.c movimentounderscoresensual/pacima.c \
-			movimentounderscoresensual/padireita.c movimentounderscoresensual/paesquerda.c movimentounderscoresensual/pabaixo.c \
-			bolas.c check_map_utils.c check_map.c create_map_utils.c create_map.c draw.c draw2.c error.c free.c utils.c \
-			get_data_utils.c get_data.c init.c interagir.c parse_utils.c parse.c raycast.c raycast_utils.c free_utils.c
+SRC_MOVE = movimentounderscoresensual/player_helper.c movimentounderscoresensual/player.c \
+	movimentounderscoresensual/pacima.c movimentounderscoresensual/padireita.c \
+	movimentounderscoresensual/paesquerda.c movimentounderscoresensual/pabaixo.c
+
+SRC_FREE = free_and_error/error.c free_and_error/free_utils.c free_and_error/free.c
+
+SRC_PARSE = parsing/check_map_utils.c parsing/check_map.c parsing/create_map_utils.c \
+	parsing/create_map.c parsing/get_data_utils.c parsing/get_data.c \
+	parsing/parse_utils.c parsing/parse.c
+
+SRC_RENDER = render/bolas.c render/draw.c render/draw2.c render/interagir.c \
+	render/raycast_utils.c render/raycast.c render/utils.c
+
+MAIN_SRC = main.c init.c $(SRC_MOVE) $(SRC_FREE) $(SRC_PARSE) $(SRC_RENDER)
 
 GNL_SRC = get_next_line_utils.c get_next_line.c
 
 all: $(NAME)
 run:	all
-	@./CUBADO maps/map1.cub
+	@./cub3d maps/map1.cub
 
 valgrind:	all
 	@valgrind --leak-check=yes --leak-check=full --show-leak-kinds=all --track-origins=yes ./CUBADO map.ber

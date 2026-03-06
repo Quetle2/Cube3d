@@ -1,13 +1,15 @@
-NO textures/blood_NO.xpm
-SO textures/blood_SO.xpm
-WE textures/blood_WE.xpm
-EA textures/blood_EA.xpm
+NO textures/conhecimento_NO.xpm
+SO textures/conhecimento_SO.xpm
+WE textures/conhecimento_WE.xpm
+EA textures/conhecimento_EA.xpm
 
-F 25,0,0
-C 80,0,0
+F 10,8,16
+C 120,90,30
 
-1111111
-1000111
-10W0111
-1000111
-1111111
+11111111111
+10000010001
+10000010001
+10000W00001
+10000010001
+10000010001
+11111111111
