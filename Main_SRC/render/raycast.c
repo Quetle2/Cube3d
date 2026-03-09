@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:08 by marada            #+#    #+#             */
-/*   Updated: 2026/03/06 01:07:13 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/09 13:51:36 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,10 @@ void	draw_line_hit(t_vars *vars, t_game *game)
 			else
 				vars->side = 4;
 		}
-		if (ft_strchr("1A", game->map[vars->mapy][vars->mapx]))
+		if (game->map[vars->mapy][vars->mapx] == '1')
 			vars->hit = 1;
+		else if (game->map[vars->mapy][vars->mapx] == 'A')
+			vars->hit = 2;
 	}
 }
 
@@ -116,18 +118,24 @@ void	draw_line_theme(t_vars *vars, t_game *game, int *i)
 	{
 		vars->tex_y = (vars->start_y - vars->start_y_original)
 			* 128 / vars->wall_height;
-		if (vars->side == 1)
-			vars->color = game->textures[game->theme][EAST][vars->tex_y
-				* 128 + vars->tex_x];
-		else if (vars->side == 2)
-			vars->color = game->textures[game->theme][WEST][vars->tex_y
-				* 128 + vars->tex_x];
-		else if (vars->side == 3)
-			vars->color = game->textures[game->theme][SOTH][vars->tex_y
-				* 128 + vars->tex_x];
+		if (vars->hit == 2)
+			vars->color = game->textures[4][0][vars->tex_y
+					* 128 + vars->tex_x];
 		else
-			vars->color = game->textures[game->theme][NOTH][vars->tex_y
-				* 128 + vars->tex_x];
+		{
+			if (vars->side == 1)
+				vars->color = game->textures[game->theme][EAST][vars->tex_y
+					* 128 + vars->tex_x];
+			else if (vars->side == 2)
+				vars->color = game->textures[game->theme][WEST][vars->tex_y
+					* 128 + vars->tex_x];
+			else if (vars->side == 3)
+				vars->color = game->textures[game->theme][SOTH][vars->tex_y
+					* 128 + vars->tex_x];
+			else
+				vars->color = game->textures[game->theme][NOTH][vars->tex_y
+					* 128 + vars->tex_x];
+		}
 		put_pixel(*i, vars->start_y, vars->color, game);
 		vars->start_y++;
 	}
