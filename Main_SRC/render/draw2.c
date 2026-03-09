@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:22:54 by marada            #+#    #+#             */
-/*   Updated: 2026/03/09 13:19:02 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/09 14:44:48 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	draw_loop(t_game *game)
 		start_x += fraction;
 		i++;
 	}
+	draw_mini_mapa(game);
 	draw_square(player->x / 2, player->y / 2, 5, game);
 	draw_map(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 19:57:43 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/09 14:08:30 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/09 14:27:46 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	init_textures(t_game *game)
 	game->textures[1] = ft_calloc(4, sizeof * *(game->textures));
 	game->textures[2] = ft_calloc(4, sizeof * *(game->textures));
 	game->textures[3] = ft_calloc(4, sizeof * *(game->textures));
-	game->textures[4] = ft_calloc(4, sizeof * *(game->textures));
+	game->textures[4] = ft_calloc(1, sizeof * *(game->textures));
 	if (!game->textures)
 		clean_exit(game, err_msg(NULL, "Malloc ty shi", 1));
 	game->textures[0][NOTH] = xpm_to_img(game, game->texinfo.north);

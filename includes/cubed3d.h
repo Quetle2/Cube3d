@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed3d.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/06 01:04:05 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/09 14:45:13 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ int		draw_loop(t_game *game);
 float	distance(float x, float y);
 int		touch_bola(float px, float py, t_list *bolas);
 void	color_pixel(t_game *game, int x, int y);
+void	draw_mini_mapa(t_game *game);
 
 //error.c
 int		err_msg(char *detail, char *str, int code);

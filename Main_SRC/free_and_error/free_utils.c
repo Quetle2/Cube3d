@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 04:25:47 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/06 01:05:59 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/09 14:29:04 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ void	free_textures(int ***textures)
 			free(textures[theme][sprite]);
 			sprite++;
 		}
+		free(textures[theme]);
 		theme++;
 	}
+	free(textures[4][0]);
+	free(textures[4]);
 	free(textures);
 }

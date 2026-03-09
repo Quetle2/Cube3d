@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:08 by marada            #+#    #+#             */
-/*   Updated: 2026/03/09 13:51:36 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/09 14:45:34 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	draw_line_theme(t_vars *vars, t_game *game, int *i)
 			* 128 / vars->wall_height;
 		if (vars->hit == 2)
 			vars->color = game->textures[4][0][vars->tex_y
-					* 128 + vars->tex_x];
+				* 128 + vars->tex_x];
 		else
 		{
 			if (vars->side == 1)
