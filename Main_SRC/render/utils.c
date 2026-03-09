@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 04:43:45 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/06 01:07:16 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/09 13:36:16 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	color_pixel(t_game *game, int x, int y)
 	}
 	else
 	{
-		put_pixel(x, y, (30 << 16) | (30 << 8) | 35, game);
+		put_pixel(x, y, (50 << 16) | (50 << 8) | 55, game);
 		put_pixel(x, (y + HEIGHT / 2), (5 << 16) | (5 << 8) | 5, game);
 	}
 }
