@@ -1,4 +1,4 @@
-NO textures/door.xpm
+NO textures/conhecimento_NO.xpm
 SO textures/conhecimento_SO.xpm
 WE textures/conhecimento_WE.xpm
 EA textures/conhecimento_EA.xpm
@@ -9,7 +9,7 @@ C 120,90,30
 11111111111
 10000010001
 10000010001
-10000WA0001
+1A000WA0001
 10000010001
 10000010001
 11111111111
