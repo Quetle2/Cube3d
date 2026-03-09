@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:35:20 by marada            #+#    #+#             */
-/*   Updated: 2026/03/06 01:06:40 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/09 14:24:54 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ int	check_file(char *arg, int cub)
 void	init_player_direlao(t_player *player)
 {
 	if (player->dir == 'N')
-		player->angle = PI / 2;
-	else if (player->dir == 'W')
-		player->angle = 0;
-	else if (player->dir == 'E')
-		player->angle = PI;
-	else if (player->dir == 'S')
 		player->angle = 1.5 * PI;
+	else if (player->dir == 'W')
+		player->angle = PI;
+	else if (player->dir == 'E')
+		player->angle = 0;
+	else if (player->dir == 'S')
+		player->angle = PI / 2;
 }
 
 int	parse_args(t_game *game, char **av)
