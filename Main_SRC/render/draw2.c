@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:22:54 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 15:16:29 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/16 19:27:33 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int	draw_loop(t_game *game)
 	draw_mini_mapa(game);
 	draw_square(player->x / 2, player->y / 2, 5, game);
 	draw_map(game);
+	draw_bolas(game, game->bola);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (1);
 }
