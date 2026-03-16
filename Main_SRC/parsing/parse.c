@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:35:20 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/16 15:54:39 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,26 +59,9 @@ void	parse_data(char *path, t_game *game)
 		msg_err(path, strerror(errno), 1);
 	else
 	{
-		fill_tab(row, column, i, game);
+		enche_tab(row, column, i, game);
 		close(game->mapinfo.fd);
 	}
-}
-
-int	check_file(char *arg, int cub)
-{
-	int	fd;
-
-	if (is_dir(arg))
-		return (msg_err(arg, "File is a directory", 1));
-	fd = open(arg, O_RDONLY);
-	if (fd == -1)
-		return (msg_err(arg, strerror(errno), 1));
-	close(fd);
-	if (cub && !is_cub_file(arg))
-		return (msg_err(arg, "File is not a .cub", 1));
-	if (!cub && !is_xpm_file(arg))
-		return (msg_err(arg, "File is not a xpm", 1));
-	return (0);
 }
 
 void	init_player_direlao(t_player *player)
@@ -95,9 +78,16 @@ void	init_player_direlao(t_player *player)
 
 int	parse_argumentos(t_game *game, char **av)
 {
-	if (check_file(av[1], 1) == 1)
-		clean_exit(game, 1);
+	int	fd;
 
+	if (is_dir(av[1]))
+		fecha_com_msg(game, "DIRETORIO?!", 1);
+	fd = open(av[1], O_RDONLY);
+	if (fd == -1)
+		fecha_com_msg(game, "N Abre?!", 1);
+	close(fd);
+	if (1 && !is_cub_file(av[1]))
+		fecha_com_msg(game, "N e .CUB?!", 1);
 
 //
 	parse_data(av[1], game);
