@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 20:01:55 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/06 01:06:35 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	fill_tab(int row, int column, int i, t_game *game)
 		game->mapinfo.file[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
 		if (!game->mapinfo.file[row])
 		{
-			err_msg(NULL, "Erro no malloc", 0);
+			msg_err(NULL, "Erro no malloc", 0);
 			return (free_tab((void **)game->mapinfo.file));
 		}
 		while (line[i] != '\0')

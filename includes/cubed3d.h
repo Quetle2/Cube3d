@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed3d.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/09 14:45:13 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,7 @@ void	color_pixel(t_game *game, int x, int y);
 void	draw_mini_mapa(t_game *game);
 
 //error.c
-int		err_msg(char *detail, char *str, int code);
+int		msg_err(char *detail, char *str, int code);
 
 //free.c
 int		close_com(t_game *game);
@@ -246,7 +246,7 @@ int		get_number_of_lines(char *path);
 int		check_file(char *arg, int cub);
 void	init_player_direlao(t_player *player);
 void	parse_data(char *path, t_game *game);
-int		parse_args(t_game *game, char **av);
+int		parse_argumentos(t_game *game, char **av);
 
 //main.c
 void	put_pixel(int x, int y, int color, t_game *game);

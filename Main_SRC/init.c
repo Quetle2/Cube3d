@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 19:57:43 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/09 14:27:46 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	init_texture_img(t_game *game, t_img *image, char *path)
 	image->img = mlx_xpm_file_to_image(game->mlx, path, &game->texinfo.size,
 			&game->texinfo.size);
 	if (image->img == NULL)
-		clean_exit(game, err_msg("mlx", "No imagenss?!", 1));
+		clean_exit(game, msg_err("mlx", "No imagenss?!", 1));
 	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits,
 			&image->size_line, &image->endian);
 	return ;
@@ -48,7 +48,7 @@ void	init_textures(t_game *game)
 	game->textures[3] = ft_calloc(4, sizeof * *(game->textures));
 	game->textures[4] = ft_calloc(1, sizeof * *(game->textures));
 	if (!game->textures)
-		clean_exit(game, err_msg(NULL, "Malloc ty shi", 1));
+		clean_exit(game, msg_err(NULL, "Malloc ty shi", 1));
 	game->textures[0][NOTH] = xpm_to_img(game, game->texinfo.north);
 	game->textures[0][SOTH] = xpm_to_img(game, game->texinfo.south);
 	game->textures[0][EAST] = xpm_to_img(game, game->texinfo.east);

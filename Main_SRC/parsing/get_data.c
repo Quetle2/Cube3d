@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 15:49:09 by marada            #+#    #+#             */
-/*   Updated: 2026/03/06 01:06:31 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	*set_rgb_colors(char *line)
 	rgb = malloc(sizeof(int) * 3);
 	if (!rgb)
 	{
-		err_msg(NULL, "Falta de memoria e tais", 0);
+		msg_err(NULL, "Falta de memoria e tais", 0);
 		return (0);
 	}
 	return (copy_into_rgb_array(rgb_to_convert, rgb));
@@ -59,21 +59,21 @@ int	*set_rgb_colors(char *line)
 int	fill_color_textures(t_game *game, t_texinfo *textures, char *line, int j)
 {
 	if (line[j + 1] && ft_isprint(line[j + 1]))
-		return (err_msg(game->mapinfo.path, "Color Invalid\n", 2));
+		return (msg_err(game->mapinfo.path, "Color Invalid\n", 2));
 	if (!textures->ceiling && line[j] == 'C')
 	{
 		textures->ceiling = set_rgb_colors(line + j + 1);
 		if (textures->ceiling == 0)
-			return (err_msg(game->mapinfo.path, "Color Invalid\n", 2));
+			return (msg_err(game->mapinfo.path, "Color Invalid\n", 2));
 	}
 	else if (!textures->floor && line[j] == 'F')
 	{
 		textures->floor = set_rgb_colors(line + j + 1);
 		if (textures->floor == 0)
-			return (err_msg(game->mapinfo.path, "Color Invalid\n", 2));
+			return (msg_err(game->mapinfo.path, "Color Invalid\n", 2));
 	}
 	else
-		return (err_msg(game->mapinfo.path, "Color Invalid\n", 2));
+		return (msg_err(game->mapinfo.path, "Color Invalid\n", 2));
 	return (0);
 }
 
@@ -87,7 +87,7 @@ int	ignore_whitespaces_get_info(t_game *game, char **map, int i, int j)
 			&& !ft_isdigit(map[i][j]))
 		{
 			if (fill_direction_textures(&game->texinfo, map[i], j) == 2)
-				return (err_msg(game->mapinfo.path, "Texturas invalidas", 1));
+				return (msg_err(game->mapinfo.path, "Texturas invalidas", 1));
 			return (3);
 		}
 		else
@@ -100,7 +100,7 @@ int	ignore_whitespaces_get_info(t_game *game, char **map, int i, int j)
 	else if (ft_isdigit(map[i][j]))
 	{
 		if (create_map(game, map, i) == 1)
-			return (err_msg(game->mapinfo.path, "Esse mapa ta mal", 1));
+			return (msg_err(game->mapinfo.path, "Esse mapa ta mal", 1));
 		return (0);
 	}
 	return (4);

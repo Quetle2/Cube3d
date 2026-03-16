@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 17:17:56 by marada            #+#    #+#             */
-/*   Updated: 2026/03/06 01:06:21 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	get_map_info(t_game *game, char **file, int i)
 	game->mapinfo.height = count_map_lines(game, file, i);
 	game->map = malloc(sizeof(char *) * (game->mapinfo.height + 1));
 	if (!game->map)
-		return (err_msg(NULL, "Opa essas memorias e tal", 1));
+		return (msg_err(NULL, "Opa essas memorias e tal", 1));
 	if (fill_map_tab(&game->mapinfo, game->map, i) == 1)
 		return (1);
 	return (0);

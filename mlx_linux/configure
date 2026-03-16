@@ -80,7 +80,7 @@ clean(){
 	${MAKE} -f Makefile.gen -C test/ --no-print-directory clean
 }
 
-parse_args(){
+parse_argumentos(){
 	case "$1" in
 		--help | -h)
 			show_help

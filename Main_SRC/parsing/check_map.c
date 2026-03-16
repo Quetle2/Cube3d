@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:32:13 by marada            #+#    #+#             */
-/*   Updated: 2026/03/06 01:06:13 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	check_player_position(t_game *game, char **map_tab)
 		i++;
 	}
 	if (check_position_is_valid(game, map_tab) == 1)
-		return (err_msg(game->mapinfo.path, "ERROR: Position invalid.\n", 1));
+		return (msg_err(game->mapinfo.path, "ERROR: Position invalid.\n", 1));
 	return (0);
 }
 
@@ -54,9 +54,9 @@ int	check_map_elements(t_game *game, char **map_tab)
 			|| (game->map[i][j] >= '\v' && game->map[i][j] <= '\r'))
 				j++;
 			if (!(ft_strchr("10NSWEAF", map_tab[i][j])))
-				return (err_msg(game->mapinfo.path, "Invalid Map.\n", 1));
+				return (msg_err(game->mapinfo.path, "Invalid Map.\n", 1));
 			if (ft_strchr("NSWE", map_tab[i][j]) && game->player.dir != '0')
-				return (err_msg(game->mapinfo.path, "Invalid Map.\n", 1));
+				return (msg_err(game->mapinfo.path, "Invalid Map.\n", 1));
 			if (ft_strchr("NSWE", map_tab[i][j]) && game->player.dir == '0')
 				game->player.dir = map_tab[i][j];
 			j++;
@@ -106,16 +106,16 @@ int	check_map_sides(t_mapinfo *map, char **map_tab)
 int	check_map(t_game *game, char **map_tab)
 {
 	if (!game->map)
-		return (err_msg(game->mapinfo.path, "No mapa?!", 1));
+		return (msg_err(game->mapinfo.path, "No mapa?!", 1));
 	if (check_map_sides(&game->mapinfo, map_tab) == 1)
-		return (err_msg(game->mapinfo.path, "No paredessss?!", 1));
+		return (msg_err(game->mapinfo.path, "No paredessss?!", 1));
 	if (game->mapinfo.height < 3)
-		return (err_msg(game->mapinfo.path, "ERROR: Invalid Map.\n", 1));
+		return (msg_err(game->mapinfo.path, "ERROR: Invalid Map.\n", 1));
 	if (check_map_elements(game, map_tab) == 1)
 		return (1);
 	if (check_player_position(game, map_tab) == 1)
 		return (1);
 	if (check_map_is_at_the_end(&game->mapinfo) == 1)
-		return (err_msg(game->mapinfo.path, "ERROR: Invalid Map.\n", 1));
+		return (msg_err(game->mapinfo.path, "ERROR: Invalid Map.\n", 1));
 	return (0);
 }

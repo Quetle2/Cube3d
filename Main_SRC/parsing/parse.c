@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:35:20 by marada            #+#    #+#             */
-/*   Updated: 2026/03/09 14:24:54 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	get_number_of_lines(char *path)
 	line_count = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		err_msg(path, strerror(errno), errno);
+		msg_err(path, strerror(errno), errno);
 	else
 	{
 		line = get_next_line(fd);
@@ -51,12 +51,12 @@ void	parse_data(char *path, t_game *game)
 			+ 1, sizeof(char *));
 	if (!(game->mapinfo.file))
 	{
-		err_msg(NULL, "Nao consegui alocar memorias", 0);
+		msg_err(NULL, "Nao consegui alocar memorias", 0);
 		return ;
 	}
 	game->mapinfo.fd = open(path, O_RDONLY);
 	if (game->mapinfo.fd < 0)
-		err_msg(path, strerror(errno), 1);
+		msg_err(path, strerror(errno), 1);
 	else
 	{
 		fill_tab(row, column, i, game);
@@ -69,15 +69,15 @@ int	check_file(char *arg, int cub)
 	int	fd;
 
 	if (is_dir(arg))
-		return (err_msg(arg, "File is a directory", 1));
+		return (msg_err(arg, "File is a directory", 1));
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
-		return (err_msg(arg, strerror(errno), 1));
+		return (msg_err(arg, strerror(errno), 1));
 	close(fd);
 	if (cub && !is_cub_file(arg))
-		return (err_msg(arg, "File is not a .cub", 1));
+		return (msg_err(arg, "File is not a .cub", 1));
 	if (!cub && !is_xpm_file(arg))
-		return (err_msg(arg, "File is not a xpm", 1));
+		return (msg_err(arg, "File is not a xpm", 1));
 	return (0);
 }
 
@@ -93,13 +93,18 @@ void	init_player_direlao(t_player *player)
 		player->angle = PI / 2;
 }
 
-int	parse_args(t_game *game, char **av)
+int	parse_argumentos(t_game *game, char **av)
 {
 	if (check_file(av[1], 1) == 1)
 		clean_exit(game, 1);
+
+
+//
 	parse_data(av[1], game);
 	if (get_file_data(game, game->mapinfo.file) == 1)
 		return (clean_exit(game, 1), 1);
+
+//
 	if (check_map(game, game->map) == 1)
 		return (clean_exit(game, 1), 1);
 	init_player_direlao(&game->player);

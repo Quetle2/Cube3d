@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 21:36:14 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/06 01:06:17 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
 		j = 0;
 		map_tab[i] = malloc(sizeof(char) * (mapinfo->width + 1));
 		if (!map_tab[i])
-			return (err_msg(NULL, "Mais memorias e tais", 1));
+			return (msg_err(NULL, "Mais memorias e tais", 1));
 		while (mapinfo->file[index][j] && mapinfo->file[index][j] != '\n')
 		{
 			map_tab[i][j] = mapinfo->file[index][j];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 18:24:52 by marada            #+#    #+#             */
-/*   Updated: 2026/03/05 04:47:19 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	if (ac != 2)
-		return (err_msg("Usage", ERR_USAGE, 1));
+		return (msg_err("Usage", ERR_USAGE, 1));
 	init_game(&game);
-	if (parse_args(&game, av) != 0)
+	if (parse_argumentos(&game, av) != 0)
 		return (1);
 	init_textures(&game);
 	mlx_hook(game.win, 2, 1L << 0, key_press, &game);
