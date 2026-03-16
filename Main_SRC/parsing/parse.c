@@ -6,63 +6,11 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:35:20 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 15:54:39 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/16 16:20:18 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
-
-int	get_number_of_lines(char *path)
-{
-	int		fd;
-	char	*line;
-	int		line_count;
-
-	line_count = 0;
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-		msg_err(path, strerror(errno), errno);
-	else
-	{
-		line = get_next_line(fd);
-		while (line != NULL)
-		{
-			line_count++;
-			free(line);
-			line = get_next_line(fd);
-		}
-		close(fd);
-	}
-	return (line_count);
-}
-
-void	parse_data(char *path, t_game *game)
-{
-	int		row;
-	int		i;
-	size_t	column;
-
-	i = 0;
-	row = 0;
-	column = 0;
-	game->mapinfo.line_count = get_number_of_lines(path);
-	game->mapinfo.path = path;
-	game->mapinfo.file = ft_calloc(game->mapinfo.line_count
-			+ 1, sizeof(char *));
-	if (!(game->mapinfo.file))
-	{
-		msg_err(NULL, "Nao consegui alocar memorias", 0);
-		return ;
-	}
-	game->mapinfo.fd = open(path, O_RDONLY);
-	if (game->mapinfo.fd < 0)
-		msg_err(path, strerror(errno), 1);
-	else
-	{
-		enche_tab(row, column, i, game);
-		close(game->mapinfo.fd);
-	}
-}
 
 void	init_player_direlao(t_player *player)
 {
@@ -79,7 +27,16 @@ void	init_player_direlao(t_player *player)
 int	parse_argumentos(t_game *game, char **av)
 {
 	int	fd;
+	int		row;
+	int		i;
+	size_t	column;
+	char	*line;
+	int		line_count;
 
+	line_count = 0;
+	i = 0;
+	row = 0;
+	column = 0;
 	if (is_dir(av[1]))
 		fecha_com_msg(game, "DIRETORIO?!", 1);
 	fd = open(av[1], O_RDONLY);
@@ -89,10 +46,32 @@ int	parse_argumentos(t_game *game, char **av)
 	if (1 && !is_cub_file(av[1]))
 		fecha_com_msg(game, "N e .CUB?!", 1);
 
-//
-	parse_data(av[1], game);
-	if (get_file_data(game, game->mapinfo.file) == 1)
-		return (clean_exit(game, 1), 1);
+	game->mapinfo.path = av[1];
+	fd = open(av[1], O_RDONLY);
+	if (fd < 0)
+		ft_putstr_fd("n abriu be like", 2);
+	else
+	{
+		line = get_next_line(fd);
+		while (line != NULL)
+		{
+			line_count++;
+			free(line);
+			line = get_next_line(fd);
+		}
+		close(fd);
+	}
+	game->mapinfo.file = ft_calloc(line_count + 1, sizeof(char *));
+	if (!(game->mapinfo.file))
+		ft_putstr_fd("Nao consegui alocar memorias", 2);
+	game->mapinfo.fd = open(av[1], O_RDONLY);
+	if (game->mapinfo.fd < 0)
+		ft_putstr_fd("No opens?!", 2);
+	else
+	{
+		enche_tab(row, column, i, game);
+		close(game->mapinfo.fd);
+	}
 
 //
 	if (check_map(game, game->map) == 1)

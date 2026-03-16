@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 19:57:43 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/16 16:20:49 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	init_mapinfo(t_mapinfo *mapinfo)
 {
 	mapinfo->fd = 0;
-	mapinfo->line_count = 0;
 	mapinfo->path = NULL;
 	mapinfo->file = NULL;
 	mapinfo->height = 0;
