@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 21:36:14 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/16 16:27:30 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,26 @@ int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
 	while (i < mapinfo->height)
 	{
 		j = 0;
+		map_tab[i] = ft_strdup(mapinfo->file[index]);
+		if (!map_tab[i])
+			return (msg_err(NULL, "Mais memorias e tais", 1));
+		i++;
+		index++;
+	}
+	map_tab[i] = NULL;
+	return (0);
+}
+
+/* int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
+{
+	int		i;
+	int		j;
+
+	mapinfo->width = find_biggest_len(mapinfo, index);
+	i = 0;
+	while (i < mapinfo->height)
+	{
+		j = 0;
 		map_tab[i] = malloc(sizeof(char) * (mapinfo->width + 1));
 		if (!map_tab[i])
 			return (msg_err(NULL, "Mais memorias e tais", 1));
@@ -71,4 +91,4 @@ int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
 	}
 	map_tab[i] = NULL;
 	return (0);
-}
+} */
