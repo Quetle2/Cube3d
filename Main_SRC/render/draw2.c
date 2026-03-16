@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:22:54 by marada            #+#    #+#             */
-/*   Updated: 2026/03/09 14:44:48 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/16 15:16:29 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,53 @@ float	distance(float x, float y)
 	return (sqrt(x * x + y * y));
 }
 
-void	draw_background(t_game *game)
+void	draw_ceiling(t_game *game)
 {
-	int	x;
-	int	y;
-	int	*floor;
-	int	*ceiling;
+	int		x;
+	int		y;
+	int		*ceiling;
 
-	floor = game->texinfo.floor;
 	ceiling = game->texinfo.ceiling;
 	y = 0;
 	while (y < HEIGHT / 2)
 	{
-		x = -1;
-		while (++x < WIDTH)
+		x = 0;
+		while (x < WIDTH)
 		{
 			if (game->theme == 0)
 			{
 				put_pixel(x, y, (ceiling[0] << 16)
 					| (ceiling[1] << 8) | ceiling[2], game);
+			}
+			else
+				color_pixel(game, x, y);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	draw_floor(t_game *game)
+{
+	int	x;
+	int	y;
+	int	*floor;
+
+	floor = game->texinfo.floor;
+	y = HEIGHT / 2;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			if (game->theme == 0)
+			{
 				put_pixel(x, (y + HEIGHT / 2), (floor[0] << 16)
 					| (floor[1] << 8) | floor[2], game);
 			}
 			else
 				color_pixel(game, x, y);
+			x++;
 		}
 		y++;
 	}
@@ -89,7 +112,8 @@ int	draw_loop(t_game *game)
 	move_player(game, player);
 	move_bolas(game);
 	clear_image(game);
-	draw_background(game);
+	draw_floor(game);
+	draw_ceiling(game);
 	i = 0;
 	start_x = player->angle - PI / 6;
 	fraction = PI / 3 / WIDTH;

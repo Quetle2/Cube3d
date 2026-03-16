@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:32:13 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/16 15:54:16 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
+
+int	char_player(char player)
+{
+	if (player == 'N')
+		return (1);	
+	else if (player == 'S')
+		return (1);	
+	else if (player == 'W')
+		return (1);	
+	else if (player == 'E')
+		return (1);
+	return (0);
+}
 
 int	check_player_position(t_game *game, char **map_tab)
 {
@@ -23,7 +36,7 @@ int	check_player_position(t_game *game, char **map_tab)
 		j = 0;
 		while (map_tab[i][j])
 		{
-			if (ft_strchr("NSWE", map_tab[i][j]))
+			if (char_player(map_tab[i][j]))
 			{
 				game->player.x = (double)j * BLOCK + BLOCK / 2 - 5;
 				game->player.y = (double)i * BLOCK + BLOCK / 2 - 5;
@@ -35,6 +48,22 @@ int	check_player_position(t_game *game, char **map_tab)
 	}
 	if (check_position_is_valid(game, map_tab) == 1)
 		return (msg_err(game->mapinfo.path, "ERROR: Position invalid.\n", 1));
+	return (0);
+}
+
+int	char_map_check(char *line)
+{
+	int		p;
+
+	p = 0;
+	while (line[p])
+	{
+		if (line[p] != '1' && line[p] != '0' && line[p] != 'N'
+			&& line[p] != 'S' && line[p] != 'W' && line[p] != 'E'
+			&& line[p] != 'A' && line[p] != 'F')
+			return (1);
+		p++;
+	}
 	return (0);
 }
 
@@ -53,11 +82,11 @@ int	check_map_elements(t_game *game, char **map_tab)
 			while (game->map[i][j] == ' ' || game->map[i][j] == '\t'
 			|| (game->map[i][j] >= '\v' && game->map[i][j] <= '\r'))
 				j++;
-			if (!(ft_strchr("10NSWEAF", map_tab[i][j])))
+			if (char_map_check(map_tab[i]) == 1)
 				return (msg_err(game->mapinfo.path, "Invalid Map.\n", 1));
-			if (ft_strchr("NSWE", map_tab[i][j]) && game->player.dir != '0')
+			if (char_player(map_tab[i][j]) == 1 && game->player.dir != '0')
 				return (msg_err(game->mapinfo.path, "Invalid Map.\n", 1));
-			if (ft_strchr("NSWE", map_tab[i][j]) && game->player.dir == '0')
+			if (char_player(map_tab[i][j]) == 1 && game->player.dir == '0')
 				game->player.dir = map_tab[i][j];
 			j++;
 		}
@@ -66,17 +95,29 @@ int	check_map_elements(t_game *game, char **map_tab)
 	return (0);
 }
 
-int	check_top_or_bottom(char **map_tab, int i, int j)
-{
-	if (!map_tab || !map_tab[i] || !map_tab[i][j])
+int	check_top_or_bottom(char **map_tab, int j, int limit)
+{	
+	if (!map_tab || !map_tab[0] ||!map_tab[limit] || !map_tab[0][j]
+		|| !map_tab[limit][j])
 		return (1);
-	while (map_tab[i][j] == ' ' || map_tab[i][j] == '\t'
-	|| map_tab[i][j] == '\r' || map_tab[i][j] == '\v'
-	|| map_tab[i][j] == '\f')
+	while (map_tab[0][j] == ' ' || map_tab[0][j] == '\t'
+	|| map_tab[0][j] == '\r' || map_tab[0][j] == '\v'
+	|| map_tab[0][j] == '\f')
 		j++;
-	while (map_tab[i][j])
+	while (map_tab[0][j])
 	{
-		if (map_tab[i][j] != '1')
+		if (map_tab[0][j] != '1')
+			return (1);
+		j++;
+	}
+	j = 0;
+	while (map_tab[limit][j] == ' ' || map_tab[limit][j] == '\t'
+	|| map_tab[limit][j] == '\r' || map_tab[limit][j] == '\v'
+	|| map_tab[limit][j] == '\f')
+		j++;
+	while (map_tab[limit][j])
+	{
+		if (map_tab[limit][j] != '1')
 			return (1);
 		j++;
 	}
@@ -88,8 +129,10 @@ int	check_map_sides(t_mapinfo *map, char **map_tab)
 	int		i;
 	int		j;
 
-	if (check_top_or_bottom(map_tab, 0, 0) == 1)
+	if (check_top_or_bottom(map_tab, 0, map->height - 1) == 1)
+	{
 		return (1);
+	}
 	i = 1;
 	while (i < (map->height - 1))
 	{
@@ -98,8 +141,6 @@ int	check_map_sides(t_mapinfo *map, char **map_tab)
 			return (1);
 		i++;
 	}
-	if (check_top_or_bottom(map_tab, i, 0) == 1)
-		return (1);
 	return (0);
 }
 
