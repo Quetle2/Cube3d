@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 15:49:09 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/16 16:25:51 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,60 +74,5 @@ int	fill_color_textures(t_game *game, t_texinfo *textures, char *line, int j)
 	}
 	else
 		return (msg_err(game->mapinfo.path, "Color Invalid\n", 2));
-	return (0);
-}
-
-int	ignore_whitespaces_get_info(t_game *game, char **map, int i, int j)
-{
-	while (map[i][j] == ' ' || map[i][j] == '\t' || map[i][j] == '\n')
-		j++;
-	if (ft_isprint(map[i][j]) && !ft_isdigit(map[i][j]))
-	{
-		if (map[i][j + 1] && ft_isprint(map[i][j + 1])
-			&& !ft_isdigit(map[i][j]))
-		{
-			if (fill_direction_textures(&game->texinfo, map[i], j) == 2)
-				return (msg_err(game->mapinfo.path, "Texturas invalidas", 1));
-			return (3);
-		}
-		else
-		{
-			if (fill_color_textures(game, &game->texinfo, map[i], j) == 2)
-				return (1);
-			return (3);
-		}
-	}
-	else if (ft_isdigit(map[i][j]))
-	{
-		if (create_map(game, map, i) == 1)
-			return (msg_err(game->mapinfo.path, "Esse mapa ta mal", 1));
-		return (0);
-	}
-	return (4);
-}
-
-int	get_file_data(t_game *game, char **map)
-{
-	int	i;
-	int	j;
-	int	ret;
-
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			ret = ignore_whitespaces_get_info(game, map, i, j);
-			if (ret == 3)
-				break ;
-			else if (ret == 1)
-				return (1);
-			else if (ret == 0)
-				return (0);
-			j++;
-		}
-		i++;
-	}
 	return (0);
 }
