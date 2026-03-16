@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 21:36:14 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/16 16:27:30 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/16 17:47:32 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	count_map_lines(t_game *game, char **file, int i)
 	game->mapinfo.index_end_of_map = i;
 	return (i - index_value);
 }
-
+/* 
 int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
 {
 	int		i;
@@ -64,9 +64,9 @@ int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
 	}
 	map_tab[i] = NULL;
 	return (0);
-}
+} */
 
-/* int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
+int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
 {
 	int		i;
 	int		j;
@@ -91,4 +91,4 @@ int	fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index)
 	}
 	map_tab[i] = NULL;
 	return (0);
-} */
+}

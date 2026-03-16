@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:35:20 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 16:20:18 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/16 17:50:25 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	parse_argumentos(t_game *game, char **av)
 	}
 
 //
+	printf("%p\n", game->map);
 	if (check_map(game, game->map) == 1)
 		return (clean_exit(game, 1), 1);
 	init_player_direlao(&game->player);

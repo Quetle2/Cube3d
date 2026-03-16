@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:32:13 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 16:29:59 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/16 17:46:48 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,12 @@ int	check_map_sides(t_mapinfo *map, char **map_tab)
 	int		i;
 	int		j;
 
-	printf("%s", map_tab[0]);
+	int		x = 0;
+	while (map_tab[x])
+	{
+		printf("%i - %s\n", x, map_tab[x]);
+		x++;
+	}
 	if (check_top_or_bottom(map_tab, 0, map->height - 1) == 1)
 		return (1);
 	i = 1;
