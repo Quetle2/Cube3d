@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 15:54:39 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/16 16:20:52 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ typedef struct s_texinfo
 typedef struct s_mapinfo
 {
 	int			fd;
-	int			line_count;
 	char		*path;
 	char		**file;
 	int			height;
