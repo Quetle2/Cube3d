@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 16:20:52 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/16 19:44:23 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,8 +220,10 @@ int		*copy_into_rgb_array(char **rgb_to_convert, int *rgb);
 int		*set_rgb_colors(char *line);
 int		fill_color_textures(t_game *game, t_texinfo *textures,
 			char *line, int j);
-int		ignore_whitespaces_get_info(t_game *game, char **map, int i, int j);
-int		get_file_data(t_game *game, char **map);
+int		get_inf(t_game *game, char **map, int i, int j);
+int		get_file_inf(t_game *game, char **map);
+int		parse_file_info(t_game *game, char **map);
+
 
 //init.c
 void	init_mapinfo(t_mapinfo *mapinfo);

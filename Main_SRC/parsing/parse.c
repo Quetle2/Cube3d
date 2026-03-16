@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:35:20 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 18:01:39 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/16 19:43:54 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,18 @@ int	parse_argumentos(t_game *game, char **av)
 	}
 	game->mapinfo.file = ft_calloc(line_count + 1, sizeof(char *));
 	if (!(game->mapinfo.file))
-		ft_putstr_fd("Nao consegui alocar memorias", 2);
+		ft_putstr_fd("Nao consegui alocar memorias\n", 2);
 	game->mapinfo.fd = open(av[1], O_RDONLY);
 	if (game->mapinfo.fd < 0)
-		ft_putstr_fd("No opens?!", 2);
+		ft_putstr_fd("No opens?!\n", 2);
 	else
 	{
 		enche_tab(row, column, i, game);
 		close(game->mapinfo.fd);
 	}
-	if (get_file_data(game, game->mapinfo.file))
+	// if (get_file_inf(game, game->mapinfo.file))
+	// 	clean_exit(game, 1);
+	if (parse_file_info(game, game->mapinfo.file))
 		clean_exit(game, 1);
 //
 	if (check_map(game, game->map) == 1)
