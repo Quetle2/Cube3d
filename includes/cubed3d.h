@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/16 15:54:39 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,7 @@ void	draw_mini_mapa(t_game *game);
 
 //error.c
 int		msg_err(char *detail, char *str, int code);
+void 	fecha_com_msg(t_game *game, char *str, int code);
 
 //free.c
 int		close_com(t_game *game);
@@ -239,7 +240,7 @@ void	gear_shift(t_player *player);
 int		is_dir(char *arg);
 int		is_cub_file(char *arg);
 int		is_xpm_file(char *arg);
-void	fill_tab(int row, int column, int i, t_game *game);
+void	enche_tab(int row, int column, int i, t_game *game);
 
 //parse_utils.c
 int		get_number_of_lines(char *path);

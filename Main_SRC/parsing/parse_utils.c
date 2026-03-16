@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 20:01:55 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/16 15:54:39 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	is_xpm_file(char *arg)
 	return (1);
 }
 
-void	fill_tab(int row, int column, int i, t_game *game)
+void	enche_tab(int row, int column, int i, t_game *game)
 {
 	char	*line;
 
