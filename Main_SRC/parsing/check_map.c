@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:32:13 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 15:54:16 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/16 16:29:59 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,7 @@ int	check_top_or_bottom(char **map_tab, int j, int limit)
 	if (!map_tab || !map_tab[0] ||!map_tab[limit] || !map_tab[0][j]
 		|| !map_tab[limit][j])
 		return (1);
-	while (map_tab[0][j] == ' ' || map_tab[0][j] == '\t'
-	|| map_tab[0][j] == '\r' || map_tab[0][j] == '\v'
-	|| map_tab[0][j] == '\f')
+	while (!is_a_white_space(map_tab[0][j]))
 		j++;
 	while (map_tab[0][j])
 	{
@@ -111,9 +109,7 @@ int	check_top_or_bottom(char **map_tab, int j, int limit)
 		j++;
 	}
 	j = 0;
-	while (map_tab[limit][j] == ' ' || map_tab[limit][j] == '\t'
-	|| map_tab[limit][j] == '\r' || map_tab[limit][j] == '\v'
-	|| map_tab[limit][j] == '\f')
+	while (!is_a_white_space(map_tab[limit][j]))
 		j++;
 	while (map_tab[limit][j])
 	{
@@ -129,10 +125,9 @@ int	check_map_sides(t_mapinfo *map, char **map_tab)
 	int		i;
 	int		j;
 
+	printf("%s", map_tab[0]);
 	if (check_top_or_bottom(map_tab, 0, map->height - 1) == 1)
-	{
 		return (1);
-	}
 	i = 1;
 	while (i < (map->height - 1))
 	{

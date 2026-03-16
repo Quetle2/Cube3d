@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 17:17:56 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 15:11:49 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/16 16:14:31 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,23 @@ int	get_map_info(t_game *game, char **file, int i)
 
 void	change_space_into_wall(t_game *game)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 
-	i = 0;
-	while (game->map[i])
+	x = 0;
+	while (game->map[x])
 	{
-		j = 0;
-		while (game->map[i][j] == ' ' || game->map[i][j] == '\t'
-		|| game->map[i][j] == '\r'
-		|| game->map[i][j] == '\v' || game->map[i][j] == '\f')
-			j++;
-		while (game->map[i][j])
+		y = 0;
+		while (!is_a_white_space(game->map[x][y]))
+			y++;
+		while (game->map[x][y])
 		{
-			if (game->map[i][j] == ' '
-				&& j != game->map[i][ft_strlen(game->map[i]) - 1])
-				game->map[i][j] = '1';
-			j++;
+			if (game->map[x][y] == ' '
+				&& y != game->map[x][ft_strlen(game->map[x]) - 1])
+				game->map[x][y] = '1';
+			y++;
 		}
-		i++;
+		x++;
 	}
 }
 
