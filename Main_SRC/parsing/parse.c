@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:35:20 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 17:57:46 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/16 18:01:39 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	parse_argumentos(t_game *game, char **av)
 		enche_tab(row, column, i, game);
 		close(game->mapinfo.fd);
 	}
-	if (get_file_data(game, game->map))
+	if (get_file_data(game, game->mapinfo.file))
 		clean_exit(game, 1);
 //
 	if (check_map(game, game->map) == 1)
