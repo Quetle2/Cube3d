@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 17:01:01 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 17:02:40 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -344,6 +344,11 @@ void	put_pixel(int x, int y, int color, t_game *game);
 void	init_game(t_game *game);
 void	clear_image(t_game *game);
 int		*xpm_to_img(t_game *game, char *path);
+int		*load_texture_pixels(t_game *game, char *file);
+int		has_no_digits(char *str);
+int		assign_texture_path(t_texinfo *info, char *str, int pos);
+char	*extract_path_from_line(char *str, int pos);
+
 
 //Player
 void	init_player(t_player *player);

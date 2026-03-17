@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 15:49:09 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 16:32:12 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 16:58:58 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	*parse_rgb_values(char *line)
 	i = -1;
 	while (++i < 3)
 	{
-		if (no_digit(split[i]))
+		if (has_no_digits(split[i]))
 			return (free_tab((void **)split), free(rgb), NULL);
 		rgb[i] = ft_atoi(split[i]);
 		if (rgb[i] < 0 || rgb[i] > 255)
@@ -92,7 +92,7 @@ int	parse_line_info(t_game *game, char **map, int y, int x)
 
 	if (map[y][x + 1] && ft_isprint(map[y][x + 1]))
 	{
-		if (fill_direction_textures(&game->texinfo, map[y], x) == 2)
+		if (assign_texture_path(&game->texinfo, map[y], x) == 2)
 			return (ft_putstr_fd("Sem texturas?!\n", 2), 1);
 		return (3);
 	}
