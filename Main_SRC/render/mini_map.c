@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 16:29:59 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/17 16:35:53 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 19:19:17 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	draw_bolas(t_game *game, t_list *bolas)
 		bolas = bolas->next;
 	}
 }
-
 
 void	mini_map_color(char **map, t_game *game, t_color color)
 {

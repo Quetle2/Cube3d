@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 15:49:09 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 19:04:35 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 19:12:50 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ static int	parse_line_info(t_game *game, char **map, int y, int x)
 	char	c;
 
 	c = map[y][x];
-
 	if (ft_isdigit(c))
 	{
 		if (initialize_map(game, map, y))
@@ -100,8 +99,8 @@ int	parse_file_info(t_game *game, char **map)
 	int	x;
 	int	ret;
 
-	y = 0;
-	while (map[y])
+	y = -1;
+	while (map[++y])
 	{
 		x = 0;
 		while (map[y][x])
@@ -117,10 +116,8 @@ int	parse_file_info(t_game *game, char **map)
 				return (1);
 			if (ret == 0)
 				return (0);
-
 			x++;
 		}
-		y++;
 	}
 	return (0);
 }

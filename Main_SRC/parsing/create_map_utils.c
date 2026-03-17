@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 21:36:14 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/17 19:04:40 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 19:11:04 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int	populate_map_array(t_mapinfo *map_data, char **map_array, int start_idx)
 	row = 0;
 	while (row < map_data->height)
 	{
-		map_array[row] = duplicate_line(map_data->file[start_idx], map_data->width);
+		map_array[row]
+			= duplicate_line(map_data->file[start_idx], map_data->width);
 		if (!map_array[row])
 			return (msg_err(NULL, "Memory issues bruh", 1));
 		row++;

@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:35:20 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 19:06:04 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 19:18:13 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	init_player_direlao(t_player *player)
 
 int	parse_argumentos(t_game *game, char **av)
 {
-	int	fd;
+	int		fd;
 	int		row;
 	int		i;
 	size_t	column;
@@ -45,7 +45,6 @@ int	parse_argumentos(t_game *game, char **av)
 	close(fd);
 	if (1 && !is_cub_extension(av[1]))
 		fecha_com_msg(game, "N e .CUB?!", 1);
-
 	game->mapinfo.path = av[1];
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
@@ -74,7 +73,6 @@ int	parse_argumentos(t_game *game, char **av)
 	}
 	if (parse_file_info(game, game->mapinfo.file))
 		clean_exit(game, 1);
-//
 	if (validate_full_map(game, game->map) == 1)
 		return (clean_exit(game, 1), 1);
 	init_player_direlao(&game->player);

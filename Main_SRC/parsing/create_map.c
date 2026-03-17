@@ -6,15 +6,17 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 17:17:56 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 19:04:42 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 19:10:32 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
 
-static int	extract_map_data(t_game *game_data, char **file_content, int start_idx)
+static int	extract_map_data(t_game *game_data,
+	char **file_content, int start_idx)
 {
-	game_data->mapinfo.height = count_map_rows(game_data, file_content, start_idx);
+	game_data->mapinfo.height
+		= count_map_rows(game_data, file_content, start_idx);
 	game_data->map = malloc(sizeof(char *) * (game_data->mapinfo.height + 1));
 	if (!game_data->map)
 		return (msg_err(NULL, "Memory allocation failed, bruh!", 1));
