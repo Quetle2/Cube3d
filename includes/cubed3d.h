@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 17:02:40 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 17:12:40 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,6 +241,29 @@ int		count_map_lines(t_game *game, char **file, int i);
 void	change_space_into_wall(t_game *game);
 int		create_map(t_game *game, char **file, int i);
 
+//get_data_utils.c
+int		assign_texture_path(t_texinfo *info, char *str, int pos);
+int		has_no_digits(char *str);
+int		*load_texture_pixels(t_game *game, char *file);
+
+//get_data.c
+int		parse_file_info(t_game *game, char **map);
+
+//parse_utils.c
+int		is_dir(char *arg);
+int		is_cub_file(char *arg);
+int		is_xpm_file(char *arg);
+void	enche_tab(int row, int column, int i, t_game *game);
+
+//parse.c
+int		parse_argumentos(t_game *game, char **av);
+
+// ! render
+
+
+
+
+
 
 
 
@@ -335,7 +358,6 @@ void	enche_tab(int row, int column, int i, t_game *game);
 //parse_utils.c
 int		get_number_of_lines(char *path);
 int		check_file(char *arg, int cub);
-void	init_player_direlao(t_player *player);
 void	parse_data(char *path, t_game *game);
 int		parse_argumentos(t_game *game, char **av);
 
@@ -347,7 +369,6 @@ int		*xpm_to_img(t_game *game, char *path);
 int		*load_texture_pixels(t_game *game, char *file);
 int		has_no_digits(char *str);
 int		assign_texture_path(t_texinfo *info, char *str, int pos);
-char	*extract_path_from_line(char *str, int pos);
 
 
 //Player
