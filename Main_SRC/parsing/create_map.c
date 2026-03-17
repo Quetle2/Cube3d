@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 17:17:56 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 17:58:11 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 17:00:38 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
 
-int	get_map_info(t_game *game, char **file, int i)
+static int	get_map_info(t_game *game, char **file, int i)
 {
 	game->mapinfo.height = count_map_lines(game, file, i);
 	game->map = malloc(sizeof(char *) * (game->mapinfo.height + 1));

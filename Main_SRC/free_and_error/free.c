@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:14:49 by marada            #+#    #+#             */
-/*   Updated: 2026/03/06 01:06:04 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 16:44:48 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ int	close_com(t_game *game)
 	return (1);
 }
 
-void	free_map(t_game *game)
+static void	free_map(t_game *game)
 {
 	free_texinfo(&game->texinfo);
+	free_colors(&game->color);
 	if (game->textures)
 		free_textures(game->textures);
 	if (game->mapinfo.fd > 0)
@@ -31,7 +32,7 @@ void	free_map(t_game *game)
 		free_tab((void **)game->map);
 }
 
-int	free_data(t_game *game)
+static int	free_data(t_game *game)
 {
 	free_map(game);
 	return (1);

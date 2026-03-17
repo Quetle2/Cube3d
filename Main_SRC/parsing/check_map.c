@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:32:13 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 01:53:43 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 16:56:35 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
 
-int	check_player_position(t_game *game, char **map_tab)
+static int	check_player_position(t_game *game, char **map_tab)
 {
 	int	i;
 	int	j;
@@ -38,7 +38,7 @@ int	check_player_position(t_game *game, char **map_tab)
 	return (0);
 }
 
-int	check_map_elements(t_game *game, char **map_tab)
+static int	check_map_elements(t_game *game, char **map_tab)
 {
 	int	i;
 	int	j;
@@ -66,7 +66,7 @@ int	check_map_elements(t_game *game, char **map_tab)
 	return (0);
 }
 
-int	check_top_or_bottom(char **map_tab, int j, int limit)
+static int	check_top_or_bottom(char **map_tab, int j, int limit)
 {
 	if (!map_tab || !map_tab[0] ||!map_tab[limit] || !map_tab[0][j]
 		|| !map_tab[limit][j])
@@ -91,7 +91,7 @@ int	check_top_or_bottom(char **map_tab, int j, int limit)
 	return (0);
 }
 
-int	check_map_sides(t_mapinfo *map, char **map_tab)
+static int	check_map_sides(t_mapinfo *map, char **map_tab)
 {
 	int		i;
 	int		j;

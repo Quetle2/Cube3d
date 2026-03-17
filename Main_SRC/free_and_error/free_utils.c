@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 04:25:47 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/09 14:29:04 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 16:39:40 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,11 @@ void	free_textures(int ***textures)
 	free(textures[4][0]);
 	free(textures[4]);
 	free(textures);
+}
+
+void	free_colors(t_color *color)
+{
+	free(color->door);
+	free(color->open);
+	free(color->square);
 }

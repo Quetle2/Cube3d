@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 16:36:46 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 17:01:01 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,12 +164,66 @@ typedef struct s_vars
 	float	ray_y;
 }	t_vars;
 
-//bolas.c 
-int		check_colisao(t_game *game, t_bola *bola);
-void	delete_bolas(t_list **bolas);
-void	move_bolas(t_game *game);
+// ! free_and_error
+//error.c
+void	fecha_com_msg(t_game *game, char *str, int code);
+int		msg_err(char *detail, char *str, int code);
 
-//check_map_utils.c
+//free_utils.c
+void	free_texinfo(t_texinfo *texinfo);
+void	free_textures(int ***textures);
+void	free_colors(t_color *color);
+
+//free.c
+int		close_com(t_game *game);
+void	clean_exit(t_game *game, int code);
+void	free_tab(void **tab);
+
+// ! movimentounderscoresensual
+//pabaixo.c
+void	pabaixo_helper(t_game *game, t_player *player);
+void	move_down_helper1(char **map, t_player *player, float cos, float sin);
+void	move_down_helper2(char **map, t_player *player, float cos, float sin);
+void	move_down_helper2(char **map, t_player *player, float cos, float sin);
+void	move_down_helper3(char **map, t_player *player, float cos, float sin);
+void	move_down_helper4(char **map, t_player *player, float cos, float sin);
+
+//pacima.c
+void	pacima_helper(t_game *game, t_player *player);
+void	move_up_helper1(char **map, t_player *player, float cos, float sin);
+void	move_up_helper2(char **map, t_player *player, float cos, float sin);
+void	move_up_helper3(char **map, t_player *player, float cos, float sin);
+void	move_up_helper4(char **map, t_player *player, float cos, float sin);
+
+//padireita.c
+void	padireita_helper(t_game *game, t_player *player);
+void	move_right_helper1(char **map, t_player *player, float cos, float sin);
+void	move_right_helper2(char **map, t_player *player, float cos, float sin);
+void	move_right_helper3(char **map, t_player *player, float cos, float sin);
+void	move_right_helper4(char **map, t_player *player, float cos, float sin);
+
+//paesquerda.c
+void	paesquerda_helper(t_game *game, t_player *player);
+void	move_left_helper1(char **map, t_player *player, float cos, float sin);
+void	move_left_helper2(char **map, t_player *player, float cos, float sin);
+void	move_left_helper3(char **map, t_player *player, float cos, float sin);
+void	move_left_helper4(char **map, t_player *player, float cos, float sin);
+
+//player_helper.c
+void	init_player(t_player *player);
+void	key_press_theme(int keycode, t_game *game);
+int		key_press(int keycode, t_game *game);
+int		key_release(int keycode, t_player *player);
+
+//player.c
+void	move_right(char **map, t_player *player, float cos, float sin);
+void	move_left(char **map, t_player *player, float cos, float sin);
+void	move_up(char **map, t_player *player, float cos, float sin);
+void	move_down(char **map, t_player *player, float cos, float sin);
+void	move_player(t_game *game, t_player *player);
+
+// ! parsing
+// check_map_utils.c
 int		check_map_is_at_the_end(t_mapinfo *map);
 int		is_a_white_space(char c);
 int		check_position_is_valid(t_game *game, char **map_tab);
@@ -177,19 +231,36 @@ int		char_map_check(char *line);
 int		char_player(char player);
 
 //check_map.c
-int		check_player_position(t_game *game, char **map_tab);
-int		check_map_elements(t_game *game, char **map_tab);
-int		check_top_or_bottom(char **map_tab, int i, int j);
-int		check_map_sides(t_mapinfo *map, char **map_tab);
 int		check_map(t_game *game, char **map_tab);
 
+//create_map_utils.c
+int		fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index);
+int		count_map_lines(t_game *game, char **file, int i);
+
+//create_map.c
+void	change_space_into_wall(t_game *game);
+int		create_map(t_game *game, char **file, int i);
+
+
+
+
+
+
+
+
+
+
+//bolas.c 
+int		check_colisao(t_game *game, t_bola *bola);
+void	delete_bolas(t_list **bolas);
+void	move_bolas(t_game *game);
+void	free_colors(t_color *color);
+
 //creat_map_utils.c
-size_t	find_biggest_len(t_mapinfo *map, int i);
 int		count_map_lines(t_game *game, char **file, int i);
 int		fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index);
 
 //create_map.c
-int		get_map_info(t_game *game, char **file, int i);
 void	change_space_into_wall(t_game *game);
 int		create_map(t_game *game, char **file, int i);
 
@@ -222,8 +293,6 @@ void 	fecha_com_msg(t_game *game, char *str, int code);
 
 //free.c
 int		close_com(t_game *game);
-void	free_map(t_game *game);
-int		free_data(t_game *game);
 void	free_tab(void **tab);
 void	clean_exit(t_game *game, int code);
 void	free_texinfo(t_texinfo *texinfo);
