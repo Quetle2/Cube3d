@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 17:17:56 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 17:00:38 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 17:08:53 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	change_space_into_wall(t_game *game)
 	while (game->map[x])
 	{
 		y = 0;
-		while (!is_a_white_space(game->map[x][y]))
+		while (!is_not_whitespace(game->map[x][y]))
 			y++;
 		while (game->map[x][y])
 		{

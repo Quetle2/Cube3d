@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 21:36:14 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/17 16:59:04 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 17:08:53 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	count_map_lines(t_game *game, char **file, int i)
 	while (file[i])
 	{
 		j = 0;
-		while (!is_a_white_space(file[i][j]))
+		while (!is_not_whitespace(file[i][j]))
 			j++;
 		if (file[i][j] != '1')
 			break ;
