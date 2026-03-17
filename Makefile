@@ -17,7 +17,7 @@ SRC_PARSE = parsing/check_map_utils.c parsing/check_map.c parsing/create_map_uti
 	parsing/parse_utils.c parsing/parse.c
 
 SRC_RENDER = render/bolas.c render/draw.c render/draw2.c render/interagir.c \
-	render/raycast_utils.c render/raycast.c render/utils.c render/draw_utils.c
+	render/raycast_utils.c render/raycast.c render/utils.c render/mini_map.c
 
 MAIN_SRC = main.c init.c $(SRC_MOVE) $(SRC_FREE) $(SRC_PARSE) $(SRC_RENDER)
 

@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 16:01:35 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 16:36:46 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,9 @@ void	draw_map(t_game *game);
 void	draw_fireball(int x, int y, int color, t_game *game);
 void	draw_player(int x, int y, int color, t_game *game);
 void	draw_square_map(int x, int y, int color, t_game *game);
+void	mini_map_color(char **map, t_game *game, t_color color);
+void	draw_floor(t_game *game);
+void	draw_ceiling(t_game *game);
 
 //draw2.c
 int		draw_loop(t_game *game);

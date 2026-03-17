@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 04:43:45 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/17 15:30:43 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 16:32:04 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,5 @@ void	color_pixel(t_game *game, int x, int y)
 	{
 		put_pixel(x, y, (50 << 16) | (50 << 8) | 55, game);
 		put_pixel(x, (y + HEIGHT / 2), (5 << 16) | (5 << 8) | 5, game);
-	}
-}
-
-void	draw_mini_mapa(t_game *game)
-{
-	t_mapinfo	map;
-	int			x;
-	int			y;
-	float		div;
-
-	y = 0;
-	map = game->mapinfo;
-	div = (BLOCK / 2.5);
-	while (y <= map.height * div)
-	{
-		x = 0;
-		while (x <= (map.width - 1) * div)
-		{
-			put_pixel(x, y, 0, game);
-			x++;
-		}
-		y++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:22:54 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 16:07:14 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 16:31:40 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,58 +27,6 @@ int	touch(float px, float py, t_game *game)
 float	distance(float x, float y)
 {
 	return (sqrt(x * x + y * y));
-}
-
-void	draw_ceiling(t_game *game)
-{
-	int		x;
-	int		y;
-	int		*ceiling;
-
-	ceiling = game->texinfo.ceiling;
-	y = 0;
-	while (y < HEIGHT / 2)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			if (game->theme == 0)
-			{
-				put_pixel(x, y, (ceiling[0] << 16)
-					| (ceiling[1] << 8) | ceiling[2], game);
-			}
-			else
-				color_pixel(game, x, y);
-			x++;
-		}
-		y++;
-	}
-}
-
-void	draw_floor(t_game *game)
-{
-	int	x;
-	int	y;
-	int	*floor;
-
-	floor = game->texinfo.floor;
-	y = HEIGHT / 2;
-	while (y < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			if (game->theme == 0)
-			{
-				put_pixel(x, (y + HEIGHT / 2), (floor[0] << 16)
-					| (floor[1] << 8) | floor[2], game);
-			}
-			else
-				color_pixel(game, x, y);
-			x++;
-		}
-		y++;
-	}
 }
 
 int	draw_loop(t_game *game)
