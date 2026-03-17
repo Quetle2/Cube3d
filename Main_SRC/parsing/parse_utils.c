@@ -6,71 +6,134 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 20:01:55 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/16 15:54:39 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 19:06:04 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
 
-int	is_dir(char *arg)
+// int	is_directory(char *arg)
+// {
+// 	int		fd;
+// 	int		ret;
+
+// 	ret = 0;
+// 	fd = open(arg, 00200000);
+// 	if (fd >= 0)
+// 	{
+// 		close (fd);
+// 		ret = 1;
+// 	}
+// 	return (ret);
+// }
+
+// int	is_cub_extension(char *arg)
+// {
+// 	size_t	len;
+
+// 	len = ft_strlen(arg);
+// 	if ((arg[len - 3] != 'c' || arg[len - 2] != 'u'
+// 			|| arg[len - 1] != 'b'
+// 			|| arg[len - 4] != '.'))
+// 		return (0);
+// 	return (1);
+// }
+
+// int	is_xpm_extension(char *arg)
+// {
+// 	size_t	len;
+
+// 	len = ft_strlen(arg);
+// 	if ((arg[len - 3] != 'x' || arg[len - 2] != 'p'
+// 			|| arg[len - 1] != 'm'
+// 			|| arg[len - 4] != '.'))
+// 		return (0);
+// 	return (1);
+// }
+
+// void	fill_map_lines(int row, int column, int i, t_game *game)
+// {
+// 	char	*line;
+
+// 	line = get_next_line(game->mapinfo.fd);
+// 	while (line != NULL)
+// 	{
+// 		game->mapinfo.file[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
+// 		if (!game->mapinfo.file[row])
+// 		{
+// 			msg_err(NULL, "Erro no malloc", 0);
+// 			return (free_tab((void **)game->mapinfo.file));
+// 		}
+// 		while (line[i] != '\0')
+// 			game->mapinfo.file[row][column++] = line[i++];
+// 		game->mapinfo.file[row++][column] = '\0';
+// 		column = 0;
+// 		i = 0;
+// 		free(line);
+// 		line = get_next_line(game->mapinfo.fd);
+// 	}
+// 	game->mapinfo.file[row] = NULL;
+// }
+
+int	is_directory(char *path)
 {
 	int		fd;
-	int		ret;
+	int		result;
 
-	ret = 0;
-	fd = open(arg, 00200000);
+	result = 0;
+	fd = open(path, 00200000); // checking directory flag
 	if (fd >= 0)
 	{
-		close (fd);
-		ret = 1;
+		close(fd);
+		result = 1;
 	}
-	return (ret);
+	return (result);
 }
 
-int	is_cub_file(char *arg)
+int	is_cub_extension(char *filename)
 {
 	size_t	len;
 
-	len = ft_strlen(arg);
-	if ((arg[len - 3] != 'c' || arg[len - 2] != 'u'
-			|| arg[len - 1] != 'b'
-			|| arg[len - 4] != '.'))
+	len = ft_strlen(filename);
+	if ((filename[len - 3] != 'c' || filename[len - 2] != 'u'
+			|| filename[len - 1] != 'b'
+			|| filename[len - 4] != '.'))
 		return (0);
 	return (1);
 }
 
-int	is_xpm_file(char *arg)
+int	is_xpm_extension(char *filename)
 {
 	size_t	len;
 
-	len = ft_strlen(arg);
-	if ((arg[len - 3] != 'x' || arg[len - 2] != 'p'
-			|| arg[len - 1] != 'm'
-			|| arg[len - 4] != '.'))
+	len = ft_strlen(filename);
+	if ((filename[len - 3] != 'x' || filename[len - 2] != 'p'
+			|| filename[len - 1] != 'm'
+			|| filename[len - 4] != '.'))
 		return (0);
 	return (1);
 }
 
-void	enche_tab(int row, int column, int i, t_game *game)
+void	fill_map_lines(int row_idx, int col_idx, int char_idx, t_game *game_data)
 {
 	char	*line;
 
-	line = get_next_line(game->mapinfo.fd);
+	line = get_next_line(game_data->mapinfo.fd);
 	while (line != NULL)
 	{
-		game->mapinfo.file[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
-		if (!game->mapinfo.file[row])
+		game_data->mapinfo.file[row_idx] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
+		if (!game_data->mapinfo.file[row_idx])
 		{
-			msg_err(NULL, "Erro no malloc", 0);
-			return (free_tab((void **)game->mapinfo.file));
+			msg_err(NULL, "Malloc failed, bruh!", 0);
+			return (free_tab((void **)game_data->mapinfo.file));
 		}
-		while (line[i] != '\0')
-			game->mapinfo.file[row][column++] = line[i++];
-		game->mapinfo.file[row++][column] = '\0';
-		column = 0;
-		i = 0;
+		while (line[char_idx] != '\0')
+			game_data->mapinfo.file[row_idx][col_idx++] = line[char_idx++];
+		game_data->mapinfo.file[row_idx++][col_idx] = '\0';
+		col_idx = 0;
+		char_idx = 0;
 		free(line);
-		line = get_next_line(game->mapinfo.fd);
+		line = get_next_line(game_data->mapinfo.fd);
 	}
-	game->mapinfo.file[row] = NULL;
+	game_data->mapinfo.file[row_idx] = NULL;
 }

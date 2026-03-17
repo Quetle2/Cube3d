@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:35:20 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 17:17:41 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 19:06:04 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	parse_argumentos(t_game *game, char **av)
 	i = 0;
 	row = 0;
 	column = 0;
-	if (is_dir(av[1]))
+	if (is_directory(av[1]))
 		fecha_com_msg(game, "DIRETORIO?!", 1);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		fecha_com_msg(game, "N Abre?!", 1);
 	close(fd);
-	if (1 && !is_cub_file(av[1]))
+	if (1 && !is_cub_extension(av[1]))
 		fecha_com_msg(game, "N e .CUB?!", 1);
 
 	game->mapinfo.path = av[1];
@@ -69,7 +69,7 @@ int	parse_argumentos(t_game *game, char **av)
 		ft_putstr_fd("No opens?!\n", 2);
 	else
 	{
-		enche_tab(row, column, i, game);
+		fill_map_lines(row, column, i, game);
 		close(game->mapinfo.fd);
 	}
 	if (parse_file_info(game, game->mapinfo.file))

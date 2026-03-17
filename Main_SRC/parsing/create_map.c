@@ -6,49 +6,49 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 17:17:56 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 17:08:53 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 19:04:42 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
 
-static int	get_map_info(t_game *game, char **file, int i)
+static int	extract_map_data(t_game *game_data, char **file_content, int start_idx)
 {
-	game->mapinfo.height = count_map_lines(game, file, i);
-	game->map = malloc(sizeof(char *) * (game->mapinfo.height + 1));
-	if (!game->map)
-		return (msg_err(NULL, "Opa essas memorias e tal", 1));
-	if (fill_map_tab(&game->mapinfo, game->map, i) == 1)
+	game_data->mapinfo.height = count_map_rows(game_data, file_content, start_idx);
+	game_data->map = malloc(sizeof(char *) * (game_data->mapinfo.height + 1));
+	if (!game_data->map)
+		return (msg_err(NULL, "Memory allocation failed, bruh!", 1));
+	if (populate_map_array(&game_data->mapinfo, game_data->map, start_idx) == 1)
 		return (1);
 	return (0);
 }
 
-void	change_space_into_wall(t_game *game)
+static void	convert_spaces_to_walls(t_game *game_data)
 {
-	int	x;
-	int	y;
+	int	row;
+	int	col;
 
-	x = 0;
-	while (game->map[x])
+	row = 0;
+	while (game_data->map[row])
 	{
-		y = 0;
-		while (!is_not_whitespace(game->map[x][y]))
-			y++;
-		while (game->map[x][y])
+		col = 0;
+		while (!is_not_whitespace(game_data->map[row][col]))
+			col++;
+		while (game_data->map[row][col])
 		{
-			if (game->map[x][y] == ' '
-				&& y != game->map[x][ft_strlen(game->map[x]) - 1])
-				game->map[x][y] = '1';
-			y++;
+			if (game_data->map[row][col] == ' '
+				&& col != (int)ft_strlen(game_data->map[row]) - 1)
+				game_data->map[row][col] = '1';
+			col++;
 		}
-		x++;
+		row++;
 	}
 }
 
-int	create_map(t_game *game, char **file, int i)
+int	initialize_map(t_game *game_data, char **file_content, int start_idx)
 {
-	if (get_map_info(game, file, i) == 1)
+	if (extract_map_data(game_data, file_content, start_idx) == 1)
 		return (1);
-	change_space_into_wall(game);
+	convert_spaces_to_walls(game_data);
 	return (0);
 }
