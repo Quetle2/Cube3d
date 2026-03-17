@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 17:37:42 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 15:51:50 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 01:51:47 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
 
-void fecha_com_msg(t_game *game, char *str, int code)
+void	fecha_com_msg(t_game *game, char *str, int code)
 {
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("\n", 2);

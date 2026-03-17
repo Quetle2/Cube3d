@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 23:23:52 by marada            #+#    #+#             */
-/*   Updated: 2026/03/06 01:07:07 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 01:50:20 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,14 @@ void	draw_line(t_player *player, t_game *game, float start_x, int i)
 	{
 		while (vars.start_y < vars.end)
 		{
-			put_pixel(i, vars.start_y, 100, game);
+			if (game->theme == 0)
+				put_pixel(i, vars.start_y, 0xB22222, game);
+			if (game->theme == 1)
+				put_pixel(i, vars.start_y, 0xFFD700, game);
+			if (game->theme == 2)
+				put_pixel(i, vars.start_y, 0x4F4F4F, game);
+			if (game->theme == 3)
+				put_pixel(i, vars.start_y, 0x7B68EE, game);
 			vars.start_y++;
 		}
 	}

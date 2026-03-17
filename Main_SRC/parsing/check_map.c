@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:32:13 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 18:16:47 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 01:53:43 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
-
-int	char_player(char player)
-{
-	if (player == 'N')
-		return (1);	
-	else if (player == 'S')
-		return (1);	
-	else if (player == 'W')
-		return (1);	
-	else if (player == 'E')
-		return (1);
-	return (0);
-}
 
 int	check_player_position(t_game *game, char **map_tab)
 {
@@ -48,22 +35,6 @@ int	check_player_position(t_game *game, char **map_tab)
 	}
 	if (check_position_is_valid(game, map_tab) == 1)
 		return (msg_err(game->mapinfo.path, "ERROR: Position invalid.\n", 1));
-	return (0);
-}
-
-int	char_map_check(char *line)
-{
-	int		p;
-
-	p = 0;
-	while (line[p])
-	{
-		if (line[p] != '1' && line[p] != '0' && line[p] != 'N'
-			&& line[p] != 'S' && line[p] != 'W' && line[p] != 'E'
-			&& line[p] != 'A' && line[p] != 'F')
-			return (1);
-		p++;
-	}
 	return (0);
 }
 
@@ -96,7 +67,7 @@ int	check_map_elements(t_game *game, char **map_tab)
 }
 
 int	check_top_or_bottom(char **map_tab, int j, int limit)
-{	
+{
 	if (!map_tab || !map_tab[0] ||!map_tab[limit] || !map_tab[0][j]
 		|| !map_tab[limit][j])
 		return (1);

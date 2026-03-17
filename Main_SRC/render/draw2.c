@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:22:54 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 19:27:33 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 01:40:27 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,9 @@ int	draw_loop(t_game *game)
 		i++;
 	}
 	draw_mini_mapa(game);
-	draw_square(player->x / 2, player->y / 2, 5, game);
+	// ACERTAR O PLAYER NO MINI MAPA
+	draw_square((player->x / 2) - 6, (player->y / 2) - 6, 5, 0xF5FFFA, game);
 	draw_map(game);
-	draw_bolas(game, game->bola);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (1);
 }

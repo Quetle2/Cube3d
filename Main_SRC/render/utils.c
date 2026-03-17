@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 04:43:45 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/09 14:44:43 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 01:41:20 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,15 @@ void	draw_mini_mapa(t_game *game)
 	t_mapinfo	map;
 	int			x;
 	int			y;
+	int			div;
 
 	y = 0;
 	map = game->mapinfo;
-	while (y < map.height * (BLOCK / 2))
+	div = (BLOCK / 2) - 4;
+	while (y <= map.height * div)
 	{
 		x = 0;
-		while (x < (map.width - 1) * (BLOCK / 2))
+		while (x <= (map.width - 1) * div)
 		{
 			put_pixel(x, y, 0, game);
 			x++;

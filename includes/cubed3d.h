@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed3d.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/16 19:44:23 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 01:53:01 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,8 @@ void	move_bolas(t_game *game);
 int		check_map_is_at_the_end(t_mapinfo *map);
 int		is_a_white_space(char c);
 int		check_position_is_valid(t_game *game, char **map_tab);
+int		char_map_check(char *line);
+int		char_player(char player);
 
 //check_map.c
 int		check_player_position(t_game *game, char **map_tab);
@@ -187,7 +189,7 @@ int		create_map(t_game *game, char **file, int i);
 void	draw_bolas(t_game *game, t_list *bolas);
 void	draw_porta(int x, int y, int size, t_game *game);
 void	draw_porta2(int x, int y, int size, t_game *game);
-void	draw_square(int x, int y, int size, t_game *game);
+void	draw_square(int x, int y, int size, int color, t_game *game);
 void	draw_map(t_game *game);
 
 //draw2.c
