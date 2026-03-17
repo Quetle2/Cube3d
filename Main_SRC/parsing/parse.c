@@ -6,13 +6,13 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:35:20 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 17:13:52 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 17:17:41 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
 
-void	init_player_direlao(t_player *player)
+static void	init_player_direlao(t_player *player)
 {
 	if (player->dir == 'N')
 		player->angle = 1.5 * PI;

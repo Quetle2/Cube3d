@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_data_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 19:49:35 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/17 16:59:10 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 17:04:56 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
 
-char	*extract_path_from_line(char *str, int pos)
+static char	*extract_path_from_line(char *str, int pos)
 {
 	int		begin;
 	int		length;
