@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 19:57:43 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/16 16:20:49 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 13:37:13 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,23 @@ void	init_game(t_game *game)
 	game->data = mlx_get_data_addr(game->img.img, &game->img.pixel_bits,
 			&game->img.size_line, &game->img.endian);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
+}
+
+void	init_colors(t_game *game)
+{
+	game->color.door = ft_calloc(sizeof(int), 4);
+	game->color.open = ft_calloc(sizeof(int), 4);
+	game->color.square = ft_calloc(sizeof(int), 4);
+	game->color.door[0] = 0x8B4513;
+	game->color.door[1] = 0x8B0000;
+	game->color.door[2] = 0x4B0082;
+	game->color.door[3] = 0x363636;
+	game->color.open[0] = 0xFF8C00;
+	game->color.open[1] = 0xFF0000;
+	game->color.open[2] = 0x9400D3;
+	game->color.open[3] = 0x4F4F4F;
+	game->color.square[0] = 0xF0E68C;
+	game->color.square[1] = 0xFF6347;
+	game->color.square[2] = 0x9370DB;
+	game->color.square[3] = 0xC0C0C0;
 }

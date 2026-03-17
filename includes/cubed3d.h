@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed3d.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 01:53:01 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 16:01:35 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,13 @@ typedef struct s_img
 	int		endian;
 }				t_img;
 
+typedef	struct s_colors
+{
+	int		*square;
+	int		*door;
+	int		*open;
+}		t_color;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -123,6 +130,7 @@ typedef struct s_game
 	char		**map;
 	int			***textures;
 	int			theme;
+	t_color		color;
 	t_mapinfo	mapinfo;
 	t_texinfo	texinfo;
 }				t_game;
@@ -133,8 +141,8 @@ typedef struct s_vars
 	float	sin_angle;
 	float	dist;
 	float	height;
-	int		start_y;
-	int		end;
+	float	start_y;
+	float	end;
 	int		hit;
 	int		side;
 	float	proj_plane;
@@ -192,12 +200,18 @@ void	draw_porta2(int x, int y, int size, t_game *game);
 void	draw_square(int x, int y, int size, int color, t_game *game);
 void	draw_map(t_game *game);
 
+//draw_utils.c
+void	draw_fireball(int x, int y, int color, t_game *game);
+void	draw_player(int x, int y, int color, t_game *game);
+void	draw_square_map(int x, int y, int color, t_game *game);
+
 //draw2.c
 int		draw_loop(t_game *game);
 float	distance(float x, float y);
 int		touch_bola(float px, float py, t_list *bolas);
 void	color_pixel(t_game *game, int x, int y);
 void	draw_mini_mapa(t_game *game);
+void	draw_player(int x, int y, int color, t_game *game);
 
 //error.c
 int		msg_err(char *detail, char *str, int code);
@@ -232,6 +246,7 @@ void	init_mapinfo(t_mapinfo *mapinfo);
 void	init_texture_img(t_game *game, t_img *image, char *path);
 void	init_textures(t_game *game);
 void	init_game(t_game *game);
+void	init_colors(t_game *game);
 
 //interagir.c
 void	checka_porta(t_game *game, t_player *player, int size_y, int size_x);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bolas.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:25:36 by marada            #+#    #+#             */
-/*   Updated: 2026/03/06 01:06:45 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 16:07:05 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,24 @@ void	move_bolas(t_game *game)
 		game->bola = game->bola->next;
 	}
 	game->bola = bolas;
+}
+
+int	touch_bola(float px, float py, t_list *bolas)
+{
+	t_bola	*bola;
+
+	while (bolas)
+	{
+		bola = (t_bola *)(bolas->content);
+		if (bola == NULL)
+		{
+			bolas = bolas->next;
+			continue ;
+		}
+		if ((px >= bola->x && px <= (bola->x + FIRE))
+			&& (py >= bola->y && py <= (bola->y + FIRE)))
+			return (1);
+		bolas = bolas->next;
+	}
+	return (0);
 }

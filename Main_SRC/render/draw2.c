@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:22:54 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 01:40:27 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 16:07:14 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
-
-int	touch_bola(float px, float py, t_list *bolas)
-{
-	t_bola	*bola;
-
-	while (bolas)
-	{
-		bola = (t_bola *)(bolas->content);
-		if (bola == NULL)
-		{
-			bolas = bolas->next;
-			continue ;
-		}
-		if ((px >= bola->x && px <= (bola->x + FIRE))
-			&& (py >= bola->y && py <= (bola->y + FIRE)))
-			return (1);
-		bolas = bolas->next;
-	}
-	return (0);
-}
 
 int	touch(float px, float py, t_game *game)
 {
@@ -124,8 +104,7 @@ int	draw_loop(t_game *game)
 		i++;
 	}
 	draw_mini_mapa(game);
-	// ACERTAR O PLAYER NO MINI MAPA
-	draw_square((player->x / 2) - 6, (player->y / 2) - 6, 5, 0xF5FFFA, game);
+	draw_player((player->x / 2.5), (player->y / 2.5), 0xF5FFFA, game);
 	draw_map(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (1);
