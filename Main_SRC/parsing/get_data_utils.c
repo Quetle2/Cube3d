@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 19:49:35 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/17 19:13:23 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 19:25:03 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	*load_texture_pixels(t_game *game, char *file)
 	total = game->texinfo.size * game->texinfo.size;
 	pixels = ft_calloc(total, sizeof(int));
 	if (!pixels)
-		clean_exit(game, msg_err(NULL, "Malloc e tal", 1));
+		clean_saida(game, msg_err(NULL, "Malloc e tal", 1));
 	k = 0;
 	while (k < total)
 	{

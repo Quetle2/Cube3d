@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 19:06:04 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 19:25:03 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ void	free_colors(t_color *color);
 
 //free.c
 int		close_com(t_game *game);
-void	clean_exit(t_game *game, int code);
+void	clean_saida(t_game *game, int code);
 void	free_tab(void **tab);
 
 // ! movimentounderscoresensual
@@ -317,7 +317,7 @@ void 	fecha_com_msg(t_game *game, char *str, int code);
 //free.c
 int		close_com(t_game *game);
 void	free_tab(void **tab);
-void	clean_exit(t_game *game, int code);
+void	clean_saida(t_game *game, int code);
 void	free_texinfo(t_texinfo *texinfo);
 void	free_textures(int ***textures);
 

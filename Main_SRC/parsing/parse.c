@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:35:20 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 19:18:13 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 19:25:03 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ int	parse_argumentos(t_game *game, char **av)
 		close(game->mapinfo.fd);
 	}
 	if (parse_file_info(game, game->mapinfo.file))
-		clean_exit(game, 1);
+		clean_saida(game, 1);
 	if (validate_full_map(game, game->map) == 1)
-		return (clean_exit(game, 1), 1);
+		return (clean_saida(game, 1), 1);
 	init_player_direlao(&game->player);
 	return (0);
 }

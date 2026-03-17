@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:14:49 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 16:44:48 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 19:32:43 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,25 @@
 
 int	close_com(t_game *game)
 {
-	clean_exit(game, 1);
+	clean_saida(game, 1);
 	return (1);
 }
 
-static void	free_map(t_game *game)
+void	free_bola(t_list *bolas)
+{
+	t_list *tmp;
+
+	while (bolas != NULL)
+	{
+		tmp = bolas->next;
+		if (bolas->content != NULL)
+			free(bolas->content);
+		free(bolas);
+		bolas = tmp;
+	}
+}
+
+static void	free_game(t_game *game)
 {
 	free_texinfo(&game->texinfo);
 	free_colors(&game->color);
@@ -30,15 +44,17 @@ static void	free_map(t_game *game)
 		free_tab((void **)game->mapinfo.file);
 	if (game->map)
 		free_tab((void **)game->map);
+	if (game->bola)
+		free_bola(game->bola);
 }
 
 static int	free_data(t_game *game)
 {
-	free_map(game);
+	free_game(game);
 	return (1);
 }
 
-void	clean_exit(t_game *game, int code)
+void	clean_saida(t_game *game, int code)
 {
 	if (!game)
 		exit(code);

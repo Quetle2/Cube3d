@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:51:39 by marada            #+#    #+#             */
-/*   Updated: 2026/03/06 00:43:51 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 19:25:03 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	key_press(int keycode, t_game *game)
 	if (keycode == N)
 		gear_shift(player);
 	if (keycode == Q || keycode == 65307)
-		clean_exit(game, 1);
+		clean_saida(game, 1);
 	return (0);
 }
 

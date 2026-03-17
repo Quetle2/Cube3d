@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 19:57:43 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/17 19:21:10 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 19:25:03 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_texture_img(t_game *game, t_img *image, char *path)
 	image->img = mlx_xpm_file_to_image(game->mlx, path, &game->texinfo.size,
 			&game->texinfo.size);
 	if (image->img == NULL)
-		clean_exit(game, msg_err("mlx", "No imagenss?!", 1));
+		clean_saida(game, msg_err("mlx", "No imagenss?!", 1));
 	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits,
 			&image->size_line, &image->endian);
 	return ;
@@ -47,7 +47,7 @@ void	init_textures(t_game *game)
 	game->textures[3] = ft_calloc(4, sizeof * *(game->textures));
 	game->textures[4] = ft_calloc(1, sizeof * *(game->textures));
 	if (!game->textures)
-		clean_exit(game, msg_err(NULL, "Malloc ty shi", 1));
+		clean_saida(game, msg_err(NULL, "Malloc ty shi", 1));
 	game->textures[0][NOTH] = load_texture_pixels(game, game->texinfo.north);
 	game->textures[0][SOTH] = load_texture_pixels(game, game->texinfo.south);
 	game->textures[0][EAST] = load_texture_pixels(game, game->texinfo.east);
