@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 19:57:43 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/17 16:52:23 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/17 19:21:10 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,40 +48,23 @@ void	init_textures(t_game *game)
 	game->textures[4] = ft_calloc(1, sizeof * *(game->textures));
 	if (!game->textures)
 		clean_exit(game, msg_err(NULL, "Malloc ty shi", 1));
-	// game->textures[0][NOTH] = xpm_to_img(game, game->texinfo.north);
-	// game->textures[0][SOTH] = xpm_to_img(game, game->texinfo.south);
-	// game->textures[0][EAST] = xpm_to_img(game, game->texinfo.east);
-	// game->textures[0][WEST] = xpm_to_img(game, game->texinfo.west);
-	// game->textures[1][NOTH] = xpm_to_img(game, "textures/sangue_NO.xpm");
-	// game->textures[1][SOTH] = xpm_to_img(game, "textures/sangue_SO.xpm");
-	// game->textures[1][EAST] = xpm_to_img(game, "textures/sangue_EA.xpm");
-	// game->textures[1][WEST] = xpm_to_img(game, "textures/sangue_WE.xpm");
-	// game->textures[2][NOTH] = xpm_to_img(game, "textures/energia_NO.xpm");
-	// game->textures[2][SOTH] = xpm_to_img(game, "textures/energia_SO.xpm");
-	// game->textures[2][EAST] = xpm_to_img(game, "textures/energia_EA.xpm");
-	// game->textures[2][WEST] = xpm_to_img(game, "textures/energia_WE.xpm");
-	// game->textures[3][NOTH] = xpm_to_img(game, "textures/morte_NO.xpm");
-	// game->textures[3][SOTH] = xpm_to_img(game, "textures/morte_SO.xpm");
-	// game->textures[3][EAST] = xpm_to_img(game, "textures/morte_EA.xpm");
-	// game->textures[3][WEST] = xpm_to_img(game, "textures/morte_WE.xpm");
-	// game->textures[4][0] = xpm_to_img(game, "textures/door.xpm");
 	game->textures[0][NOTH] = load_texture_pixels(game, game->texinfo.north);
 	game->textures[0][SOTH] = load_texture_pixels(game, game->texinfo.south);
 	game->textures[0][EAST] = load_texture_pixels(game, game->texinfo.east);
 	game->textures[0][WEST] = load_texture_pixels(game, game->texinfo.west);
-	game->textures[1][NOTH] = load_texture_pixels(game, "textures/sangue_NO.xpm");
-	game->textures[1][SOTH] = load_texture_pixels(game, "textures/sangue_SO.xpm");
-	game->textures[1][EAST] = load_texture_pixels(game, "textures/sangue_EA.xpm");
-	game->textures[1][WEST] = load_texture_pixels(game, "textures/sangue_WE.xpm");
-	game->textures[2][NOTH] = load_texture_pixels(game, "textures/energia_NO.xpm");
-	game->textures[2][SOTH] = load_texture_pixels(game, "textures/energia_SO.xpm");
-	game->textures[2][EAST] = load_texture_pixels(game, "textures/energia_EA.xpm");
-	game->textures[2][WEST] = load_texture_pixels(game, "textures/energia_WE.xpm");
-	game->textures[3][NOTH] = load_texture_pixels(game, "textures/morte_NO.xpm");
-	game->textures[3][SOTH] = load_texture_pixels(game, "textures/morte_SO.xpm");
-	game->textures[3][EAST] = load_texture_pixels(game, "textures/morte_EA.xpm");
-	game->textures[3][WEST] = load_texture_pixels(game, "textures/morte_WE.xpm");
-	game->textures[4][0] = load_texture_pixels(game, "textures/door.xpm");
+	game->textures[1][NOTH] = load_texture_pixels(game, "text/sangue_NO.xpm");
+	game->textures[1][SOTH] = load_texture_pixels(game, "text/sangue_SO.xpm");
+	game->textures[1][EAST] = load_texture_pixels(game, "text/sangue_EA.xpm");
+	game->textures[1][WEST] = load_texture_pixels(game, "text/sangue_WE.xpm");
+	game->textures[2][NOTH] = load_texture_pixels(game, "text/energia_NO.xpm");
+	game->textures[2][SOTH] = load_texture_pixels(game, "text/energia_SO.xpm");
+	game->textures[2][EAST] = load_texture_pixels(game, "text/energia_EA.xpm");
+	game->textures[2][WEST] = load_texture_pixels(game, "text/energia_WE.xpm");
+	game->textures[3][NOTH] = load_texture_pixels(game, "text/morte_NO.xpm");
+	game->textures[3][SOTH] = load_texture_pixels(game, "text/morte_SO.xpm");
+	game->textures[3][EAST] = load_texture_pixels(game, "text/morte_EA.xpm");
+	game->textures[3][WEST] = load_texture_pixels(game, "text/morte_WE.xpm");
+	game->textures[4][0] = load_texture_pixels(game, "text/door.xpm");
 }
 
 void	init_game(t_game *game)
