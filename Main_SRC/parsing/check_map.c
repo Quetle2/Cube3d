@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:32:13 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 17:14:09 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/18 15:45:52 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ static int	scan_map_content(t_game *ctx, char **grid)
 			while (ctx->map[row][col] == ' ' || ctx->map[row][col] == '\t'
 				|| (ctx->map[row][col] >= '\v' && ctx->map[row][col] <= '\r'))
 				col++;
-			if (validate_map_chars(grid[row]) == 1)
-				return (msg_err(ctx->mapinfo.path, "Invalid Map.\n", 1));
+			if (validate_map_chars(&grid[row][col]) == 1)
+				return (msg_err(ctx->mapinfo.path, "Invalid Map3.\n", 1));
 			if (is_player_char(grid[row][col]) && ctx->player.dir != '0')
-				return (msg_err(ctx->mapinfo.path, "Invalid Map.\n", 1));
+				return (msg_err(ctx->mapinfo.path, "Invalid Map4.\n", 1));
 			if (is_player_char(grid[row][col]) && ctx->player.dir == '0')
 				ctx->player.dir = grid[row][col];
 			col++;
@@ -119,12 +119,12 @@ int	validate_full_map(t_game *ctx, char **grid)
 	if (verify_horizontal_edges(&ctx->mapinfo, grid) == 1)
 		return (msg_err(ctx->mapinfo.path, "No paredessss?!", 1));
 	if (ctx->mapinfo.height < 3)
-		return (msg_err(ctx->mapinfo.path, "ERROR: Invalid Map.\n", 1));
+		return (msg_err(ctx->mapinfo.path, "ERROR: Invalid Map1.\n", 1));
 	if (scan_map_content(ctx, grid) == 1)
 		return (1);
 	if (locate_player_spawn(ctx, grid) == 1)
 		return (1);
 	if (validate_map_end(&ctx->mapinfo) == 1)
-		return (msg_err(ctx->mapinfo.path, "ERROR: Invalid Map.\n", 1));
+		return (msg_err(ctx->mapinfo.path, "ERROR: Invalid Map2.\n", 1));
 	return (0);
 }
