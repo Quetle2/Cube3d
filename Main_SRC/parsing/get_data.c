@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 15:49:09 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 17:08:14 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 19:12:50 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,9 @@ static int	parse_line_info(t_game *game, char **map, int y, int x)
 	char	c;
 
 	c = map[y][x];
-
 	if (ft_isdigit(c))
 	{
-		if (create_map(game, map, y))
+		if (initialize_map(game, map, y))
 			return (ft_putstr_fd("Sem mapa?!\n", 2), 1);
 		return (0);
 	}
@@ -100,8 +99,8 @@ int	parse_file_info(t_game *game, char **map)
 	int	x;
 	int	ret;
 
-	y = 0;
-	while (map[y])
+	y = -1;
+	while (map[++y])
 	{
 		x = 0;
 		while (map[y][x])
@@ -117,10 +116,8 @@ int	parse_file_info(t_game *game, char **map)
 				return (1);
 			if (ret == 0)
 				return (0);
-
 			x++;
 		}
-		y++;
 	}
 	return (0);
 }

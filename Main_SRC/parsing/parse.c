@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:35:20 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 17:11:03 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 19:25:03 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	init_player_direlao(t_player *player)
 
 int	parse_argumentos(t_game *game, char **av)
 {
-	int	fd;
+	int		fd;
 	int		row;
 	int		i;
 	size_t	column;
@@ -37,15 +37,14 @@ int	parse_argumentos(t_game *game, char **av)
 	i = 0;
 	row = 0;
 	column = 0;
-	if (is_dir(av[1]))
+	if (is_directory(av[1]))
 		fecha_com_msg(game, "DIRETORIO?!", 1);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 		fecha_com_msg(game, "N Abre?!", 1);
 	close(fd);
-	if (1 && !is_cub_file(av[1]))
+	if (1 && !is_cub_extension(av[1]))
 		fecha_com_msg(game, "N e .CUB?!", 1);
-
 	game->mapinfo.path = av[1];
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
@@ -69,14 +68,13 @@ int	parse_argumentos(t_game *game, char **av)
 		ft_putstr_fd("No opens?!\n", 2);
 	else
 	{
-		enche_tab(row, column, i, game);
+		fill_map_lines(row, column, i, game);
 		close(game->mapinfo.fd);
 	}
 	if (parse_file_info(game, game->mapinfo.file))
-		clean_exit(game, 1);
-//
-	if (check_map(game, game->map) == 1)
-		return (clean_exit(game, 1), 1);
+		clean_saida(game, 1);
+	if (validate_full_map(game, game->map) == 1)
+		return (clean_saida(game, 1), 1);
 	init_player_direlao(&game->player);
 	return (0);
 }

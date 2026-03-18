@@ -3,125 +3,128 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 16:32:13 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 16:56:35 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/17 17:14:09 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
 
-static int	check_player_position(t_game *game, char **map_tab)
+static int	locate_player_spawn(t_game *ctx, char **grid)
 {
-	int	i;
-	int	j;
+	int	row;
+	int	col;
 
-	i = 0;
-	while (map_tab[i])
+	row = 0;
+	while (grid[row])
 	{
-		j = 0;
-		while (map_tab[i][j])
+		col = 0;
+		while (grid[row][col])
 		{
-			if (char_player(map_tab[i][j]))
+			if (is_player_char(grid[row][col]))
 			{
-				game->player.x = (double)j * BLOCK + BLOCK / 2 - 5;
-				game->player.y = (double)i * BLOCK + BLOCK / 2 - 5;
-				map_tab[i][j] = '0';
+				ctx->player.x = (double)col * BLOCK + BLOCK / 2 - 5;
+				ctx->player.y = (double)row * BLOCK + BLOCK / 2 - 5;
+				grid[row][col] = '0';
 			}
-			j++;
+			col++;
 		}
-		i++;
+		row++;
 	}
-	if (check_position_is_valid(game, map_tab) == 1)
-		return (msg_err(game->mapinfo.path, "ERROR: Position invalid.\n", 1));
+	if (validate_player_position(ctx, grid) == 1)
+		return (msg_err(ctx->mapinfo.path, "ERROR: Position invalid.\n", 1));
 	return (0);
 }
 
-static int	check_map_elements(t_game *game, char **map_tab)
+static int	scan_map_content(t_game *ctx, char **grid)
 {
-	int	i;
-	int	j;
+	int	row;
+	int	col;
 
-	i = 0;
-	game->player.dir = '0';
-	while (map_tab[i] != NULL)
+	row = 0;
+	ctx->player.dir = '0';
+	while (grid[row])
 	{
-		j = 0;
-		while (map_tab[i][j])
+		col = 0;
+		while (grid[row][col])
 		{
-			while (game->map[i][j] == ' ' || game->map[i][j] == '\t'
-			|| (game->map[i][j] >= '\v' && game->map[i][j] <= '\r'))
-				j++;
-			if (char_map_check(map_tab[i]) == 1)
-				return (msg_err(game->mapinfo.path, "Invalid Map.\n", 1));
-			if (char_player(map_tab[i][j]) == 1 && game->player.dir != '0')
-				return (msg_err(game->mapinfo.path, "Invalid Map.\n", 1));
-			if (char_player(map_tab[i][j]) == 1 && game->player.dir == '0')
-				game->player.dir = map_tab[i][j];
-			j++;
+			while (ctx->map[row][col] == ' ' || ctx->map[row][col] == '\t'
+				|| (ctx->map[row][col] >= '\v' && ctx->map[row][col] <= '\r'))
+				col++;
+			if (validate_map_chars(grid[row]) == 1)
+				return (msg_err(ctx->mapinfo.path, "Invalid Map.\n", 1));
+			if (is_player_char(grid[row][col]) && ctx->player.dir != '0')
+				return (msg_err(ctx->mapinfo.path, "Invalid Map.\n", 1));
+			if (is_player_char(grid[row][col]) && ctx->player.dir == '0')
+				ctx->player.dir = grid[row][col];
+			col++;
 		}
-		i++;
+		row++;
 	}
 	return (0);
 }
 
-static int	check_top_or_bottom(char **map_tab, int j, int limit)
+static int	verify_vertical_edges(char **grid, int start_col, int last_row)
 {
-	if (!map_tab || !map_tab[0] ||!map_tab[limit] || !map_tab[0][j]
-		|| !map_tab[limit][j])
-		return (1);
-	while (!is_a_white_space(map_tab[0][j]))
-		j++;
-	while (map_tab[0][j])
-	{
-		if (map_tab[0][j] != '1')
-			return (1);
-		j++;
-	}
-	j = 0;
-	while (!is_a_white_space(map_tab[limit][j]))
-		j++;
-	while (map_tab[limit][j])
-	{
-		if (map_tab[limit][j] != '1')
-			return (1);
-		j++;
-	}
-	return (0);
-}
+	int	col;
 
-static int	check_map_sides(t_mapinfo *map, char **map_tab)
-{
-	int		i;
-	int		j;
-
-	if (check_top_or_bottom(map_tab, 0, map->height - 1) == 1)
+	if (!grid || !grid[0] || !grid[last_row]
+		|| !grid[0][start_col] || !grid[last_row][start_col])
 		return (1);
-	i = 1;
-	while (i < (map->height - 1))
+	col = start_col;
+	while (!is_not_whitespace(grid[0][col]))
+		col++;
+	while (grid[0][col])
 	{
-		j = ft_strlen(map_tab[i]) - 1;
-		if (map_tab[i][j] != '1')
+		if (grid[0][col] != '1')
 			return (1);
-		i++;
+		col++;
+	}
+	col = 0;
+	while (!is_not_whitespace(grid[last_row][col]))
+		col++;
+	while (grid[last_row][col])
+	{
+		if (grid[last_row][col] != '1')
+			return (1);
+		col++;
 	}
 	return (0);
 }
 
-int	check_map(t_game *game, char **map_tab)
+static int	verify_horizontal_edges(t_mapinfo *info, char **grid)
 {
-	if (!game->map)
-		return (msg_err(game->mapinfo.path, "No mapa?!", 1));
-	if (check_map_sides(&game->mapinfo, map_tab) == 1)
-		return (msg_err(game->mapinfo.path, "No paredessss?!", 1));
-	if (game->mapinfo.height < 3)
-		return (msg_err(game->mapinfo.path, "ERROR: Invalid Map.\n", 1));
-	if (check_map_elements(game, map_tab) == 1)
+	int	row;
+	int	col;
+
+	if (verify_vertical_edges(grid, 0, info->height - 1) == 1)
 		return (1);
-	if (check_player_position(game, map_tab) == 1)
+	row = 1;
+	while (row < (info->height - 1))
+	{
+		col = ft_strlen(grid[row]) - 1;
+		if (grid[row][col] != '1')
+			return (1);
+		row++;
+	}
+	return (0);
+}
+
+int	validate_full_map(t_game *ctx, char **grid)
+{
+	if (!ctx->map)
+		return (msg_err(ctx->mapinfo.path, "No mapa?!", 1));
+	if (verify_horizontal_edges(&ctx->mapinfo, grid) == 1)
+		return (msg_err(ctx->mapinfo.path, "No paredessss?!", 1));
+	if (ctx->mapinfo.height < 3)
+		return (msg_err(ctx->mapinfo.path, "ERROR: Invalid Map.\n", 1));
+	if (scan_map_content(ctx, grid) == 1)
 		return (1);
-	if (check_map_is_at_the_end(&game->mapinfo) == 1)
-		return (msg_err(game->mapinfo.path, "ERROR: Invalid Map.\n", 1));
+	if (locate_player_spawn(ctx, grid) == 1)
+		return (1);
+	if (validate_map_end(&ctx->mapinfo) == 1)
+		return (msg_err(ctx->mapinfo.path, "ERROR: Invalid Map.\n", 1));
 	return (0);
 }

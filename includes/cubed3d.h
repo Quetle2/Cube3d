@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cubed3d.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/03/18 12:32:12 by jobraga-         ###   ########.fr       */
+=======
+/*   Updated: 2026/03/17 19:25:03 by marada           ###   ########.fr       */
+>>>>>>> refs/remotes/origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +180,7 @@ void	free_colors(t_color *color);
 
 //free.c
 int		close_com(t_game *game);
-void	clean_exit(t_game *game, int code);
+void	clean_saida(t_game *game, int code);
 void	free_tab(void **tab);
 
 // ! movimentounderscoresensual
@@ -224,22 +228,22 @@ void	move_player(t_game *game, t_player *player);
 
 // ! parsing
 // check_map_utils.c
-int		check_map_is_at_the_end(t_mapinfo *map);
-int		is_a_white_space(char c);
-int		check_position_is_valid(t_game *game, char **map_tab);
-int		char_map_check(char *line);
-int		char_player(char player);
+int		validate_map_end(t_mapinfo *map);
+int		is_not_whitespace(char c);
+int		validate_player_position(t_game *game, char **map_tab);
+int		validate_map_chars(char *line);
+int		is_player_char(char player);
 
 //check_map.c
-int		check_map(t_game *game, char **map_tab);
+int		validate_full_map(t_game *game, char **map_tab);
 
 //create_map_utils.c
-int		fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index);
-int		count_map_lines(t_game *game, char **file, int i);
+int		populate_map_array(t_mapinfo *mapinfo, char **map_tab, int index);
+int		count_map_rows(t_game *game, char **file, int i);
 
 //create_map.c
 void	change_space_into_wall(t_game *game);
-int		create_map(t_game *game, char **file, int i);
+int		initialize_map(t_game *game, char **file, int i);
 
 //get_data_utils.c
 int		assign_texture_path(t_texinfo *info, char *str, int pos);
@@ -250,10 +254,10 @@ int		*load_texture_pixels(t_game *game, char *file);
 int		parse_file_info(t_game *game, char **map);
 
 //parse_utils.c
-int		is_dir(char *arg);
-int		is_cub_file(char *arg);
-int		is_xpm_file(char *arg);
-void	enche_tab(int row, int column, int i, t_game *game);
+int		is_directory(char *arg);
+int		is_cub_extension(char *arg);
+int		is_xpm_extension(char *arg);
+void	fill_map_lines(int row, int column, int i, t_game *game);
 
 //parse.c
 int		parse_argumentos(t_game *game, char **av);
@@ -326,12 +330,12 @@ void	move_bolas(t_game *game);
 void	free_colors(t_color *color);
 
 //creat_map_utils.c
-int		count_map_lines(t_game *game, char **file, int i);
-int		fill_map_tab(t_mapinfo *mapinfo, char **map_tab, int index);
+int		count_map_rows(t_game *game, char **file, int i);
+int		populate_map_array(t_mapinfo *mapinfo, char **map_tab, int index);
 
 //create_map.c
 void	change_space_into_wall(t_game *game);
-int		create_map(t_game *game, char **file, int i);
+int		initialize_map(t_game *game, char **file, int i);
 
 //draw.c
 void	draw_bolas(t_game *game, t_list *bolas);
@@ -361,7 +365,7 @@ void 	fecha_com_msg(t_game *game, char *str, int code);
 //free.c
 int		close_com(t_game *game);
 void	free_tab(void **tab);
-void	clean_exit(t_game *game, int code);
+void	clean_saida(t_game *game, int code);
 void	free_texinfo(t_texinfo *texinfo);
 void	free_textures(int ***textures);
 
@@ -394,10 +398,10 @@ void	bola_de_fogo(t_game *game, t_player *player);
 void	gear_shift(t_player *player);
 
 //parse.c
-int		is_dir(char *arg);
-int		is_cub_file(char *arg);
-int		is_xpm_file(char *arg);
-void	enche_tab(int row, int column, int i, t_game *game);
+int		is_directory(char *arg);
+int		is_cub_extension(char *arg);
+int		is_xpm_extension(char *arg);
+void	fill_map_lines(int row, int column, int i, t_game *game);
 
 //parse_utils.c
 int		get_number_of_lines(char *path);
