@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/18 15:23:31 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/18 15:34:03 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../get_next_line_100/get_next_line.h"
 # include "../mlx_linux/mlx.h"
 
-# define ERR_USAGE "usage: ./cub3d <path/to/map.cub>"
+# define USAGE_ERR " : ERROS AQUI E ALI : "
 
 # define WIDTH 1280
 # define HEIGHT 720
