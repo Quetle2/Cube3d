@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 19:14:49 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 19:32:43 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/18 13:31:27 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,6 @@ int	close_com(t_game *game)
 {
 	clean_saida(game, 1);
 	return (1);
-}
-
-void	free_bola(t_list *bolas)
-{
-	t_list *tmp;
-
-	while (bolas != NULL)
-	{
-		tmp = bolas->next;
-		if (bolas->content != NULL)
-			free(bolas->content);
-		free(bolas);
-		bolas = tmp;
-	}
 }
 
 static void	free_game(t_game *game)

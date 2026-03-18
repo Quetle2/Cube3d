@@ -6,7 +6,7 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 20:01:55 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/17 19:10:03 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/18 15:22:12 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,16 @@ void	fill_map_lines(int row_idx, int col_idx,
 		line = get_next_line(game_data->mapinfo.fd);
 	}
 	game_data->mapinfo.file[row_idx] = NULL;
+}
+
+void	init_player_direlao(t_player *player)
+{
+	if (player->dir == 'N')
+		player->angle = 1.5 * PI;
+	else if (player->dir == 'W')
+		player->angle = PI;
+	else if (player->dir == 'E')
+		player->angle = 0;
+	else if (player->dir == 'S')
+		player->angle = PI / 2;
 }

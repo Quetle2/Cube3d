@@ -6,74 +6,81 @@
 /*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 16:35:20 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 19:25:03 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/18 15:22:05 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
 
-static void	init_player_direlao(t_player *player)
+static void	validate_input_file(t_game *game, char *path)
 {
-	if (player->dir == 'N')
-		player->angle = 1.5 * PI;
-	else if (player->dir == 'W')
-		player->angle = PI;
-	else if (player->dir == 'E')
-		player->angle = 0;
-	else if (player->dir == 'S')
-		player->angle = PI / 2;
+	int	fd;
+
+	if (is_directory(path))
+		fecha_com_msg(game, "DIRETORIO?!", 1);
+	if (!is_cub_extension(path))
+		fecha_com_msg(game, "N e .CUB?!", 1);
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		fecha_com_msg(game, "N Abre?!", 1);
+	close(fd);
+}
+
+static int	count_file_lines(char *path)
+{
+	int		fd;
+	int		count;
+	char	*line;
+
+	count = 0;
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		return (-1);
+	line = get_next_line(fd);
+	while (line)
+	{
+		count++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (count);
+}
+
+static int	load_file_into_memory(t_game *game, int line_count)
+{
+	game->mapinfo.file = ft_calloc(line_count + 1, sizeof(char *));
+	if (!game->mapinfo.file)
+		return (1);
+	game->mapinfo.fd = open(game->mapinfo.path, O_RDONLY);
+	if (game->mapinfo.fd < 0)
+		return (1);
+	fill_map_lines(0, 0, 0, game);
+	close(game->mapinfo.fd);
+	return (0);
+}
+
+static int	process_file_data(t_game *game)
+{
+	if (parse_file_info(game, game->mapinfo.file))
+		return (1);
+	if (validate_full_map(game, game->map))
+		return (1);
+	return (0);
 }
 
 int	parse_argumentos(t_game *game, char **av)
 {
-	int		fd;
-	int		row;
-	int		i;
-	size_t	column;
-	char	*line;
-	int		line_count;
+	int	line_count;
 
-	line_count = 0;
-	i = 0;
-	row = 0;
-	column = 0;
-	if (is_directory(av[1]))
-		fecha_com_msg(game, "DIRETORIO?!", 1);
-	fd = open(av[1], O_RDONLY);
-	if (fd == -1)
-		fecha_com_msg(game, "N Abre?!", 1);
-	close(fd);
-	if (1 && !is_cub_extension(av[1]))
-		fecha_com_msg(game, "N e .CUB?!", 1);
+	validate_input_file(game, av[1]);
 	game->mapinfo.path = av[1];
-	fd = open(av[1], O_RDONLY);
-	if (fd < 0)
-		ft_putstr_fd("n abriu be like", 2);
-	else
-	{
-		line = get_next_line(fd);
-		while (line != NULL)
-		{
-			line_count++;
-			free(line);
-			line = get_next_line(fd);
-		}
-		close(fd);
-	}
-	game->mapinfo.file = ft_calloc(line_count + 1, sizeof(char *));
-	if (!(game->mapinfo.file))
-		ft_putstr_fd("Nao consegui alocar memorias\n", 2);
-	game->mapinfo.fd = open(av[1], O_RDONLY);
-	if (game->mapinfo.fd < 0)
-		ft_putstr_fd("No opens?!\n", 2);
-	else
-	{
-		fill_map_lines(row, column, i, game);
-		close(game->mapinfo.fd);
-	}
-	if (parse_file_info(game, game->mapinfo.file))
-		clean_saida(game, 1);
-	if (validate_full_map(game, game->map) == 1)
+	line_count = count_file_lines(av[1]);
+	if (line_count <= 0)
+		return (1);
+	if (load_file_into_memory(game, line_count))
+		return (1);
+	if (process_file_data(game))
 		return (clean_saida(game, 1), 1);
 	init_player_direlao(&game->player);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed3d.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/18 12:39:22 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/18 15:23:31 by marada           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ typedef struct s_img
 	int		endian;
 }				t_img;
 
-typedef	struct s_colors
+typedef struct s_colors
 {
 	int		*square;
 	int		*door;
@@ -173,6 +173,7 @@ int		msg_err(char *detail, char *str, int code);
 void	free_texinfo(t_texinfo *texinfo);
 void	free_textures(int ***textures);
 void	free_colors(t_color *color);
+void	free_bola(t_list *bolas);
 
 //free.c
 int		close_com(t_game *game);
@@ -254,6 +255,7 @@ int		is_directory(char *arg);
 int		is_cub_extension(char *arg);
 int		is_xpm_extension(char *arg);
 void	fill_map_lines(int row, int column, int i, t_game *game);
+void	init_player_direlao(t_player *player);
 
 //parse.c
 int		parse_argumentos(t_game *game, char **av);
