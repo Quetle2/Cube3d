@@ -6,23 +6,11 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:22:54 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 16:31:40 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/18 12:14:23 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
-
-int	touch(float px, float py, t_game *game)
-{
-	int	x;
-	int	y;
-
-	x = px / BLOCK;
-	y = py / BLOCK;
-	if (ft_strchr("1A", game->map[y][x]))
-		return (1);
-	return (0);
-}
 
 float	distance(float x, float y)
 {

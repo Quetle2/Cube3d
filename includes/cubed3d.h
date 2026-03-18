@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 17:12:40 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/18 12:32:12 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,6 +259,54 @@ void	enche_tab(int row, int column, int i, t_game *game);
 int		parse_argumentos(t_game *game, char **av);
 
 // ! render
+//bolas.c
+void	move_bolas(t_game *game);
+int		touch_bola(float px, float py, t_list *bolas);
+
+//draw.c
+void	draw_map(t_game *game);
+void	draw_ceiling(t_game *game);
+void	draw_floor(t_game *game);
+void	draw_mini_mapa(t_game *game);
+
+//draw2.c
+float	distance(float x, float y);
+int		draw_loop(t_game *game);
+
+//interagir.c
+void	interagir(t_game *game, t_player *player);
+void	bola_de_fogo(t_game *game, t_player *player);
+void	gear_shift(t_player *player);
+
+//mini_map.c
+void	draw_player(int x, int y, int color, t_game *game);
+void	draw_bolas(t_game *game, t_list *bolas);
+void	mini_map_color(char **map, t_game *game, t_color color);
+
+//raycast.c
+void	draw_line(t_player *player, t_game *game, float start_x, int i);
+
+//raycast_utils.c
+void	draw_line_init(t_vars *vars, t_player *player, float start_x);
+void	draw_line_line(t_vars *vars, t_player *player);
+void	draw_line_hit(t_vars *vars, t_game *game);
+void	draw_line_maishit(t_vars *vars, t_player *player);
+void	draw_line_theme(t_vars *vars, t_game *game, int *i);
+
+//utils.c
+void	put_pixel(int x, int y, int color, t_game *game);
+void	clear_image(t_game *game);
+void	color_pixel(t_game *game, int x, int y);
+
+// ! GERAL
+//init.c
+void	init_mapinfo(t_mapinfo *mapinfo);
+void	init_texture_img(t_game *game, t_img *image, char *path);
+void	init_textures(t_game *game);
+
+
+
+
 
 
 
@@ -274,8 +322,6 @@ int		parse_argumentos(t_game *game, char **av);
 
 
 //bolas.c 
-int		check_colisao(t_game *game, t_bola *bola);
-void	delete_bolas(t_list **bolas);
 void	move_bolas(t_game *game);
 void	free_colors(t_color *color);
 
@@ -295,9 +341,7 @@ void	draw_square(int x, int y, int size, int color, t_game *game);
 void	draw_map(t_game *game);
 
 //draw_utils.c
-void	draw_fireball(int x, int y, int color, t_game *game);
 void	draw_player(int x, int y, int color, t_game *game);
-void	draw_square_map(int x, int y, int color, t_game *game);
 void	mini_map_color(char **map, t_game *game, t_color color);
 void	draw_floor(t_game *game);
 void	draw_ceiling(t_game *game);
@@ -407,7 +451,6 @@ void	move_right_helper3(char **map, t_player *player, float cos, float sin);
 void	move_right_helper4(char **map, t_player *player, float cos, float sin);
 
 //Raycasting
-void	draw_line_maismore(t_vars *vars, t_game *game);
 void	draw_line_maishit(t_vars *vars, t_player *player);
 void	draw_line_hit(t_vars *vars, t_game *game);
 void	draw_line_line(t_vars *vars, t_player *player);

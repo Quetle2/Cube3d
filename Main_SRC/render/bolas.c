@@ -6,13 +6,13 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:25:36 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 16:07:05 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/18 12:07:40 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
 
-int	check_colisao(t_game *game, t_bola *bola)
+static int	check_colisao(t_game *game, t_bola *bola)
 {
 	if (ft_strchr("1A", game->map[(int)((bola->y
 					- (bola->sin_angle * SPEED)) / 64)]
@@ -30,7 +30,7 @@ int	check_colisao(t_game *game, t_bola *bola)
 	return (0);
 }
 
-void	delete_bolas(t_list **bolas)
+static void	delete_bolas(t_list **bolas)
 {
 	free((*bolas)->content);
 	while ((*bolas)->next)

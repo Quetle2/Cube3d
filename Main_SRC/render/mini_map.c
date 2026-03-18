@@ -6,13 +6,13 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 16:29:59 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/17 16:35:53 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/18 12:24:09 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cubed3d.h"
 
-void	draw_fireball(int x, int y, int color, t_game *game)
+static void	draw_fireball(int x, int y, int color, t_game *game)
 {
 	int		i;
 	int		size;
@@ -46,7 +46,7 @@ void	draw_player(int x, int y, int color, t_game *game)
 	}
 }
 
-void	draw_square_map(int x, int y, int color, t_game *game)
+static void	draw_square_map(int x, int y, int color, t_game *game)
 {
 	int		i;
 	float	size;
@@ -86,7 +86,6 @@ void	draw_bolas(t_game *game, t_list *bolas)
 		bolas = bolas->next;
 	}
 }
-
 
 void	mini_map_color(char **map, t_game *game, t_color color)
 {
