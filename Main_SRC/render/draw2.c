@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:22:54 by marada            #+#    #+#             */
-/*   Updated: 2026/03/18 12:14:23 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/25 11:58:05 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 float	distance(float x, float y)
 {
 	return (sqrt(x * x + y * y));
+}
+
+void	mini_map(t_game *game, t_player *player)
+{
+	draw_mini_mapa(game);
+	draw_player((player->x / 2.5), (player->y / 2.5), 0xF5FFFA, game);
+	draw_map(game);
 }
 
 int	draw_loop(t_game *game)
@@ -39,9 +46,8 @@ int	draw_loop(t_game *game)
 		start_x += fraction;
 		i++;
 	}
-	draw_mini_mapa(game);
-	draw_player((player->x / 2.5), (player->y / 2.5), 0xF5FFFA, game);
-	draw_map(game);
+	if (game->code_map == 1)
+		mini_map(game, player);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	return (1);
 }

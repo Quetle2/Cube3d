@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:51:39 by marada            #+#    #+#             */
-/*   Updated: 2026/03/17 19:25:03 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/25 11:59:21 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ void	key_press_theme(int keycode, t_game *game)
 		game->theme = 2;
 	if (keycode == 52)
 		game->theme = 3;
+	if (keycode == M)
+	{
+		if (game->code_map == 0)
+			game->code_map = 1;
+		else if (game->code_map == 1)
+			game->code_map = 0;
+	}
 }
 
 int	key_press(int keycode, t_game *game)

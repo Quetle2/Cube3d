@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 19:57:43 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/17 19:25:03 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/25 11:58:01 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	init_game(t_game *game)
 
 void	init_colors(t_game *game)
 {
+	game->code_map = 0;
 	game->color.door = ft_calloc(sizeof(int), 4);
 	game->color.open = ft_calloc(sizeof(int), 4);
 	game->color.square = ft_calloc(sizeof(int), 4);

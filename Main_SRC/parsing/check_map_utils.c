@@ -6,7 +6,7 @@
 /*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 19:40:08 by jobraga-          #+#    #+#             */
-/*   Updated: 2026/03/18 15:45:59 by jobraga-         ###   ########.fr       */
+/*   Updated: 2026/03/18 15:49:04 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,7 @@ int	validate_map_chars(char *str)
 		if (str[idx] != '1' && str[idx] != '0' && str[idx] != 'N'
 			&& str[idx] != 'S' && str[idx] != 'W' && str[idx] != 'E'
 			&& str[idx] != 'A' && str[idx] != 'F')
-			{
-				printf("%c", str[idx]);
-				return (1);
-			}
+			return (1);
 		idx++;
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubed3d.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marada <marada@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jobraga- <jobraga-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 12:29:46 by marada            #+#    #+#             */
-/*   Updated: 2026/03/18 15:34:03 by marada           ###   ########.fr       */
+/*   Updated: 2026/03/25 11:57:20 by jobraga-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define F 102
 # define Q 113
 # define N 110
+# define M 109
 
 # define NOTH 0
 # define SOTH 1
@@ -130,6 +131,7 @@ typedef struct s_game
 	char		**map;
 	int			***textures;
 	int			theme;
+	int			code_map;
 	t_color		color;
 	t_mapinfo	mapinfo;
 	t_texinfo	texinfo;

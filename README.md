@@ -100,6 +100,7 @@ The map must be enclosed by walls (`1`) and appear at the end of the file.
 | `F` | Interact with door |
 | `E` | Shoot fireball |
 | `N` | Shift gear (speed toggle) |
+| `M` | Mini_map |
 | `1` `2` `3` `4` | Switch visual theme |
 | `Q` / `ESC` | Quit |
 
